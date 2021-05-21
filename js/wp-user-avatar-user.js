@@ -1,3 +1,11 @@
+/*! One User Avatar - v1.12.1 - 2021-05-21
+ * Copyright One Designs
+ * Copyright ProfilePress
+ * Copyright Flippercode
+ * Copyright Bangbay Siboliban
+ * Licensed GPLv2
+ */
+
 jQuery(function($) {
 	// Add enctype to form with JavaScript as backup
 	$('#your-profile').attr('enctype', 'multipart/form-data');
@@ -59,7 +67,7 @@ jQuery(function($) {
 	// Undo WP Existing User Avatar
 	$('body').on('click', '#wpua-undo-existing', function(e) {
 		e.preventDefault();
-        
+
 		$('#wpua-original-existing').remove();
 		$('#wpua-images-existing').removeAttr('style');
 		$('#wpua-undo-button-existing').hide();

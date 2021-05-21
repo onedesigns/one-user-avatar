@@ -3,7 +3,15 @@
  * Settings only for subscribers and contributors.
  *
  * @package One User Avatar
- * @version 1.9.13
+ * @author     Bangbay Siboliban
+ * @author     Flippercode
+ * @author     ProfilePress
+ * @author     One Designs
+ * @copyright  2013-2014 Bangbay Siboliban
+ * @copyright  2014-2020 Flippercode
+ * @copyright  2020-2021 ProfilePress
+ * @copyright  2021 One Designs
+ * @version    2.3.0
  */
 
 class WP_User_Avatar_Subscriber {
@@ -52,13 +60,9 @@ class WP_User_Avatar_Subscriber {
 
 		$user_roles = get_option( $wp_user_roles );
 
-		if ( 1 == (bool) $wpua_allow_upload && 1 == (bool) $wpua_edit_avatar ) {
-			$user_roles['subscriber']['capabilities']['edit_posts'] = true;
-		} else {
-            if ( isset( $user_roles['subscriber']['capabilities']['edit_posts'] ) ) {
-                unset( $user_roles['subscriber']['capabilities']['edit_posts'] );
-            }
-		}
+        if ( isset( $user_roles['subscriber']['capabilities']['edit_posts'] ) ) {
+            unset( $user_roles['subscriber']['capabilities']['edit_posts'] );
+        }
 
 		update_option( $wp_user_roles, $user_roles );
 	}

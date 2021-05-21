@@ -1,3 +1,11 @@
+/*! One User Avatar - v1.12.1 - 2021-05-21
+ * Copyright One Designs
+ * Copyright ProfilePress
+ * Copyright Flippercode
+ * Copyright Bangbay Siboliban
+ * Licensed GPLv2
+ */
+
 jQuery(function($) {
 	// Show size info only if allow uploads is checked
 	$('#wp_user_avatar_allow_upload').change(function() {

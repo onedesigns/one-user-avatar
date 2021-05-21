@@ -31,11 +31,11 @@ msgstr "https://onedesigns.com/plugins/one-user-avatar/"
 #. Description of the plugin
 msgid ""
 "Use any image from your WordPress Media Library as a custom user avatar. Add "
-"your own Default Avatar. Fork of WP User Avatar v2.2.9."
+"your own Default Avatar. Fork of WP User Avatar v2.2.16."
 msgstr ""
 "Utiliser n'importe quelle image dans votre Bibliothèque de médias de "
 "WordPress comme un avatar personnalisé. Ajouter votre propre avatar par "
-"défaut. Basé sur WP User Avatar v2.2.9."
+"défaut. Basé sur WP User Avatar v2.2.16."
 
 #. Author of the plugin
 msgid "One Designs"

@@ -3,7 +3,15 @@
  * Defines all profile and upload settings.
  *
  * @package One User Avatar
- * @version 1.9.13
+ * @author     Bangbay Siboliban
+ * @author     Flippercode
+ * @author     ProfilePress
+ * @author     One Designs
+ * @copyright  2013-2014 Bangbay Siboliban
+ * @copyright  2014-2020 Flippercode
+ * @copyright  2020-2021 ProfilePress
+ * @copyright  2021 One Designs
+ * @version    2.3.0
  */
 
 class WP_User_Avatar {
@@ -27,10 +35,14 @@ class WP_User_Avatar {
 		// Add WPUA to profile for users with permission
 		if ( $this->wpua_is_author_or_above() || ( 1 == (bool) $wpua_allow_upload && is_user_logged_in() ) ) {
 			// Profile functions and scripts
+			add_action('show_user_profile', array( $this, 'wpua_maybe_show_user_profile' ) );
+			add_action('edit_user_profile', array( $this, 'wpua_maybe_show_user_profile' ) );
+
 			add_action( 'personal_options_update',  array( $this, 'wpua_action_process_option_update' ) );
 			add_action( 'edit_user_profile_update', array( $this, 'wpua_action_process_option_update' ) );
-			add_action( 'user_new_form',            array( $this, 'wpua_action_show_user_profile' ) );
-			add_action( 'user_register',            array( $this, 'wpua_action_process_option_update' ) );
+
+			add_action( 'user_new_form', array( $this, 'wpua_action_show_user_profile' ) );
+			add_action( 'user_register', array( $this, 'wpua_action_process_option_update' ) );
 
 			add_filter( 'user_profile_picture_description', array( $this, 'wpua_description_show_user_profile' ), PHP_INT_MAX, 2 );
 
@@ -60,12 +72,15 @@ class WP_User_Avatar {
 
 	/**
 	 * Avatars have no parent posts
-	 * @since 1.8.4
-	 * @param array $settings
-	 * @uses object $post
-	 * @uses bool $wpua_is_profile
-	 * @uses is_admin()
-	 * array $settings
+     *
+     * @param array $settings
+     *
+     * @return array
+     * @uses object $post
+     * @uses bool $wpua_is_profile
+     * @uses is_admin()
+     * array $settings
+     * @since 1.8.4
 	 */
 	public function wpua_media_view_settings( $settings ) {
 		global $post, $wpua_is_profile;
@@ -136,7 +151,7 @@ class WP_User_Avatar {
 		if ( $pagenow == 'options-discussion.php' || $wpua_admin->wpua_is_menu_page() ) {
 			// Size limit slider
 			wp_enqueue_script( 'jquery-ui-slider' );
-			wp_enqueue_style( 'wp-user-avatar-jqueryui', WPUA_URL . 'css/jquery.ui.slider.css', '', null );
+			wp_enqueue_style( 'wp-user-avatar-jqueryui', WPUA_URL . 'css/jquery-ui.css', '', null );
 
 			// Default avatar
 			wp_localize_script( 'one-user-avatar', 'wpua_custom', array(
@@ -271,20 +286,6 @@ class WP_User_Avatar {
 
 			<p id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-remove-button' : 'wpua-remove-button-existing' ?>" class="<?php echo $hide_remove; ?>">
 				<button type="button" class="button" id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-remove' : 'wpua-remove-existing' ?>" name="wpua-remove"><?php _e( 'Remove Image', 'one-user-avatar' ); ?></button>
-
-				<?php
-				if (
-					1 == (bool)$wpua_edit_avatar                             &&
-					! $wp_user_avatar->wpua_is_author_or_above()             &&
-					has_wp_user_avatar( $current_user->ID )                  &&
-					$wp_user_avatar->wpua_author( $wpua, $current_user->ID )
-				) :
-					// Edit button
-					?>
-					<span id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-edit-attachment' : 'wpua-edit-attachment-existing' ?>"><a href="<?php echo esc_url( $edit_attachment_link ); ?>" class="edit-attachment" target="_blank"><?php _e( 'Edit Image', 'one-user-avatar' ); ?></a></span>
-					<?php
-				endif;
-				?>
 			</p>
 
 			<p id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-undo-button' : 'wpua-undo-button-existing' ?>">
@@ -331,7 +332,17 @@ class WP_User_Avatar {
 		do_action( 'wpua_after_avatar' . $is_admin );
 	}
 
-	public function wpua_description_show_user_profile( $description, $profileuser ) {
+	public function wpua_maybe_show_user_profile( $user ) {
+		if ( is_admin() ) {
+			return;
+		}
+
+		$this->wpua_action_show_user_profile( $user );
+	}
+
+	// setting defaults for the filter callback fixes an error like https://wordpress.org/support/topic/error-missing-argument-2-for-wp_user_avatarclosure
+	// see https://stackoverflow.com/questions/37779680/missing-argument-2-for-a-custom-function
+	public function wpua_description_show_user_profile( $description = '', $profileuser = null ) {
 		ob_start();
 
 		echo '<style>.user-profile-picture > td > .avatar { display: none; }</style>';

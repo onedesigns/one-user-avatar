@@ -2,12 +2,41 @@
 /*
 Plugin Name: One User Avatar
 Plugin URI: https://onedesigns.com/plugins/one-user-avatar/
-Description: Use any image from your WordPress Media Library as a custom user avatar. Add your own Default Avatar. Fork of WP User Avatar v2.2.9.
+Description: Use any image from your WordPress Media Library as a custom user avatar. Add your own Default Avatar. Fork of WP User Avatar v2.2.16.
 Author: One Designs
 Author URI: https://onedesigns.com/
 Version: 2.3.0
 Text Domain: one-user-avatar
 Domain Path: /languages/
+
+One User Avatar
+Copyright (c) 2021 One Designs https://onedesigns.com/
+
+One User Avatar is based on WP User Avatar v2.2.16
+Copyright (c) 2020-2021 ProfilePress https://profilepress.net/
+Copyright (c) 2014-2020 Flippercode https://www.flippercode.com/
+Copyright (c) 2013-2014 Bangbay Siboliban http://bangbay.com/
+License: GPLv2
+Source: https://github.com/profilepress/wp-user-avatar
+
+One User Avatar is distributed under the terms of the GNU GPL
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+One User Avatar bundles the following third-party resources:
+
+jQuery UI Slider v1.12.1
+Copyright (c) 2021 jQuery Foundation
+License: MIT
+Source: https://github.com/jquery/jquery-ui
 */
 
 if ( ! defined( 'ABSPATH' ) ) {

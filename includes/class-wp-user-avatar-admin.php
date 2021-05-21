@@ -3,7 +3,15 @@
  * Defines all of administrative, activation, and deactivation settings.
  *
  * @package One User Avatar
- * @version 1.9.13
+ * @author     Bangbay Siboliban
+ * @author     Flippercode
+ * @author     ProfilePress
+ * @author     One Designs
+ * @copyright  2013-2014 Bangbay Siboliban
+ * @copyright  2014-2020 Flippercode
+ * @copyright  2020-2021 ProfilePress
+ * @copyright  2021 One Designs
+ * @version    2.3.0
  */
 
 class WP_User_Avatar_Admin {
@@ -279,6 +287,8 @@ class WP_User_Avatar_Admin {
 			'monsterid'        => __( 'MonsterID (Generated)', 'one-user-avatar'),
 			'retro'            => __( 'Retro (Generated)',     'one-user-avatar')
 		);
+
+		$avatar_defaults = apply_filters( 'avatar_defaults', $avatar_defaults );
 
 		// No Default Avatar, set to Mystery Man
 		if ( empty( $avatar_default ) ) {

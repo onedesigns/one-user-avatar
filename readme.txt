@@ -8,12 +8,11 @@ Stable tag: 2.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Use any image from your WordPress Media Library as a custom user avatar or user profile picture. Add your own Default Avatar. Fork of WP User Avatar v2.2.9.
+Use any image from your WordPress Media Library as a custom user avatar or user profile picture. Add your own Default Avatar. Fork of WP User Avatar v2.2.16.
 
 == Description ==
 
-WordPress currently only allows you to use custom avatars that are uploaded through [Gravatar](http://gravatar.com/). **One User Avatar** enables you to use any photo uploaded into your Media Library as an avatar. This means you use the same uploader and library as your posts. No extra folders or image editing functions are necessary. This plugin is a fork of WP User Avatar v2.2.9.
-
+WordPress currently only allows you to use custom avatars that are uploaded through [Gravatar](http://gravatar.com/). **One User Avatar** enables you to use any photo uploaded into your Media Library as an avatar. This means you use the same uploader and library as your posts. No extra folders or image editing functions are necessary. This plugin is a fork of WP User Avatar v2.2.16.
 
 **One User Avatar** also lets you:
 
@@ -24,6 +23,37 @@ WordPress currently only allows you to use custom avatars that are uploaded thro
 * Use the <code>[avatar]</code> shortcode in your posts. These shortcodes will work with any theme, whether it has avatar support or not.
 * Allow Contributors and Subscribers to upload their own avatars.
 * Limit upload file size and image dimensions for Contributors and Subscribers.
+
+== Copyright ==
+
+One User Avatar
+Copyright (c) 2021 One Designs https://onedesigns.com/
+
+One User Avatar is based on WP User Avatar v2.2.16
+Copyright (c) 2020-2021 ProfilePress https://profilepress.net/
+Copyright (c) 2014-2020 Flippercode https://www.flippercode.com/
+Copyright (c) 2013-2014 Bangbay Siboliban http://bangbay.com/
+License: GPLv2
+Source: https://github.com/profilepress/wp-user-avatar
+
+One User Avatar is distributed under the terms of the GNU GPL
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+One User Avatar bundles the following third-party resources:
+
+jQuery UI Slider v1.12.1
+Copyright (c) 2021 jQuery Foundation
+License: MIT
+Source: https://github.com/jquery/jquery-ui
 
 == Installation ==
 
@@ -374,6 +404,31 @@ This would output:
 * Fixed headers already sent error on when updating avatar using shortcode
 * Remove unused images
 * Remove MailOptin recommendation
+
+= 2.2.16 =
+* Fixed issue of low quality avatar.
+
+= 2.2.15 =
+* Fixed broken avatar in some edge cases.
+
+= 2.2.14 =
+* Added missing space before classes.
+
+= 2.2.13 =
+* Fixed broken avatar image.
+
+= 2.2.12 =
+* Fixed issue where contributors and subscribers could see posts in the backend.
+* Fixed Persistent XSS via display name when avatar is displayed.
+
+= 2.2.11 =
+* Added classes passed to get_avatar function to avatar display
+* Added avatar_defaults filter.
+* Fix wpua_get_avatar_url not passing args further down.
+
+= 2.2.10 =
+* Fixed: Warning: Missing argument 2 for WP_User_Avatar.
+* Re-added support for hook implementation eg on wp frontend.
 
 = 2.2.9 =
 * Fixed PHP Notice: Trying to get property 'ID' of non-object.

@@ -2,8 +2,16 @@
 /**
  * Remove user metadata and options on plugin delete.
  *
- * @package One User Avatar
- * @version 1.9.13
+ * @package    One User Avatar
+ * @author     Bangbay Siboliban
+ * @author     Flippercode
+ * @author     ProfilePress
+ * @author     One Designs
+ * @copyright  2013-2014 Bangbay Siboliban
+ * @copyright  2014-2020 Flippercode
+ * @copyright  2020-2021 ProfilePress
+ * @copyright  2021 One Designs
+ * @version    2.3.0
  */
 
 /**
