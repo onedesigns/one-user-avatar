@@ -19,15 +19,15 @@
  * @uses get_users()
  */
 
-if(!defined('ABSPATH')) {
-	die('You are not allowed to call this page directly.');
+if ( ! defined('ABSPATH' ) ) {
+	die( 'You are not allowed to call this page directly.' );
 }
 
 ?><!DOCTYPE html>
 <html>
 <head>
 	<title><?php _e( 'One User Avatar', 'one-user-avatar' ); ?></title>
-	<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php echo get_option('blog_charset'); ?>" />
+	<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php echo get_option( 'blog_charset' ); ?>" />
 	<base target="_self" />
 	<script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/jquery/jquery.js"></script>
 	<script type="text/javascript" src="<?php echo site_url(); ?>/wp-includes/js/tinymce/tiny_mce_popup.js"></script>
@@ -242,7 +242,7 @@ if(!defined('ABSPATH')) {
 				<p id="<?php echo esc_attr( 'wp_user_avatar_size_number_section' ); ?>">
 					<label for="<?php echo esc_attr( 'wp_user_avatar_size_number' ); ?>"><?php _e( 'Size:', 'one-user-avatar' ); ?></label>
 
-					<input type="text" size="8" id="<?php echo sc_attr( 'wp_user_avatar_size_number' ); ?>" name="<?php echo esc_attr 'wp_user_avatar_size' ); ?>" value="" />
+					<input type="text" size="8" id="<?php echo esc_attr( 'wp_user_avatar_size_number' ); ?>" name="<?php echo esc_attr ( 'wp_user_avatar_size' ); ?>" value="" />
 				</p>
 
 				<p>

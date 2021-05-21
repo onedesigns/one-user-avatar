@@ -16,11 +16,14 @@
                 title: "Insert One User Avatar",
                 cmd:   'mceWpUserAvatar',
                 image: url + '/../../images/wpua-20x20.png',
-            });
+				onPostRender: function() {
+					var ctrl = this;
 
-			ed.onNodeChange.add(function(ed, cm, n) {
-				b.setActive('wpUserAvatar', n.nodeName == 'IMG');
-			});
+					ed.on('NodeChange', function(e) {
+						ctrl.active(e.element.nodeName == 'IMG');
+					});
+				}
+            });
 		},
 		createControl: function(n, cm) {
 			return null;

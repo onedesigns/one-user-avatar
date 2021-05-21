@@ -62,4 +62,4 @@ function wpua_ajax_tinymce() {
 
 	die();
 }
-add_action('wp_ajax_wp_user_avatar_tinymce', 'wpua_ajax_tinymce');
+add_action( 'wp_ajax_wp_user_avatar_tinymce', 'wpua_ajax_tinymce' );
