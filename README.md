@@ -56,7 +56,7 @@ Source: https://github.com/jquery/jquery-ui
 3. Choose an image, then click "Select Image".
 4. Click "Update Profile".
 5. Upload your own Default Avatar in your One User Avatar settings (optional). You can also allow Contributors & Subscribers to upload avatars and disable Gravatar.
-6. Choose a theme that has avatar support. In your theme, manually replace `get_avatar` with `get_wp_user_avatar` or leave `get_avatar` as-is. [Read about the differences here](http://wordpress.org/plugins/one-user-avatar/#faq).
+6. Choose a theme that has avatar support. In your theme, manually replace `get_avatar` with `get_wp_user_avatar` or leave `get_avatar` as-is. [Read about the differences here](#frequently-asked-questions).
 7. You can also use the `[avatar_upload]` and `[avatar]` shortcodes in your posts. These shortcodes will work with any theme, whether it has avatar support or not.
 
 **Warning**
