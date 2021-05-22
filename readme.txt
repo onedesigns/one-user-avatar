@@ -389,13 +389,6 @@ This would output:
 	</p>
 </div>`
 
-== Screenshots ==
-
-1. One User Avatar admin settings.
-2. One User Avatar lets you upload your own Default Avatar.
-3. One User Avatar adds a field to your profile edit page.
-4. After you've chosen a One User Avatar image, you will see the option to remove it.
-
 == Changelog ==
 
 = 2.3.0 =
