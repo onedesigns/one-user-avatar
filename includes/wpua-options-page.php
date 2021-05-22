@@ -45,12 +45,12 @@ global $show_avatars, $upload_size_limit_with_units, $wpua_admin, $wpua_allow_up
 
 $updated = false;
 
-if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] == 'true' ) {
+if ( isset( $_GET['settings-updated'] ) && 'true' == $_GET['settings-updated'] ) {
 	$updated = true;
 }
 
-$hide_size   = true !== (bool) $wpua_allow_upload ? ' style="display:none;"' : "";
-$hide_resize = true !== (bool) $wpua_resize_upload ? ' style="display:none;"' : "";
+$hide_size   = true !== (bool) $wpua_allow_upload  ? ' style="display:none;"' : '';
+$hide_resize = true !== (bool) $wpua_resize_upload ? ' style="display:none;"' : '';
 
 $wpua_options_page_title = __( 'One User Avatar', 'one-user-avatar' );
 

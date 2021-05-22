@@ -882,4 +882,4 @@ function wpua_functions_init() {
 
     return $wpua_functions;
 }
-add_action('plugins_loaded', 'wpua_functions_init');
+add_action( 'plugins_loaded', 'wpua_functions_init' );

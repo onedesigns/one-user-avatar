@@ -32,22 +32,28 @@ class WP_User_Avatar_Admin {
 		register_activation_hook( WPUA_DIR . 'wp-user-avatar.php', array( $this, 'wpua_options' ) );
 
 		// Settings saved to wp_options
-		add_action('admin_init', array($this, 'wpua_options'));
+		add_action( 'admin_init', array( $this, 'wpua_options' ) );
+
+		// Enqueue scripts
+		add_action( 'admin_enqueue_scripts', array( $this, 'wpua_enqueue_scripts' ) );
+
+		// Perform bulk actions
+		add_action( 'load-avatars_page_wp-user-avatar-library', array( $this, 'wpua_bulk_actions' ) );
 
 		// Translations
 		load_plugin_textdomain( 'one-user-avatar', '', WPUA_FOLDER . '/languages' );
 
 		// Admin menu settings
-		add_action( 'admin_menu', array( $this, 'wpua_admin' ) );
 		add_action( 'admin_init', array( $this, 'wpua_register_settings' ) );
+		add_action( 'admin_menu', array( $this, 'wpua_admin' ) );
 
 		// Default avatar
-		add_filter( 'default_avatar_select', array( $this, 'wpua_add_default_avatar' ), 10 );
+		add_filter( 'default_avatar_select', array( $this, 'wpua_add_default_avatar' ) );
 
 		if ( function_exists('add_allowed_options' ) ) {
-			add_filter( 'allowed_options',   array( $this, 'wpua_whitelist_options' ), 10 );
+			add_filter( 'allowed_options',   array( $this, 'wpua_whitelist_options' ) );
 		} else {
-			add_filter( 'whitelist_options', array( $this, 'wpua_whitelist_options' ), 10 );
+			add_filter( 'whitelist_options', array( $this, 'wpua_whitelist_options' ) );
 		}
 
 		// Additional plugin info
@@ -56,12 +62,12 @@ class WP_User_Avatar_Admin {
 
 		// Hide column in Users table if default avatars are enabled
 		if ( 0 == (bool) $show_avatars ) {
-			add_filter( 'manage_users_columns',       array($this, 'wpua_add_column'),  10, 1 );
+			add_filter( 'manage_users_columns',       array($this, 'wpua_add_column') );
 			add_filter( 'manage_users_custom_column', array($this, 'wpua_show_column'), 10, 3 );
 		}
 
 		// Media states
-		add_filter( 'display_media_states', array($this, 'wpua_add_media_state'), 10, 1 );
+		add_filter( 'display_media_states', array($this, 'wpua_add_media_state') );
 
 	}
 
@@ -98,6 +104,93 @@ class WP_User_Avatar_Admin {
 			update_option( 'cron', $cron );
     	}
 
+	}
+
+	/**
+	 * Perform avatars library bulk actions
+	 * @since 2.3.0
+	 * @uses wp_enqueue_script()
+	 */
+	public function wpua_enqueue_scripts( $hook_suffix ) {
+		if ( 'avatars_page_wp-user-avatar-library' != $hook_suffix ) {
+			return;
+		}
+
+		wp_enqueue_script( 'wp-ajax-response' );
+		wp_enqueue_script( 'jquery-ui-draggable' );
+		wp_enqueue_script( 'media' );
+	}
+
+	/**
+	 * Perform avatars library bulk actions
+	 * @since 2.3.0
+	 * @uses wp_delete_attachment()
+	 */
+	public function wpua_bulk_actions() {
+		global $wpua_admin;
+
+		$wp_list_table = $wpua_admin->_wpua_get_list_table( 'WP_User_Avatar_List_Table' );
+
+		// Handle bulk actions
+		$doaction = $wp_list_table->current_action();
+
+		if ( $doaction ) {
+			check_admin_referer( 'bulk-media' );
+
+			$post_ids = array();
+			$ids      = array();
+
+			if ( isset( $_REQUEST['media'] ) && is_array( $_REQUEST['media'] ) ) {
+				$ids = $_REQUEST['media'];
+			} elseif ( isset( $_REQUEST['ids'] ) && is_string( $_REQUEST['ids'] ) ) {
+				$ids = explode( ',', $_REQUEST['ids'] );
+			}
+
+			foreach ( $ids as $post_id ) {
+				$post = get_post( $post_id );
+
+				if ( $post instanceof WP_Post ) {
+					$post_ids[] = $post->ID;
+				}
+			}
+
+			$location = esc_url( add_query_arg( array( 'page' => 'wp-user-avatar-library' ), 'admin.php' ) );
+
+			if ( $referer = wp_get_referer() ) {
+				if ( false !== strpos( $referer, 'admin.php' ) ) {
+					$location = remove_query_arg( array( 'trashed', 'untrashed', 'deleted', 'message', 'ids', 'posted' ), $referer );
+				}
+			}
+
+			switch( $doaction ) {
+				case 'delete':
+					if ( empty( $post_ids ) ) {
+						break;
+					}
+
+					foreach ( $post_ids as $post_id_del ) {
+						if ( ! current_user_can( 'delete_post', $post_id_del ) ) {
+							wp_die( __('You are not allowed to delete this post.', 'one-user-avatar' ) );
+						}
+
+						if ( ! wp_delete_attachment( $post_id_del ) ) {
+							wp_die( __( 'Error in deleting.','one-user-avatar' ) );
+						}
+					}
+
+		    		$location = esc_url_raw( add_query_arg( 'deleted', count( $post_ids ), $location ) );
+
+		    		break;
+			}
+
+			wp_redirect( $location );
+
+			exit;
+		} elseif( ! empty( $_GET['_wp_http_referer'] ) ) {
+			wp_redirect( remove_query_arg( array( '_wp_http_referer', '_wpnonce' ), wp_unslash( $_SERVER['REQUEST_URI'] ) ) );
+
+			exit;
+		}
 	}
 
 	/**

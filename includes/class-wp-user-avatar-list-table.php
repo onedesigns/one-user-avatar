@@ -133,6 +133,10 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 
 		$q = $_REQUEST;
 
+		if ( ! is_array( $q ) ) {
+			$q = array();
+		}
+
 		$q['post__in'] = $avatars;
 
 		list( $post_mime_types, $avail_post_mime_types ) = wp_edit_attachments_query( $q );

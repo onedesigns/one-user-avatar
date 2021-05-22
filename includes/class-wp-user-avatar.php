@@ -61,10 +61,10 @@ class WP_User_Avatar {
 
 			if ( ! $this->wpua_is_author_or_above() ) {
 				// Upload errors
-				add_action( 'user_profile_update_errors', array ($this, 'wpua_upload_errors' ), 10, 3 );
+				add_action( 'user_profile_update_errors', array( $this, 'wpua_upload_errors' ), 10, 3 );
 
 				// Prefilter upload size
-				add_filter( 'wp_handle_upload_prefilter', array( $this, 'wpua_handle_upload_prefilter' ) );
+				add_filter( 'wp_handle_upload_prefilter', array(  $this, 'wpua_handle_upload_prefilter' ) );
 			}
 		}
 		add_filter( 'media_view_settings', array( $this, 'wpua_media_view_settings' ), 10, 1 );
@@ -133,7 +133,7 @@ class WP_User_Avatar {
 		// This is a profile page
 		$wpua_is_profile = 1;
 
-		$user = ( $pagenow == 'user-edit.php' && isset( $_GET['user_id'] ) ) ? get_user_by( 'id', $_GET['user_id'] ) : $current_user;
+		$user = ( $pagenow == 'user-edit.php' && isset( $_GET['user_id'] ) ) ? get_user_by( 'id', absint( $_GET['user_id'] ) ) : $current_user;
 
 		wp_enqueue_style( 'one-user-avatar', WPUA_URL . 'css/wp-user-avatar.css', '', WPUA_VERSION );
 
@@ -366,19 +366,20 @@ class WP_User_Avatar {
 		global $wpua_upload_size_limit;
 
 		if ( $update && ! empty( $_FILES['wpua-file'] ) ) {
-			$size = $_FILES['wpua-file']['size'];
-			$type = $_FILES['wpua-file']['type'];
+			$file = $_FILES['wpua-file'];
+			$size = isset( $file['size'] ) ? absint( $file['size'] )             : 0;
+			$type = isset( $file['type'] ) ? sanitize_mime_type( $file['type'] ) : '';
 
 			$upload_dir = wp_upload_dir();
 
 			// Allow only JPG, GIF, PNG
 			if ( ! empty( $type ) && ! preg_match( '/(jpe?g|gif|png)$/i', $type ) ) {
-				$errors->add( 'wpua_file_type', __('This file is not an image. Please try another.', 'one-user-avatar' ) );
+				$errors->add( 'wpua_file_type', __( 'This file is not an image. Please try another.', 'one-user-avatar' ) );
 			}
 
 			// Upload size limit
 			if ( ! empty( $size ) && $size > $wpua_upload_size_limit ) {
-				$errors->add( 'wpua_file_size', __('Memory exceeded. Please try another smaller file.', 'one-user-avatar' ) );
+				$errors->add( 'wpua_file_size', __( 'Memory exceeded. Please try another smaller file.', 'one-user-avatar' ) );
 			}
 
 			// Check if directory is writeable
@@ -402,7 +403,7 @@ class WP_User_Avatar {
 	public function wpua_handle_upload_prefilter( $file ) {
 		global $wpua_upload_size_limit;
 
-		$size = $file['size'];
+		$size = absint( $file['size'] );
 
 		if ( ! empty( $size ) && $size > $wpua_upload_size_limit ) {
 			/**
@@ -513,15 +514,14 @@ class WP_User_Avatar {
 
 			// Create attachment from upload
 			if ( isset( $_POST['submit'] ) && $_POST['submit'] && ! empty( $_FILES['wpua-file'] ) ) {
-				$name = $_FILES['wpua-file']['name'];
-				$type = $_FILES['wpua-file']['type'];
-				$file = wp_handle_upload( $_FILES['wpua-file'], array(
+				$file = $_FILES['wpua-file'];
+				$name = isset( $file['name'] ) ? sanitize_file_name( $file['name'] ) : '';
+				$type = isset( $file['type'] ) ? sanitize_mime_type( $file['type'] ) : '';
+				$file = wp_handle_upload( $file, array(
                     'test_form' => false,
                 ) );
 
-				$upload_dir = wp_upload_dir();
-
-				if ( is_writeable( $upload_dir['path'] ) ) {
+				if ( isset( $file['url'] ) ) {
 					if ( ! empty( $type ) && preg_match( '/(jpe?g|gif|png)$/i' , $type ) ) {
 						// Resize uploaded image
 						if ( 1 == (bool) $wpua_resize_upload ) {
@@ -534,7 +534,7 @@ class WP_User_Avatar {
 								$uploaded_image->resize( $wpua_resize_w, $wpua_resize_h, $wpua_resize_crop );
 
 								// Save image
-								$resized_image = $uploaded_image->save( $file['file'] );
+								$uploaded_image->save( $file['file'] );
 							}
 						}
 
@@ -544,6 +544,7 @@ class WP_User_Avatar {
 						$url        = $file['url'];
 						$file       = $file['file'];
 						$title      = $name;
+
 						// Use image exif/iptc data for title if possible
 						if ( $image_meta = @wp_read_image_metadata( $file ) ) {
 							if ( trim( $image_meta['title'] ) && ! is_numeric( sanitize_title( $image_meta['title'] ) ) ) {

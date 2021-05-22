@@ -22,12 +22,12 @@
  */
 function wpua_add_buttons() {
 	// Add only in Rich Editor mode
-	if ( get_user_option( 'rich_editing' ) == 'true' ) {
+	if ( 'true' == get_user_option( 'rich_editing' ) ) {
 		add_filter( 'mce_external_plugins', 'wpua_add_tinymce_plugin' );
 		add_filter( 'mce_buttons', 'wpua_register_button' );
 	}
 }
-add_action('init', 'wpua_add_buttons');
+add_action( 'init', 'wpua_add_buttons' );
 
 /**
  * Register TinyMCE button
@@ -48,17 +48,39 @@ function wpua_register_button( $buttons ) {
  * @return array
  */
 function wpua_add_tinymce_plugin( $plugins ) {
-	$plugins['wpUserAvatar'] = WPUA_INC_URL . 'tinymce/editor_plugin.js';
+	$plugins['wpUserAvatar'] = WPUA_URL . 'js/tinymce-editor_plugin.js';
 
 	return $plugins;
 }
+
+function wpua_tinymce_enqueue_scripts( $hook_suffix ) {
+	switch ( $hook_suffix ) {
+		case 'one-user-avatar_tinymce-window':
+			wp_enqueue_style( 'one-user-avatar-tinymce-window', WPUA_URL . 'css/tinymce-window.css' );
+
+			wp_enqueue_script( 'jquery' );
+			wp_enqueue_script( 'one-user-avatar-tinymce-popup',      includes_url( 'js/tinymce/tiny_mce_popup.js' ) );
+			wp_enqueue_script( 'one-user-avatar-tinymce-form-utils', includes_url( 'js/tinymce/utils/form_utils.js' ) );
+			wp_enqueue_script( 'one-user-avatar-tinymce-window',     WPUA_URL . 'js/tinymce-window.js' );
+
+			break;
+
+		case 'post.php':
+			wp_localize_script( 'editor', 'one_user_avatar_tinymce_editor_args', array(
+				'insert_avatar' => __( 'Insert Avatar', 'one-user-avatar' ),
+			) );
+
+			break;
+	}
+}
+add_action( 'admin_enqueue_scripts', 'wpua_tinymce_enqueue_scripts' );
 
 /**
  * Call TinyMCE window content via admin-ajax
  * @since 1.4
  */
 function wpua_ajax_tinymce() {
-	include_once( WPUA_INC . 'tinymce/window.php' );
+	include_once( WPUA_INC . 'wpua-tinymce-window.php' );
 
 	die();
 }

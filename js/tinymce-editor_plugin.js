@@ -1,4 +1,14 @@
+/*! One User Avatar - v1.12.1 - 2021-05-21
+ * Copyright One Designs
+ * Copyright ProfilePress
+ * Copyright Flippercode
+ * Copyright Bangbay Siboliban
+ * Licensed GPLv2
+ */
+
 (function () {
+	var args = one_user_avatar_tinymce_editor_args || {};
+
 	tinymce.create('tinymce.plugins.wpUserAvatar', {
 		init: function (ed, url) {
 			ed.addCommand('mceWpUserAvatar', function() {
@@ -13,9 +23,9 @@
 			});
 
 			ed.addButton('wpUserAvatar', {
-                title: "Insert One User Avatar",
+                title: ( typeof args.insert_avatar != 'undefined' ? args.insert_avatar : 'Insert Avatar' ),
                 cmd:   'mceWpUserAvatar',
-                image: url + '/../../images/wpua-20x20.png',
+                image: url + '/../images/wpua-20x20.png',
 				onPostRender: function() {
 					var ctrl = this;
 

@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Plugins - WP User Avatar | User Profile Picture - Stable "
 "(latest release)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/one-user-avatar\n"
-"POT-Creation-Date: 2021-05-20T14:26:02+00:00\n"
-"PO-Revision-Date: 2021-05-20 16:08+0100\n"
+"POT-Creation-Date: 2021-05-22T04:16:42+00:00\n"
+"PO-Revision-Date: 2021-05-22 05:18+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -17,10 +17,10 @@ msgstr ""
 "X-Generator: Poedit 2.4.3\n"
 
 #. Plugin Name of the plugin
-#: includes/class-wp-user-avatar-admin.php:129
-#: includes/class-wp-user-avatar-admin.php:326
-#: includes/class-wp-user-avatar-widget.php:24 includes/tinymce/window.php:21
-#: includes/wpua-options-page.php:47
+#: includes/class-wp-user-avatar-admin.php:230
+#: includes/class-wp-user-avatar-admin.php:429
+#: includes/class-wp-user-avatar-widget.php:32
+#: includes/wpua-options-page.php:55 includes/wpua-tinymce-window.php:31
 msgid "One User Avatar"
 msgstr "One User Avatar"
 
@@ -45,248 +45,251 @@ msgstr "One Designs"
 msgid "https://onedesigns.com/"
 msgstr "https://onedesigns.com/"
 
-#: includes/class-wp-user-avatar-admin.php:130
-#: includes/class-wp-user-avatar-admin.php:188 includes/wpua-media-page.php:107
+#: includes/class-wp-user-avatar-admin.php:173
+msgid "You are not allowed to delete this post."
+msgstr "Du bist nicht berechtigt, diesen Beitrag zu löschen."
+
+#: includes/class-wp-user-avatar-admin.php:177
+msgid "Error in deleting."
+msgstr "Fehler beim Löschen."
+
+#: includes/class-wp-user-avatar-admin.php:231
+#: includes/class-wp-user-avatar-admin.php:289 includes/wpua-media-page.php:59
 msgid "Avatars"
 msgstr "Avatare"
 
-#: includes/class-wp-user-avatar-admin.php:139
-#: includes/class-wp-user-avatar-admin.php:140
-#: includes/class-wp-user-avatar-admin.php:362
-#: includes/wpua-options-page.php:85
+#: includes/class-wp-user-avatar-admin.php:240
+#: includes/class-wp-user-avatar-admin.php:241
+#: includes/class-wp-user-avatar-admin.php:465
+#: includes/wpua-options-page.php:93
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: includes/class-wp-user-avatar-admin.php:148
-#: includes/class-wp-user-avatar-admin.php:149
+#: includes/class-wp-user-avatar-admin.php:249
+#: includes/class-wp-user-avatar-admin.php:250
 msgid "Library"
 msgstr "Bibliothek"
 
-#: includes/class-wp-user-avatar-admin.php:274
+#: includes/class-wp-user-avatar-admin.php:375
 msgid "Mystery Man"
 msgstr "Mystery Man"
 
-#: includes/class-wp-user-avatar-admin.php:275
+#: includes/class-wp-user-avatar-admin.php:376
 msgid "Blank"
 msgstr "Leer"
 
-#: includes/class-wp-user-avatar-admin.php:276
+#: includes/class-wp-user-avatar-admin.php:377
 msgid "Gravatar Logo"
 msgstr "Gravatar-Logo"
 
-#: includes/class-wp-user-avatar-admin.php:277
+#: includes/class-wp-user-avatar-admin.php:378
 msgid "Identicon (Generated)"
 msgstr "Identicon (automatisch generiert)"
 
-#: includes/class-wp-user-avatar-admin.php:278
+#: includes/class-wp-user-avatar-admin.php:379
 msgid "Wavatar (Generated)"
 msgstr "Wavatar (automatisch generiert)"
 
-#: includes/class-wp-user-avatar-admin.php:279
+#: includes/class-wp-user-avatar-admin.php:380
 msgid "MonsterID (Generated)"
 msgstr "MonsterID (automatisch generiert)"
 
-#: includes/class-wp-user-avatar-admin.php:280
+#: includes/class-wp-user-avatar-admin.php:381
 msgid "Retro (Generated)"
 msgstr "Retro (automatisch generiert)"
 
-#: includes/class-wp-user-avatar-admin.php:327
-#: includes/class-wp-user-avatar.php:216
+#: includes/class-wp-user-avatar-admin.php:430
+#: includes/class-wp-user-avatar.php:231
 msgid "Choose Image"
 msgstr "Bild auswählen"
 
-#: includes/class-wp-user-avatar-admin.php:328
+#: includes/class-wp-user-avatar-admin.php:431
 msgid "Remove"
 msgstr "Entfernen"
 
-#: includes/class-wp-user-avatar-admin.php:328
-#: includes/class-wp-user-avatar.php:291
+#: includes/class-wp-user-avatar-admin.php:431
+#: includes/class-wp-user-avatar.php:292
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: includes/class-wp-user-avatar-admin.php:381
+#: includes/class-wp-user-avatar-admin.php:484
 msgid "Support Forums"
 msgstr "Support-Foren"
 
-#: includes/class-wp-user-avatar-admin.php:395
-#: includes/class-wp-user-avatar-admin.php:456 includes/tinymce/window.php:195
-#: includes/wpua-functions.php:82 includes/wpua-functions.php:95
-#: includes/wpua-functions.php:103 includes/wpua-functions.php:175
+#: includes/class-wp-user-avatar-admin.php:498
+#: includes/class-wp-user-avatar-admin.php:559 includes/wpua-functions.php:93
+#: includes/wpua-functions.php:106 includes/wpua-functions.php:114
+#: includes/wpua-functions.php:186 includes/wpua-tinymce-window.php:94
 msgid "Profile Picture"
 msgstr "Profilbild"
 
-#: includes/class-wp-user-avatar-admin.php:460
-#: includes/wpua-options-page.php:292 includes/wpua-options-page.php:298
+#: includes/class-wp-user-avatar-admin.php:563
+#: includes/wpua-options-page.php:300 includes/wpua-options-page.php:306
 msgid "Default Avatar"
 msgstr "Standard-Avatar"
 
-#: includes/class-wp-user-avatar-functions.php:503
-#: includes/class-wp-user-avatar-functions.php:690
+#: includes/class-wp-user-avatar-functions.php:515
+#: includes/class-wp-user-avatar-functions.php:719
 msgid "Avatar"
 msgstr "Avatar"
 
 #. translators: uploaded files
-#: includes/class-wp-user-avatar-list-table.php:164
+#: includes/class-wp-user-avatar-list-table.php:172
 msgctxt "uploaded files"
 msgid "All %s"
 msgid_plural "All %s"
 msgstr[0] "Alle %s"
 msgstr[1] "Alle %s"
 
-#: includes/class-wp-user-avatar-list-table.php:184
-#: includes/class-wp-user-avatar-list-table.php:539
+#: includes/class-wp-user-avatar-list-table.php:192
+#: includes/class-wp-user-avatar-list-table.php:549
 msgid "Delete Permanently"
 msgstr "Endgültig löschen"
 
-#: includes/class-wp-user-avatar-list-table.php:214
+#: includes/class-wp-user-avatar-list-table.php:222
 msgid "No media attachments found."
 msgstr "Keine Medienanhänge gefunden."
 
-#: includes/class-wp-user-avatar-list-table.php:227
+#: includes/class-wp-user-avatar-list-table.php:235
 msgctxt "column name"
 msgid "File"
 msgstr "Datei"
 
-#: includes/class-wp-user-avatar-list-table.php:228
+#: includes/class-wp-user-avatar-list-table.php:236
 msgid "Author"
 msgstr "Autor"
 
-#: includes/class-wp-user-avatar-list-table.php:229
+#: includes/class-wp-user-avatar-list-table.php:237
 msgctxt "column name"
 msgid "Uploaded to"
 msgstr "Hochgeladen zu"
 
-#: includes/class-wp-user-avatar-list-table.php:230
+#: includes/class-wp-user-avatar-list-table.php:238
 msgctxt "column name"
 msgid "Date"
 msgstr "Datum"
 
 #. translators: post title
-#: includes/class-wp-user-avatar-list-table.php:315
+#: includes/class-wp-user-avatar-list-table.php:323
 msgid "Select %s"
 msgstr "%s auswählen"
 
-#: includes/class-wp-user-avatar-list-table.php:406
+#: includes/class-wp-user-avatar-list-table.php:414
 msgid "Unpublished"
 msgstr "Unveröffentlicht"
 
 #. translators: time from now
-#: includes/class-wp-user-avatar-list-table.php:414
+#: includes/class-wp-user-avatar-list-table.php:422
 msgctxt "time from now"
 msgid "%s from now"
 msgstr "%s ab jetzt"
 
 #. translators: time ago
-#: includes/class-wp-user-avatar-list-table.php:420
+#: includes/class-wp-user-avatar-list-table.php:428
 msgctxt "time ago"
 msgid "%s ago"
 msgstr "vor %s"
 
-#: includes/class-wp-user-avatar-list-table.php:425
+#: includes/class-wp-user-avatar-list-table.php:433
 msgid "Y/m/d"
 msgstr "d.m.Y"
 
-#: includes/class-wp-user-avatar-list-table.php:515
+#: includes/class-wp-user-avatar-list-table.php:523
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: includes/class-wp-user-avatar-list-table.php:523
+#: includes/class-wp-user-avatar-list-table.php:532
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: includes/class-wp-user-avatar-list-table.php:529
+#: includes/class-wp-user-avatar-list-table.php:538
 msgid "Trash"
 msgstr "Papierkorb"
 
-#: includes/class-wp-user-avatar-list-table.php:551
+#: includes/class-wp-user-avatar-list-table.php:561
 msgid "View"
 msgstr "Anzeigen"
 
 #. translators: either wp_footer() or wp_print_footer_scripts() hook.
-#: includes/class-wp-user-avatar-resource-manager.php:182
+#: includes/class-wp-user-avatar-resource-manager.php:190
 msgid ""
 "We're sorry, but your theme's page template didn't make a call to %s, which "
-"is required by One User Avatar. Please add this call to your page "
-"templates."
+"is required by One User Avatar. Please add this call to your page templates."
 msgstr ""
 "Es tut uns leid, aber die Seitenvorlage Ihres Themas hat %s nicht "
-"aufgerufen, was von One User Avatar benötigt wird. Bitte fügen Sie "
-"diesen Aufruf Ihren Seitenvorlagen hinzu."
+"aufgerufen, was von One User Avatar benötigt wird. Bitte fügen Sie diesen "
+"Aufruf Ihren Seitenvorlagen hinzu."
 
-#: includes/class-wp-user-avatar-shortcode.php:257
+#: includes/class-wp-user-avatar-shortcode.php:244
 msgid "Profile updated."
 msgstr "Profil aktualisiert."
 
-#: includes/class-wp-user-avatar-shortcode.php:286
+#: includes/class-wp-user-avatar-shortcode.php:273
 msgid "Update Profile"
 msgstr "Profil aktualisieren"
 
 #. translators: [avatar_upload] shortcode
-#: includes/class-wp-user-avatar-widget.php:19
+#: includes/class-wp-user-avatar-widget.php:27
 msgid "Insert %s"
 msgstr "Einfügen"
 
-#: includes/class-wp-user-avatar-widget.php:91
+#: includes/class-wp-user-avatar-widget.php:99
 msgid "Title:"
 msgstr "Titel:"
 
-#: includes/class-wp-user-avatar-widget.php:97
+#: includes/class-wp-user-avatar-widget.php:105
 msgid "Description:"
 msgstr "Beschreibung:"
 
-#: includes/class-wp-user-avatar-widget.php:105
+#: includes/class-wp-user-avatar-widget.php:113
 msgid "Automatically add paragraphs"
 msgstr "Absätze automatisch hinzufügen"
 
 #. translators: user display name
-#: includes/class-wp-user-avatar.php:212
+#: includes/class-wp-user-avatar.php:227
 msgid "Choose Image: %s"
 msgstr "Bild auswählen: %s"
 
-#: includes/class-wp-user-avatar.php:228 includes/class-wp-user-avatar.php:229
-#: includes/tinymce/window.php:196 includes/tinymce/window.php:287
+#: includes/class-wp-user-avatar.php:243 includes/class-wp-user-avatar.php:244
+#: includes/wpua-tinymce-window.php:95 includes/wpua-tinymce-window.php:186
 msgid "Upload"
 msgstr "Hochladen"
 
 #. translators: file size in KB
-#: includes/class-wp-user-avatar.php:238 includes/wpua-options-page.php:180
+#: includes/class-wp-user-avatar.php:253 includes/wpua-options-page.php:188
 msgid "Maximum upload file size: %s."
 msgstr "Maximale Dateigröße für Uploads: %s."
 
 #. translators: allowed file extensions
-#: includes/class-wp-user-avatar.php:248
+#: includes/class-wp-user-avatar.php:263
 msgid "Allowed Files: %s"
 msgstr "Erlaubte Dateien: %s"
 
-#: includes/class-wp-user-avatar.php:261 includes/class-wp-user-avatar.php:263
-#: includes/tinymce/window.php:226
+#: includes/class-wp-user-avatar.php:276 includes/class-wp-user-avatar.php:278
+#: includes/wpua-tinymce-window.php:125
 msgid "Original Size"
 msgstr "Originalgröße"
 
-#: includes/class-wp-user-avatar.php:267 includes/class-wp-user-avatar.php:269
-#: includes/tinymce/window.php:229
+#: includes/class-wp-user-avatar.php:282 includes/class-wp-user-avatar.php:284
+#: includes/wpua-tinymce-window.php:128
 msgid "Thumbnail"
 msgstr "Vorschaubild"
 
-#: includes/class-wp-user-avatar.php:273
+#: includes/class-wp-user-avatar.php:288
 msgid "Remove Image"
 msgstr "Bild entfernen"
 
-#: includes/class-wp-user-avatar.php:284
-msgid "Edit Image"
-msgstr "Bild bearbeiten"
-
-#: includes/class-wp-user-avatar.php:365
+#: includes/class-wp-user-avatar.php:377
 msgid "This file is not an image. Please try another."
 msgstr "Diese Datei ist kein Bild. Bitte versuche es mit einer anderen."
 
-#: includes/class-wp-user-avatar.php:370 includes/class-wp-user-avatar.php:402
+#: includes/class-wp-user-avatar.php:382 includes/class-wp-user-avatar.php:414
 msgid "Memory exceeded. Please try another smaller file."
 msgstr ""
 "Speicherkapazität überschritten. Bitte versuche es mit einer kleineren Datei."
 
 #. translators: directory path
-#: includes/class-wp-user-avatar.php:377
+#: includes/class-wp-user-avatar.php:389
 msgid ""
 "Unable to create directory %s. Is its parent directory writable by the "
 "server?"
@@ -294,179 +297,187 @@ msgstr ""
 "Das Verzeichnis %s konnte nicht erstellt werden. Ist das übergeordnete "
 "Verzeichnis auf dem Server beschreibbar?"
 
-#: includes/tinymce/window.php:202
-msgid "User Name"
-msgstr "Benutzername"
-
-#: includes/tinymce/window.php:222 includes/tinymce/window.php:235
-msgid "Size:"
-msgstr "Größe:"
-
-#: includes/tinymce/window.php:227
-msgid "Large"
-msgstr "Groß"
-
-#: includes/tinymce/window.php:228
-msgid "Medium"
-msgstr "Mittel"
-
-#: includes/tinymce/window.php:230
-msgid "Custom"
-msgstr "Individuell"
-
-#: includes/tinymce/window.php:241
-msgid "Alignment:"
-msgstr "Ausrichtung:"
-
-#: includes/tinymce/window.php:245
-msgid "Center"
-msgstr "Zentriert"
-
-#: includes/tinymce/window.php:246
-msgid "Left"
-msgstr "Links"
-
-#: includes/tinymce/window.php:247
-msgid "Right"
-msgstr "Rechts"
-
-#: includes/tinymce/window.php:252
-msgid "Link To:"
-msgstr "Link zu:"
-
-#: includes/tinymce/window.php:256
-msgid "Image File"
-msgstr "Bilddatei"
-
-#: includes/tinymce/window.php:257
-msgid "Attachment Page"
-msgstr "Anhang-Seite"
-
-#: includes/tinymce/window.php:258
-msgid "Custom URL"
-msgstr "Benutzerdefinierte URL"
-
-#: includes/tinymce/window.php:263
-msgid "URL:"
-msgstr "URL:"
-
-#: includes/tinymce/window.php:271
-msgid "Open link in a new window"
-msgstr "Link in neuem Fenster öffnen"
-
-#: includes/tinymce/window.php:275
-msgid "Caption"
-msgstr "Beschriftung"
-
-#: includes/tinymce/window.php:281 includes/tinymce/window.php:293
-msgid "Insert into Post"
-msgstr "In Beitrag einfügen"
-
-#: includes/wpua-functions.php:98 includes/wpua-functions.php:107
+#: includes/wpua-functions.php:109 includes/wpua-functions.php:118
 msgid "Image"
 msgstr "Bild"
 
-#: includes/wpua-media-page.php:39
+#: includes/wpua-media-page.php:46
 msgid "You do not have permission to upload files."
 msgstr "Du hast keine Berechtigung zum Dateiupload."
 
-#: includes/wpua-media-page.php:76
-msgid "You are not allowed to delete this post."
-msgstr "Du bist nicht berechtigt, diesen Beitrag zu löschen."
-
-#: includes/wpua-media-page.php:80
-msgid "Error in deleting."
-msgstr "Fehler beim Löschen."
-
 #. translators: search query
-#: includes/wpua-media-page.php:114
+#: includes/wpua-media-page.php:66
 msgid "Search results for %s"
 msgstr "Suchergebnisse für %s"
 
-#: includes/wpua-media-page.php:146
+#: includes/wpua-media-page.php:98
 msgid "Search"
 msgstr "Suchen"
 
-#: includes/wpua-options-page.php:100
+#: includes/wpua-options-page.php:108
 msgid "Add avatar button to Visual Editor"
 msgstr "Avator-Button zum visuellen Editor hinzufügen"
 
-#: includes/wpua-options-page.php:111
+#: includes/wpua-options-page.php:119
 msgid "Allow Contributors & Subscribers to upload avatars"
 msgstr "Mitwirkenden und Abonnenten erlauben, Avatare hochzuladen"
 
-#: includes/wpua-options-page.php:122
+#: includes/wpua-options-page.php:130
 msgid "Disable Gravatar and use only local avatars"
 msgstr "Gravatar deaktivieren und nur lokale Avatare verwenden"
 
-#: includes/wpua-options-page.php:150 includes/wpua-options-page.php:159
+#: includes/wpua-options-page.php:158 includes/wpua-options-page.php:167
 msgid "Upload Size Limit"
 msgstr "Dateigrößenbeschränkung"
 
-#: includes/wpua-options-page.php:151 includes/wpua-options-page.php:160
+#: includes/wpua-options-page.php:159 includes/wpua-options-page.php:168
 msgid "(only for Contributors & Subscribers)"
 msgstr "(nur für Mitwirkende und Abonnenten)"
 
 #. translators: file name
-#: includes/wpua-options-page.php:170
+#: includes/wpua-options-page.php:178
 msgid "%s exceeds the maximum upload size for this site."
 msgstr "%s überschreitet das Upload-Limit für diese Website."
 
-#: includes/wpua-options-page.php:191
+#: includes/wpua-options-page.php:199
 msgid "Allow users to edit avatars"
 msgstr "Benutzern erlauben, Avatare zu bearbeiten"
 
-#: includes/wpua-options-page.php:199
+#: includes/wpua-options-page.php:207
 msgid "Resize avatars on upload"
 msgstr "Avatar-Größe beim Upload ändern"
 
-#: includes/wpua-options-page.php:204
+#: includes/wpua-options-page.php:212
 msgid "Width"
 msgstr "Breite"
 
-#: includes/wpua-options-page.php:208
+#: includes/wpua-options-page.php:216
 msgid "Height"
 msgstr "Höhe"
 
-#: includes/wpua-options-page.php:216
+#: includes/wpua-options-page.php:224
 msgid "Crop avatars to exact dimensions"
 msgstr "Avatare auf exakte Größe zuschneiden"
 
-#: includes/wpua-options-page.php:238 includes/wpua-options-page.php:244
+#: includes/wpua-options-page.php:246 includes/wpua-options-page.php:252
 msgid "Avatar Display"
 msgstr "Avataranzeige"
 
-#: includes/wpua-options-page.php:251
+#: includes/wpua-options-page.php:259
 msgid "Show Avatars"
 msgstr "Avatare anzeigen"
 
-#: includes/wpua-options-page.php:258 includes/wpua-options-page.php:264
+#: includes/wpua-options-page.php:266 includes/wpua-options-page.php:272
 msgid "Maximum Rating"
 msgstr "Avatare anzeigen mit der Einstufung bis einschließlich"
 
-#: includes/wpua-options-page.php:270
+#: includes/wpua-options-page.php:278
 msgid "G &#8212; Suitable for all audiences"
 msgstr "G &#8212; Jugendfrei"
 
-#: includes/wpua-options-page.php:271
+#: includes/wpua-options-page.php:279
 msgid "PG &#8212; Possibly offensive, usually for audiences 13 and above"
 msgstr "PG &#8212; Entspricht dem deutschen FSK12"
 
-#: includes/wpua-options-page.php:272
+#: includes/wpua-options-page.php:280
 msgid "R &#8212; Intended for adult audiences above 17"
 msgstr "R &#8212; Entspricht in etwa dem deutschen FSK18"
 
-#: includes/wpua-options-page.php:273
+#: includes/wpua-options-page.php:281
 msgid "X &#8212; Even more mature than above"
 msgstr "X &#8212; Keine Jugendfreigabe"
 
-#: includes/wpua-options-page.php:302
+#: includes/wpua-options-page.php:310
 msgid ""
 "For users without a custom avatar of their own, you can either display a "
 "generic logo or a generated one based on their e-mail address."
 msgstr ""
 "Für Benutzer ohne individuellen Avatar kann wahlweise ein Standardlogo oder "
 "ein auf Basis deren E-Mail-Adressen erzeugter Avatar angezeigt werden."
+
+#: includes/wpua-tinymce-window.php:101
+msgid "User Name"
+msgstr "Benutzername"
+
+#: includes/wpua-tinymce-window.php:121 includes/wpua-tinymce-window.php:134
+msgid "Size:"
+msgstr "Größe:"
+
+#: includes/wpua-tinymce-window.php:126
+msgid "Large"
+msgstr "Groß"
+
+#: includes/wpua-tinymce-window.php:127
+msgid "Medium"
+msgstr "Mittel"
+
+#: includes/wpua-tinymce-window.php:129
+msgid "Custom"
+msgstr "Individuell"
+
+#: includes/wpua-tinymce-window.php:140
+msgid "Alignment:"
+msgstr "Ausrichtung:"
+
+#: includes/wpua-tinymce-window.php:144
+msgid "Center"
+msgstr "Zentriert"
+
+#: includes/wpua-tinymce-window.php:145
+msgid "Left"
+msgstr "Links"
+
+#: includes/wpua-tinymce-window.php:146
+msgid "Right"
+msgstr "Rechts"
+
+#: includes/wpua-tinymce-window.php:151
+msgid "Link To:"
+msgstr "Link zu:"
+
+#: includes/wpua-tinymce-window.php:155
+msgid "Image File"
+msgstr "Bilddatei"
+
+#: includes/wpua-tinymce-window.php:156
+msgid "Attachment Page"
+msgstr "Anhang-Seite"
+
+#: includes/wpua-tinymce-window.php:157
+msgid "Custom URL"
+msgstr "Benutzerdefinierte URL"
+
+#: includes/wpua-tinymce-window.php:162
+msgid "URL:"
+msgstr "URL:"
+
+#: includes/wpua-tinymce-window.php:170
+msgid "Open link in a new window"
+msgstr "Link in neuem Fenster öffnen"
+
+#: includes/wpua-tinymce-window.php:174
+msgid "Caption"
+msgstr "Beschriftung"
+
+#: includes/wpua-tinymce-window.php:180 includes/wpua-tinymce-window.php:192
+msgid "Insert into Post"
+msgstr "In Beitrag einfügen"
+
+#: includes/wpua-tinymce.php:70
+msgid "Insert Avatar"
+msgstr "Avatar einfügen"
+
+#. translators: placeholder for <a> and </a> tags.
+#: one-user-avatar.php:94
+msgid ""
+"The plugin One User Avatar is a replacement for the old WP User Avatar "
+"plugin. Please %1$sdeactivate WP User Avatar%2$s to start using it."
+msgstr ""
+"Das Plugin One User Avatar ist ein Ersatz für das alte WP User Avatar "
+"Plugin. Bitte %1$deaktivieren Sie WP User Avatar%2$s, um es zu verwenden."
+
+#~ msgid "Edit Image"
+#~ msgstr "Bild bearbeiten"
 
 #~ msgid "Dismiss this notice"
 #~ msgstr "Diesen Hinweis ausblenden"

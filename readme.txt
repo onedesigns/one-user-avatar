@@ -398,9 +398,11 @@ This would output:
 * Rename to One User Avatar
 * Rewrite to conform with WordPress Coding Standards
 * Add translations for Dutch, English (UK), French, German, Italian, Portuguese, Romanian, Spanish
+* Prevent conflict with old WP User Avatar plugin
 * Fix indentation
 * Fix unescaped attributes
 * Fix missing translation strings
+* Fix headers already sent error when performing bulk actions
 * Fix headers already sent error on when updating avatar using shortcode
 * Fix TinyMCE deprecation notice
 * Remove unused images

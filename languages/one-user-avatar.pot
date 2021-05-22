@@ -1,482 +1,471 @@
 # Copyright (C) 2021 One Designs
-# This file is distributed under the same license as the One User Avatar plugin.
+# This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
 "Project-Id-Version: One User Avatar 2.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/one-user-avatar\n"
-"POT-Creation-Date: 2021-05-22T04:16:42+00:00\n"
-"PO-Revision-Date: 2021-05-22 05:24+0100\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: ro_RO\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.3\n"
+"POT-Creation-Date: 2021-05-22T04:16:42+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: one-user-avatar\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && n"
-"%100<=19) ? 1 : 2);\n"
 
 #. Plugin Name of the plugin
 #: includes/class-wp-user-avatar-admin.php:230
 #: includes/class-wp-user-avatar-admin.php:429
 #: includes/class-wp-user-avatar-widget.php:32
-#: includes/wpua-options-page.php:55 includes/wpua-tinymce-window.php:31
+#: includes/wpua-options-page.php:55
+#: includes/wpua-tinymce-window.php:31
 msgid "One User Avatar"
-msgstr "One User Avatar"
+msgstr ""
 
 #. Plugin URI of the plugin
 msgid "https://onedesigns.com/plugins/one-user-avatar/"
-msgstr "https://onedesigns.com/plugins/one-user-avatar/"
+msgstr ""
 
 #. Description of the plugin
-msgid ""
-"Use any image from your WordPress Media Library as a custom user avatar. Add "
-"your own Default Avatar. Fork of WP User Avatar v2.2.16."
+msgid "Use any image from your WordPress Media Library as a custom user avatar. Add your own Default Avatar. Fork of WP User Avatar v2.2.16."
 msgstr ""
-"Utilizează orice imagine din biblioteca media WordPress ca avatar de "
-"utilizator personalizat. Adăugă propriul avatar implicit. Bazat pe WP User "
-"Avatar v2.2.16."
 
 #. Author of the plugin
 msgid "One Designs"
-msgstr "One Designs"
+msgstr ""
 
 #. Author URI of the plugin
 msgid "https://onedesigns.com/"
-msgstr "https://onedesigns.com/"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:173
 msgid "You are not allowed to delete this post."
-msgstr "Nu ai voie să ștergi această postare."
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:177
 msgid "Error in deleting."
-msgstr "Eroare la ștergere."
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:231
-#: includes/class-wp-user-avatar-admin.php:289 includes/wpua-media-page.php:59
+#: includes/class-wp-user-avatar-admin.php:289
+#: includes/wpua-media-page.php:59
 msgid "Avatars"
-msgstr "Avatare"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:240
 #: includes/class-wp-user-avatar-admin.php:241
 #: includes/class-wp-user-avatar-admin.php:465
 #: includes/wpua-options-page.php:93
 msgid "Settings"
-msgstr "Setări"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:249
 #: includes/class-wp-user-avatar-admin.php:250
 msgid "Library"
-msgstr "Bibliotecă"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:375
 msgid "Mystery Man"
-msgstr "Omul misterios"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:376
 msgid "Blank"
-msgstr "Gol"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:377
 msgid "Gravatar Logo"
-msgstr "Logo Gravatar"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:378
 msgid "Identicon (Generated)"
-msgstr "Identicon (Generat)"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:379
 msgid "Wavatar (Generated)"
-msgstr "Wavatar (Generat)"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:380
 msgid "MonsterID (Generated)"
-msgstr "MonsterID (Generat)"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:381
 msgid "Retro (Generated)"
-msgstr "Retro (Generat)"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:430
 #: includes/class-wp-user-avatar.php:231
 msgid "Choose Image"
-msgstr "Alege imagine"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:431
 msgid "Remove"
-msgstr "Elimină"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:431
 #: includes/class-wp-user-avatar.php:292
 msgid "Undo"
-msgstr "Anulează"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:484
 msgid "Support Forums"
-msgstr "Forumuri de asistență"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:498
-#: includes/class-wp-user-avatar-admin.php:559 includes/wpua-functions.php:93
-#: includes/wpua-functions.php:106 includes/wpua-functions.php:114
-#: includes/wpua-functions.php:186 includes/wpua-tinymce-window.php:94
+#: includes/class-wp-user-avatar-admin.php:559
+#: includes/wpua-functions.php:93
+#: includes/wpua-functions.php:106
+#: includes/wpua-functions.php:114
+#: includes/wpua-functions.php:186
+#: includes/wpua-tinymce-window.php:94
 msgid "Profile Picture"
-msgstr "Poză de profil"
+msgstr ""
 
 #: includes/class-wp-user-avatar-admin.php:563
-#: includes/wpua-options-page.php:300 includes/wpua-options-page.php:306
+#: includes/wpua-options-page.php:300
+#: includes/wpua-options-page.php:306
 msgid "Default Avatar"
-msgstr "Avatar implicit"
+msgstr ""
 
 #: includes/class-wp-user-avatar-functions.php:515
 #: includes/class-wp-user-avatar-functions.php:719
 msgid "Avatar"
-msgstr "Avatar"
+msgstr ""
 
 #. translators: uploaded files
 #: includes/class-wp-user-avatar-list-table.php:172
 msgctxt "uploaded files"
 msgid "All %s"
 msgid_plural "All %s"
-msgstr[0] "Toate %s"
-msgstr[1] "Toate %s"
-msgstr[2] "Toate %s"
+msgstr[0] ""
+msgstr[1] ""
 
 #: includes/class-wp-user-avatar-list-table.php:192
 #: includes/class-wp-user-avatar-list-table.php:549
 msgid "Delete Permanently"
-msgstr "Sterge permanent"
+msgstr ""
 
 #: includes/class-wp-user-avatar-list-table.php:222
 msgid "No media attachments found."
-msgstr "Nu s-au găsit atașamente media."
+msgstr ""
 
 #: includes/class-wp-user-avatar-list-table.php:235
 msgctxt "column name"
 msgid "File"
-msgstr "Fişier"
+msgstr ""
 
 #: includes/class-wp-user-avatar-list-table.php:236
 msgid "Author"
-msgstr "Autor"
+msgstr ""
 
 #: includes/class-wp-user-avatar-list-table.php:237
 msgctxt "column name"
 msgid "Uploaded to"
-msgstr "Încărcat în"
+msgstr ""
 
 #: includes/class-wp-user-avatar-list-table.php:238
 msgctxt "column name"
 msgid "Date"
-msgstr "Data"
+msgstr ""
 
 #. translators: post title
 #: includes/class-wp-user-avatar-list-table.php:323
 msgid "Select %s"
-msgstr "Selectează %s"
+msgstr ""
 
 #: includes/class-wp-user-avatar-list-table.php:414
 msgid "Unpublished"
-msgstr "Nepublicat"
+msgstr ""
 
 #. translators: time from now
 #: includes/class-wp-user-avatar-list-table.php:422
 msgctxt "time from now"
 msgid "%s from now"
-msgstr "%s de acum"
+msgstr ""
 
 #. translators: time ago
 #: includes/class-wp-user-avatar-list-table.php:428
 msgctxt "time ago"
 msgid "%s ago"
-msgstr "cu %s înainte"
+msgstr ""
 
 #: includes/class-wp-user-avatar-list-table.php:433
 msgid "Y/m/d"
-msgstr "j.F.Y"
+msgstr ""
 
 #: includes/class-wp-user-avatar-list-table.php:523
 msgid "Edit"
-msgstr "Editează"
+msgstr ""
 
 #: includes/class-wp-user-avatar-list-table.php:532
 msgid "Restore"
-msgstr "Restabileşte"
+msgstr ""
 
 #: includes/class-wp-user-avatar-list-table.php:538
 msgid "Trash"
-msgstr "Coş gunoi"
+msgstr ""
 
 #: includes/class-wp-user-avatar-list-table.php:561
 msgid "View"
-msgstr "Vezi"
+msgstr ""
 
 #. translators: either wp_footer() or wp_print_footer_scripts() hook.
 #: includes/class-wp-user-avatar-resource-manager.php:190
-msgid ""
-"We're sorry, but your theme's page template didn't make a call to %s, which "
-"is required by One User Avatar. Please add this call to your page templates."
+msgid "We're sorry, but your theme's page template didn't make a call to %s, which is required by One User Avatar. Please add this call to your page templates."
 msgstr ""
-"Ne pare rău, dar șablonul paginii temei dvs. nu a efectuat un apel către %s, "
-"necesitat de către One User Avatar. Vă rugăm să adăugați acest apel la "
-"șabloanele de pagină."
 
 #: includes/class-wp-user-avatar-shortcode.php:244
 msgid "Profile updated."
-msgstr "Profil actualizat."
+msgstr ""
 
 #: includes/class-wp-user-avatar-shortcode.php:273
 msgid "Update Profile"
-msgstr "Actualizează profil"
+msgstr ""
 
 #. translators: [avatar_upload] shortcode
 #: includes/class-wp-user-avatar-widget.php:27
 msgid "Insert %s"
-msgstr "Introdu %s"
+msgstr ""
 
 #: includes/class-wp-user-avatar-widget.php:99
 msgid "Title:"
-msgstr "Titlu:"
+msgstr ""
 
 #: includes/class-wp-user-avatar-widget.php:105
 msgid "Description:"
-msgstr "Descriere:"
+msgstr ""
 
 #: includes/class-wp-user-avatar-widget.php:113
 msgid "Automatically add paragraphs"
-msgstr "Adaugă paragrafe automat"
+msgstr ""
 
 #. translators: user display name
 #: includes/class-wp-user-avatar.php:227
 msgid "Choose Image: %s"
-msgstr "Alege imagine: %s"
+msgstr ""
 
-#: includes/class-wp-user-avatar.php:243 includes/class-wp-user-avatar.php:244
-#: includes/wpua-tinymce-window.php:95 includes/wpua-tinymce-window.php:186
+#: includes/class-wp-user-avatar.php:243
+#: includes/class-wp-user-avatar.php:244
+#: includes/wpua-tinymce-window.php:95
+#: includes/wpua-tinymce-window.php:186
 msgid "Upload"
-msgstr "Încărcare"
+msgstr ""
 
 #. translators: file size in KB
-#: includes/class-wp-user-avatar.php:253 includes/wpua-options-page.php:188
+#: includes/class-wp-user-avatar.php:253
+#: includes/wpua-options-page.php:188
 msgid "Maximum upload file size: %s."
-msgstr "Dimensiunea maximă a fișierului pentru încărcat: %s."
+msgstr ""
 
 #. translators: allowed file extensions
 #: includes/class-wp-user-avatar.php:263
 msgid "Allowed Files: %s"
-msgstr "Fișiere permise: %s"
+msgstr ""
 
-#: includes/class-wp-user-avatar.php:276 includes/class-wp-user-avatar.php:278
+#: includes/class-wp-user-avatar.php:276
+#: includes/class-wp-user-avatar.php:278
 #: includes/wpua-tinymce-window.php:125
 msgid "Original Size"
-msgstr "Mărimea originală"
+msgstr ""
 
-#: includes/class-wp-user-avatar.php:282 includes/class-wp-user-avatar.php:284
+#: includes/class-wp-user-avatar.php:282
+#: includes/class-wp-user-avatar.php:284
 #: includes/wpua-tinymce-window.php:128
 msgid "Thumbnail"
-msgstr "Thumbnail"
+msgstr ""
 
 #: includes/class-wp-user-avatar.php:288
 msgid "Remove Image"
-msgstr "Elimină imaginea"
+msgstr ""
 
 #: includes/class-wp-user-avatar.php:377
 msgid "This file is not an image. Please try another."
-msgstr "Acest fișier nu este o imagine. Încearcă altul."
+msgstr ""
 
-#: includes/class-wp-user-avatar.php:382 includes/class-wp-user-avatar.php:414
+#: includes/class-wp-user-avatar.php:382
+#: includes/class-wp-user-avatar.php:414
 msgid "Memory exceeded. Please try another smaller file."
-msgstr "Memoria depășită. Încearcă un alt fișier mai mic."
+msgstr ""
 
 #. translators: directory path
 #: includes/class-wp-user-avatar.php:389
-msgid ""
-"Unable to create directory %s. Is its parent directory writable by the "
-"server?"
+msgid "Unable to create directory %s. Is its parent directory writable by the server?"
 msgstr ""
-"Imposibil de creat directorul %s. Directorul său părinte poate fi scris de "
-"către server?"
 
-#: includes/wpua-functions.php:109 includes/wpua-functions.php:118
+#: includes/wpua-functions.php:109
+#: includes/wpua-functions.php:118
 msgid "Image"
-msgstr "Imagine"
+msgstr ""
 
 #: includes/wpua-media-page.php:46
 msgid "You do not have permission to upload files."
-msgstr "Nu ai permisiunea de a încărca fișiere."
+msgstr ""
 
 #. translators: search query
 #: includes/wpua-media-page.php:66
 msgid "Search results for %s"
-msgstr "Rezultatele căutării pentru: %s"
+msgstr ""
 
 #: includes/wpua-media-page.php:98
 msgid "Search"
-msgstr "Căutare"
+msgstr ""
 
 #: includes/wpua-options-page.php:108
 msgid "Add avatar button to Visual Editor"
-msgstr "Adăugați butonul avatar în editorul vizual"
+msgstr ""
 
 #: includes/wpua-options-page.php:119
 msgid "Allow Contributors & Subscribers to upload avatars"
-msgstr "Permiteți colaboratorilor și abonaților să încarce avatare"
+msgstr ""
 
 #: includes/wpua-options-page.php:130
 msgid "Disable Gravatar and use only local avatars"
-msgstr "Dezactivați Gravatar și utilizați numai avataruri locale"
+msgstr ""
 
-#: includes/wpua-options-page.php:158 includes/wpua-options-page.php:167
+#: includes/wpua-options-page.php:158
+#: includes/wpua-options-page.php:167
 msgid "Upload Size Limit"
-msgstr "Limita de dimensiune a încărcării"
+msgstr ""
 
-#: includes/wpua-options-page.php:159 includes/wpua-options-page.php:168
+#: includes/wpua-options-page.php:159
+#: includes/wpua-options-page.php:168
 msgid "(only for Contributors & Subscribers)"
-msgstr "(numai pentru colaboratori și abonați)"
+msgstr ""
 
 #. translators: file name
 #: includes/wpua-options-page.php:178
 msgid "%s exceeds the maximum upload size for this site."
-msgstr "%s depășește dimensiunea maximă de încărcare pentru acest site."
+msgstr ""
 
 #: includes/wpua-options-page.php:199
 msgid "Allow users to edit avatars"
-msgstr "Permiteți utilizatorilor să editeze avatare"
+msgstr ""
 
 #: includes/wpua-options-page.php:207
 msgid "Resize avatars on upload"
-msgstr "Redimensionați avatarurile la încărcare"
+msgstr ""
 
 #: includes/wpua-options-page.php:212
 msgid "Width"
-msgstr "Lăţime"
+msgstr ""
 
 #: includes/wpua-options-page.php:216
 msgid "Height"
-msgstr "Înălţime"
+msgstr ""
 
 #: includes/wpua-options-page.php:224
 msgid "Crop avatars to exact dimensions"
-msgstr "Decupați avatare la dimensiuni exacte"
+msgstr ""
 
-#: includes/wpua-options-page.php:246 includes/wpua-options-page.php:252
+#: includes/wpua-options-page.php:246
+#: includes/wpua-options-page.php:252
 msgid "Avatar Display"
-msgstr "Afișare avatar"
+msgstr ""
 
 #: includes/wpua-options-page.php:259
 msgid "Show Avatars"
-msgstr "Afișați avatare"
+msgstr ""
 
-#: includes/wpua-options-page.php:266 includes/wpua-options-page.php:272
+#: includes/wpua-options-page.php:266
+#: includes/wpua-options-page.php:272
 msgid "Maximum Rating"
-msgstr "Limită de vârstă"
+msgstr ""
 
 #: includes/wpua-options-page.php:278
 msgid "G &#8212; Suitable for all audiences"
-msgstr "G &#8212; Potrivit pentru toate vârstele"
+msgstr ""
 
 #: includes/wpua-options-page.php:279
 msgid "PG &#8212; Possibly offensive, usually for audiences 13 and above"
 msgstr ""
-"PG &#8212; Eventual ofensator, de obicei pentru vârsta de 13 ani și peste"
 
 #: includes/wpua-options-page.php:280
 msgid "R &#8212; Intended for adult audiences above 17"
-msgstr "R &#8212; Destinat adulților cu vârsta peste 17 ani"
+msgstr ""
 
 #: includes/wpua-options-page.php:281
 msgid "X &#8212; Even more mature than above"
-msgstr "X &#8212; Și mai maturi decât cele de mai sus"
+msgstr ""
 
 #: includes/wpua-options-page.php:310
-msgid ""
-"For users without a custom avatar of their own, you can either display a "
-"generic logo or a generated one based on their e-mail address."
+msgid "For users without a custom avatar of their own, you can either display a generic logo or a generated one based on their e-mail address."
 msgstr ""
-"Pentru utilizatorii fără un avatar personalizat propriu, puteți afișa fie o "
-"siglă generică, fie una generată pe baza adresei de e-mail."
 
 #: includes/wpua-tinymce-window.php:101
 msgid "User Name"
-msgstr "Nume de utilizator"
+msgstr ""
 
-#: includes/wpua-tinymce-window.php:121 includes/wpua-tinymce-window.php:134
+#: includes/wpua-tinymce-window.php:121
+#: includes/wpua-tinymce-window.php:134
 msgid "Size:"
-msgstr "Mărime:"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:126
 msgid "Large"
-msgstr "Mare"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:127
 msgid "Medium"
-msgstr "Mediu"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:129
 msgid "Custom"
-msgstr "Personalizat"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:140
 msgid "Alignment:"
-msgstr "Aliniere:"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:144
 msgid "Center"
-msgstr "Centru"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:145
 msgid "Left"
-msgstr "Stânga"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:146
 msgid "Right"
-msgstr "Dreapta"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:151
 msgid "Link To:"
-msgstr "Link către:"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:155
 msgid "Image File"
-msgstr "Fișier imagine"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:156
 msgid "Attachment Page"
-msgstr "Pagina atașament"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:157
 msgid "Custom URL"
-msgstr "Adresa URL personalizată"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:162
 msgid "URL:"
-msgstr "URL:"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:170
 msgid "Open link in a new window"
-msgstr "Deschide linkul într-o fereastră nouă"
+msgstr ""
 
 #: includes/wpua-tinymce-window.php:174
 msgid "Caption"
-msgstr "Legendă"
+msgstr ""
 
-#: includes/wpua-tinymce-window.php:180 includes/wpua-tinymce-window.php:192
+#: includes/wpua-tinymce-window.php:180
+#: includes/wpua-tinymce-window.php:192
 msgid "Insert into Post"
-msgstr "Introduceți în postare"
+msgstr ""
 
 #: includes/wpua-tinymce.php:70
 msgid "Insert Avatar"
-msgstr "Introdu avatar"
+msgstr ""
 
 #. translators: placeholder for <a> and </a> tags.
 #: one-user-avatar.php:94
-msgid ""
-"The plugin One User Avatar is a replacement for the old WP User Avatar "
-"plugin. Please %1$sdeactivate WP User Avatar%2$s to start using it."
+msgid "The plugin One User Avatar is a replacement for the old WP User Avatar plugin. Please %1$sdeactivate WP User Avatar%2$s to start using it."
 msgstr ""
-"Pluginul One User Avatar înlocuiește vechiul plugin WP User Avatar. "
-"Dezactivează %1$sWP User Avatar%2$s pentru a începe să îl utilizezi."
-
-#~ msgid "Edit Image"
-#~ msgstr "Modifică imaginea"
