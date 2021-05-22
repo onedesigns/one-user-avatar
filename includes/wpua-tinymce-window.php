@@ -2,7 +2,7 @@
 /**
  * TinyMCE modal window.
  *
- * @package One User Avatar
+ * @package    One User Avatar
  * @author     Bangbay Siboliban
  * @author     Flippercode
  * @author     ProfilePress

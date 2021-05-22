@@ -3,7 +3,7 @@
  * Move body CSS to head and JS to footer.
  * Borrowed from NextGEN Gallery C_Photocrati_Resource_Manager class.
  *
- * @package One User Avatar
+ * @package    One User Avatar
  * @author     Bangbay Siboliban
  * @author     Flippercode
  * @author     ProfilePress
