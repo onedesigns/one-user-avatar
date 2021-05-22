@@ -284,6 +284,7 @@ Outputs:
 ### What other functions are available for One User Avatar?
 * `get_wp_user_avatar_src`: retrieves just the image URL
 * `has_wp_user_avatar`: checks if the user has a One User Avatar image
+* [See example usage here](#installation)
 
 ## Advanced Settings
 
