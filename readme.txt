@@ -65,6 +65,10 @@ Source: https://github.com/jquery/jquery-ui
 6. Choose a theme that has avatar support. In your theme, manually replace <code>get_avatar</code> with <code>get_wp_user_avatar</code> or leave <code>get_avatar</code> as-is. [Read about the differences here](http://wordpress.org/plugins/one-user-avatar/#faq).
 7. You can also use the <code>[avatar_upload]</code> and <code>[avatar]</code> shortcodes in your posts. These shortcodes will work with any theme, whether it has avatar support or not.
 
+**Warning**
+
+If you are using One User Avatar to replace an existing installation of WP User Avatar, do not delete the old WP User Avatar plugin from the WordPress plugin administration screen, otherwise you will lose all your existing avatars. Instead, deactivate the WP User Avatar plugin and then manually delete it using FTP. If you can't access your files directly, contact your hosting provider and ask them to delete it for you or simply leave the old plugin deactivated.
+
 **Example Usage**
 
 = Posts =
