@@ -99,7 +99,7 @@ class WP_User_Avatar_Profile_Widget extends WP_Widget {
 				<?php _e( 'Title:', 'one-user-avatar' ); ?>
 			</label>
 
-			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" type="text" value="<?php echo esc_attr( strip_tags( $instance['title'] ) ); ?>" />
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" type="text" value="<?php echo esc_attr( wp_kses( $instance['title'], 'data' ) ); ?>" />
 		</p>
 
 		<label for="<?php echo esc_attr( $this->get_field_id( 'filter' ) ); ?>"><?php _e( 'Description:', 'one-user-avatar' ); ?></label>
@@ -127,7 +127,7 @@ class WP_User_Avatar_Profile_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
-		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['title'] = wp_kses( $new_instance['title'], 'data' );
 
 		if ( current_user_can( 'unfiltered_html' ) ) {
 			$instance['text'] =	$new_instance['text'];

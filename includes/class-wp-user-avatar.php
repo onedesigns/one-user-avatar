@@ -467,7 +467,7 @@ class WP_User_Avatar {
 
 		// Check if user has publish_posts capability
 		if ( $wp_user_avatar->wpua_is_author_or_above() ) {
-			$wpua_id = isset( $_POST['wp-user-avatar'] ) ? strip_tags( $_POST['wp-user-avatar'] ) : '';
+			$wpua_id = isset( $_POST['wp-user-avatar'] ) ? absint( $_POST['wp-user-avatar'] ) : 0;
 
 			// Remove old attachment postmeta
 			delete_metadata( 'post', null, '_wp_attachment_wp_user_avatar', $user_id, true );

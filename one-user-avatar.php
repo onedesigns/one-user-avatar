@@ -99,7 +99,7 @@ function one_user_avatar_conflict_admin_notice() {
 	?>
 
 	<div class="notice notice-error">
-		<p><?php echo strip_tags( $message, '<a>' ); ?></p>
+		<p><?php echo wp_kses( $message, 'data' ); ?></p>
 	</div>
 
 	<?php
