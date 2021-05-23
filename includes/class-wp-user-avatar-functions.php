@@ -23,15 +23,15 @@ class WP_User_Avatar_Functions {
 	 * @uses register_deactivation_hook()
 	 */
 	public function __construct() {
-		add_filter( 'get_avatar',               array($this, 'wpua_get_avatar_filter'),               10, 6 );
+		add_filter( 'get_avatar',               array( $this, 'wpua_get_avatar_filter' ),               10, 6 );
 
-		add_filter( 'get_avatar_url',           array($this,'wpua_get_avatar_url'),                   10, 3 );
+		add_filter( 'get_avatar_url',           array( $this, 'wpua_get_avatar_url' ),                  10, 3 );
 
 		// Filter to display One User Avatar at Buddypress
-		add_filter( 'bp_core_fetch_avatar',     array($this, 'wpua_bp_core_fetch_avatar_filter'),     10, 5 );
+		add_filter( 'bp_core_fetch_avatar',     array( $this, 'wpua_bp_core_fetch_avatar_filter' ),     10, 5 );
 
 		// Filter to display One User Avatar by URL at Buddypress
-		add_filter( 'bp_core_fetch_avatar_url', array($this, 'wpua_bp_core_fetch_avatar_url_filter'), 10, 5 );
+		add_filter( 'bp_core_fetch_avatar_url', array( $this, 'wpua_bp_core_fetch_avatar_url_filter' ), 10, 5 );
 
 	}
 
@@ -619,7 +619,8 @@ class WP_User_Avatar_Functions {
                 $wpua_functions;
 
 		// Remove get_avatar filter
-		remove_filter( 'get_avatar', array( $wpua_functions, 'wpua_get_avatar_filter' ) );
+		remove_filter( 'get_avatar',     array( $this, 'wpua_get_avatar_filter' ) );
+		remove_filter( 'get_avatar_url', array( $this, 'wpua_get_avatar_url' ) );
 
 		if ( 1 != (bool) $wpua_disable_gravatar ) {
 			// User doesn't have Gravatar and Default Avatar is wp_user_avatar, show custom Default Avatar
@@ -638,12 +639,7 @@ class WP_User_Avatar_Functions {
 				}
 			} else {
 				// Get image from Gravatar, whether it's the user's image or default image
-				$wpua_image = get_avatar( $id_or_email, $size );
-
-				// Takes the img tag, extracts the src
-				preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $wpua_image, $matches, PREG_SET_ORDER );
-
-				$default = ! empty( $matches ) ? $matches [0] [1] : '';
+				$default = get_avatar_url( $id_or_email, array( 'size' => $size ) );
 			}
 		} else {
 			if ( ! empty( $wpua_avatar_default ) && $wpua_functions->wpua_attachment_is_image( $wpua_avatar_default ) ) {
@@ -660,7 +656,8 @@ class WP_User_Avatar_Functions {
 		}
 
 		// Enable get_avatar filter
-		add_filter( 'get_avatar', array( $wpua_functions, 'wpua_get_avatar_filter' ), 10, 5 );
+		add_filter( 'get_avatar',     array( $this, 'wpua_get_avatar_filter' ), 10, 5 );
+		add_filter( 'get_avatar_url', array( $this, 'wpua_get_avatar_url' ),    10, 3 );
 
 		/**
 		 * Filter original avatar src
