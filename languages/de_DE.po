@@ -6,7 +6,7 @@ msgstr ""
 "(latest release)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/one-user-avatar\n"
 "POT-Creation-Date: 2021-05-22T04:16:42+00:00\n"
-"PO-Revision-Date: 2021-05-22 05:18+0100\n"
+"PO-Revision-Date: 2021-05-23 06:59+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -479,70 +479,7 @@ msgstr ""
 #~ msgid "Edit Image"
 #~ msgstr "Bild bearbeiten"
 
-#~ msgid "Dismiss this notice"
-#~ msgstr "Diesen Hinweis ausblenden"
-
-#~ msgid "Activate MailOptin Now!"
-#~ msgstr "MailOptin jetzt aktivieren!"
-
-#~ msgid "Install MailOptin Now for Free!"
-#~ msgstr "MailOptin jetzt kostenlos installieren!"
-
-#~ msgid "URL"
-#~ msgstr "URL"
-
-#~ msgid "wp_user_avatar_align"
-#~ msgstr "wp_user_avatar_align"
-
-#~ msgid "wp_user_avatar_link"
-#~ msgstr "wp_user_avatar_link"
-
-#~ msgid "wp_user_avatar_link_external_section"
-#~ msgstr "wp_user_avatar_link_external_section"
-
-#~ msgid "wp_user_avatar_link_external"
-#~ msgstr "wp_user_avatar_link_external"
-
-#~ msgid "wp_user_avatar_target"
-#~ msgstr "wp_user_avatar_target"
-
-#~ msgid "wp_user_avatar_caption"
-#~ msgstr "wp_user_avatar_caption"
-
-#~ msgid "wp_user_avatar_upload"
-#~ msgstr "wp_user_avatar_upload"
-
 #~ msgid "Media attachment permanently deleted."
 #~ msgid_plural "%d media attachments permanently deleted."
 #~ msgstr[0] "Der Medienanhang wurde endgültig gelöscht."
 #~ msgstr[1] "%d Medienanhänge wurden endgültig gelöscht."
-
-#~ msgid "Edit &#8220;%s&#8221;"
-#~ msgstr "&#8222;%s&#8220; bearbeiten"
-
-#~ msgctxt "uploaded files"
-#~ msgid "All <span class=\"count\">(%s)</span>"
-#~ msgid_plural "All <span class=\"count\">(%s)</span>"
-#~ msgstr[0] "Alle <span class=\"count\">(%s)</span>"
-#~ msgstr[1] "Alle <span class=\"count\">(%s)</span>"
-
-#~ msgid "[avatar_upload]"
-#~ msgstr "[avatar_upload]"
-
-#~ msgid "wp_user_avatar_user"
-#~ msgstr "wp_user_avatar_user"
-
-#~ msgid "wp_user_avatar_size"
-#~ msgstr "wp_user_avatar_size"
-
-#~ msgid "wp_user_avatar_size_number_section"
-#~ msgstr "wp_user_avatar_size_number_section"
-
-#~ msgid "wp_user_avatar_size_number"
-#~ msgstr "wp_user_avatar_size_number"
-
-#~ msgid "<code>jpg jpeg png gif</code>"
-#~ msgstr "<code>jpg jpeg png gif</code>"
-
-#~ msgid "View &#8220;%s&#8221;"
-#~ msgstr "&#8222;%s&#8220; anzeigen"
