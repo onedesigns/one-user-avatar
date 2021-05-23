@@ -43,64 +43,81 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'You are not allowed to call this page directly.' );
 }
 
-function one_user_avatar_setup() {
-	if ( class_exists( 'WP_User_Avatar_Setup' ) ) {
-		add_action( 'admin_notices', 'one_user_avatar_conflict_admin_notice' );
-	    return;
+class One_User_Avatar {
+	public function __construct() {
+		if ( class_exists( 'WP_User_Avatar_Setup' ) ) {
+			add_action( 'admin_notices', array( $this, 'conflict_admin_notice' ) );
+
+		    return;
+		}
+
+		require_once( plugin_dir_path( self::plugin_file_path() ) . 'includes/class-wp-user-avatar-setup.php' );
 	}
 
-	require_once( plugin_dir_path( __FILE__ ) . 'setup.php' );
-}
-add_action( 'plugins_loaded', 'one_user_avatar_setup', 0 );
-
-function one_user_avatar_conflict_admin_notice() {
-	global $pagenow, $status, $pagenum, $s;
-
-	if ( 'plugins.php' != $pagenow ) {
-		return;
+	public static function plugin_file_path() {
+		return __FILE__;
 	}
 
-	$plugin_file = 'wp-user-avatar/wp-user-avatar.php';
+	public function conflict_admin_notice() {
+		global $pagenow, $status, $pagenum, $s;
 
-	if ( ! current_user_can( 'deactivate_plugin', $plugin_file ) ) {
-		return;
-	}
+		if ( 'plugins.php' != $pagenow ) {
+			return;
+		}
 
-	$url = wp_nonce_url(
-		admin_url(
-			sprintf(
-				'plugins.php?action=deactivate&plugin=%s',
-				urlencode( $plugin_file )
+		$plugin_file = 'wp-user-avatar/wp-user-avatar.php';
+
+		if ( ! current_user_can( 'deactivate_plugin', $plugin_file ) ) {
+			return;
+		}
+
+		$url = wp_nonce_url(
+			admin_url(
+				sprintf(
+					'plugins.php?action=deactivate&plugin=%s',
+					urlencode( $plugin_file )
+				)
 			)
-		)
-	);
+		);
 
-	if ( ! empty( $status ) ) {
-		add_query_arg( 'plugin_status', urlencode( $status ), $url );
+		if ( ! empty( $status ) ) {
+			add_query_arg( 'plugin_status', urlencode( $status ), $url );
+		}
+
+		if ( ! empty( $pagenum ) ) {
+			add_query_arg( 'paged', urlencode( $pagenum ), $url );
+		}
+
+		if ( ! empty( $s ) ) {
+			add_query_arg( 'paged', urlencode( $s ), $url );
+		}
+
+		$url = wp_nonce_url( $url, sprintf( 'deactivate-plugin_%s', $plugin_file ) );
+
+		$message = sprintf(
+			/* translators: placeholder for <a> and </a> tags. */
+			__( 'The plugin One User Avatar is a replacement for the old WP User Avatar plugin. Please %1$sdeactivate WP User Avatar%2$s to start using it.', 'one-user-avatar' ),
+			sprintf( '<a href="%s">', esc_url( $url ) ),
+			'</a>'
+		);
+
+		?>
+
+		<div class="notice notice-error">
+			<p><?php echo wp_kses( $message, 'data' ); ?></p>
+		</div>
+
+		<?php
 	}
-
-	if ( ! empty( $pagenum ) ) {
-		add_query_arg( 'paged', urlencode( $pagenum ), $url );
-	}
-
-	if ( ! empty( $s ) ) {
-		add_query_arg( 'paged', urlencode( $s ), $url );
-	}
-
-	$url = wp_nonce_url( $url, sprintf( 'deactivate-plugin_%s', $plugin_file ) );
-
-	$message = sprintf(
-		/* translators: placeholder for <a> and </a> tags. */
-		__( 'The plugin One User Avatar is a replacement for the old WP User Avatar plugin. Please %1$sdeactivate WP User Avatar%2$s to start using it.', 'one-user-avatar' ),
-		sprintf( '<a href="%s">', esc_url( $url ) ),
-		'</a>'
-	);
-
-	?>
-
-	<div class="notice notice-error">
-		<p><?php echo wp_kses( $message, 'data' ); ?></p>
-	</div>
-
-	<?php
 }
+
+function one_user_avatar() {
+	global $one_user_avatar;
+
+    if ( ! isset( $one_user_avatar ) ) {
+        $one_user_avatar = new One_User_Avatar();
+    }
+
+    return $one_user_avatar;
+}
+add_action( 'plugins_loaded', 'one_user_avatar', 0 );

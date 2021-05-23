@@ -30,9 +30,11 @@ class WP_User_Avatar_Setup {
 	 * @since 1.9.2
 	 */
 	private function _define_constants() {
+		$_file_ = One_User_Avatar::plugin_file_path();
+
 		define( 'WPUA_VERSION', '2.3.0' );
-		define( 'WPUA_FOLDER',  basename( dirname( __FILE__ ) ) );
-		define( 'WPUA_DIR',     plugin_dir_path( __FILE__ ) );
+		define( 'WPUA_FOLDER',  basename( dirname( $_file_ ) ) );
+		define( 'WPUA_DIR',     plugin_dir_path( $_file_ ) );
 		define( 'WPUA_INC',     WPUA_DIR . 'includes' . '/' );
 		define( 'WPUA_URL',     plugin_dir_url( WPUA_FOLDER ) . WPUA_FOLDER . '/' );
 		define( 'WPUA_INC_URL', WPUA_URL . 'includes'.'/' );
@@ -82,8 +84,8 @@ class WP_User_Avatar_Setup {
 		require_once( WPUA_INC . 'class-wp-user-avatar-widget.php' );
 
 		// Load TinyMCE only if enabled
-		if ( (bool) $wpua_tinymce == 1 ) {
-			require_once(WPUA_INC.'wpua-tinymce.php');
+		if ( 1 == (bool) $wpua_tinymce ) {
+			require_once( WPUA_INC.'wpua-tinymce.php' );
 		}
 	}
 }
