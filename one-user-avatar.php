@@ -1,16 +1,18 @@
 <?php
 /*
-Plugin Name: One User Avatar
-Plugin URI: https://onedesigns.com/plugins/one-user-avatar/
-Description: Use any image from your WordPress Media Library as a custom user avatar. Add your own Default Avatar. Fork of WP User Avatar v2.2.16.
-Author: One Designs
-Author URI: https://onedesigns.com/
-Version: 2.3.0
-Text Domain: one-user-avatar
-Domain Path: /languages/
+Plugin Name:  One User Avatar
+Plugin URI:   https://onedesigns.com/plugins/one-user-avatar/
+Description:  Use any image from your WordPress Media Library as a custom user avatar. Add your own Default Avatar. Fork of WP User Avatar v2.2.16.
+Author:       One Designs
+Author URI:   https://onedesigns.com/
+Version:      2.3.0
+Text Domain:  one-user-avatar
+Domain Path:  /languages/
 
 One User Avatar
 Copyright (c) 2021 One Designs https://onedesigns.com/
+License: GPLv2
+Source: https://github.com/onedesigns/one-user-avatar
 
 One User Avatar is based on WP User Avatar v2.2.16
 Copyright (c) 2020-2021 ProfilePress https://profilepress.net/
@@ -44,20 +46,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class One_User_Avatar {
+	/**
+	 * Check for conflicts and load plugin
+	 *
+	 * @since 2.3.0
+	 */
 	public function __construct() {
+		// Check for conflict
 		if ( class_exists( 'WP_User_Avatar_Setup' ) ) {
 			add_action( 'admin_notices', array( $this, 'conflict_admin_notice' ) );
 
 		    return;
 		}
 
+		// Load plugin
 		require_once( plugin_dir_path( self::plugin_file_path() ) . 'includes/class-wp-user-avatar-setup.php' );
 	}
 
+	/**
+	 * Access plugin file path globally
+	 *
+	 * @since 2.3.0
+	 */
 	public static function plugin_file_path() {
 		return __FILE__;
 	}
 
+	/**
+	 * Print admin notice error in case of plugin conflict
+	 *
+	 * @since 2.3.0
+	 */
 	public function conflict_admin_notice() {
 		global $pagenow, $status, $pagenum, $s;
 
@@ -111,6 +130,11 @@ class One_User_Avatar {
 	}
 }
 
+/**
+ * Load Plugin
+ *
+ * @since 2.3.0
+ */
 function one_user_avatar() {
 	global $one_user_avatar;
 
