@@ -396,6 +396,7 @@ This would output:
 * Fix headers already sent error when performing bulk actions
 * Fix headers already sent error on when updating avatar using shortcode
 * Fix TinyMCE deprecation notice
+* Fix previev image not reverting when removing from user profile
 * Remove unused images
 * Remove MailOptin recommendation
 
