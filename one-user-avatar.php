@@ -56,7 +56,7 @@ class One_User_Avatar {
 		if ( class_exists( 'WP_User_Avatar_Setup' ) ) {
 			add_action( 'admin_notices', array( $this, 'conflict_admin_notice' ) );
 
-		    return;
+			return;
 		}
 
 		// Load plugin
