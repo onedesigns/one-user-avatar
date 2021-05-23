@@ -135,23 +135,23 @@ class WP_User_Avatar {
 
 		$user = ( $pagenow == 'user-edit.php' && isset( $_GET['user_id'] ) ) ? get_user_by( 'id', absint( $_GET['user_id'] ) ) : $current_user;
 
-		wp_enqueue_style( 'one-user-avatar', WPUA_URL . 'css/wp-user-avatar.css', '', WPUA_VERSION );
+		wp_enqueue_style( 'one-user-avatar', WPUA_CSS_URL . 'wp-user-avatar.css', '', WPUA_VERSION );
 
 		wp_enqueue_script( 'jquery' );
 
 		if ( $wp_user_avatar->wpua_is_author_or_above() ) {
 			wp_enqueue_script( 'admin-bar' );
 			wp_enqueue_media( array( 'post' => $post ) );
-			wp_enqueue_script( 'one-user-avatar', WPUA_URL . 'js/wp-user-avatar.js', array( 'jquery', 'media-editor' ), WPUA_VERSION, true );
+			wp_enqueue_script( 'one-user-avatar', WPUA_JS_URL . 'wp-user-avatar.js', array( 'jquery', 'media-editor' ), WPUA_VERSION, true );
 		} else {
-			wp_enqueue_script( 'one-user-avatar', WPUA_URL . 'js/wp-user-avatar-user.js', array( 'jquery' ), WPUA_VERSION, true );
+			wp_enqueue_script( 'one-user-avatar', WPUA_JS_URL . 'wp-user-avatar-user.js', array( 'jquery' ), WPUA_VERSION, true );
 		}
 
 		// Admin scripts
 		if ( $pagenow == 'options-discussion.php' || $wpua_admin->wpua_is_menu_page() ) {
 			// Size limit slider
 			wp_enqueue_script( 'jquery-ui-slider' );
-			wp_enqueue_style( 'wp-user-avatar-jqueryui', WPUA_URL . 'css/jquery-ui.css', '', null );
+			wp_enqueue_style( 'wp-user-avatar-jqueryui', WPUA_CSS_URL . 'jquery-ui.css', '', null );
 
 			// Default avatar
 			wp_localize_script( 'one-user-avatar', 'wpua_custom', array(
@@ -159,7 +159,7 @@ class WP_User_Avatar {
 			) );
 
 			// Settings control
-			wp_enqueue_script( 'wp-user-avatar-admin', WPUA_URL . 'js/wp-user-avatar-admin.js', array( 'one-user-avatar' ), WPUA_VERSION, true );
+			wp_enqueue_script( 'wp-user-avatar-admin', WPUA_JS_URL . 'wp-user-avatar-admin.js', array( 'one-user-avatar' ), WPUA_VERSION, true );
 			wp_localize_script( 'wp-user-avatar-admin', 'wpua_admin', array(
 				'upload_size_limit' => $wpua_upload_size_limit,
 				'max_upload_size'   => wp_max_upload_size(),

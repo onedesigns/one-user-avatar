@@ -48,7 +48,7 @@ function wpua_register_button( $buttons ) {
  * @return array
  */
 function wpua_add_tinymce_plugin( $plugins ) {
-	$plugins['wpUserAvatar'] = WPUA_URL . 'js/tinymce-editor_plugin.js';
+	$plugins['wpUserAvatar'] = WPUA_JS_URL . 'tinymce-editor_plugin.js';
 
 	return $plugins;
 }
@@ -56,12 +56,12 @@ function wpua_add_tinymce_plugin( $plugins ) {
 function wpua_tinymce_enqueue_scripts( $hook_suffix ) {
 	switch ( $hook_suffix ) {
 		case 'one-user-avatar_tinymce-window':
-			wp_enqueue_style( 'one-user-avatar-tinymce-window', WPUA_URL . 'css/tinymce-window.css' );
+			wp_enqueue_style( 'one-user-avatar-tinymce-window', WPUA_CSS_URL . 'tinymce-window.css' );
 
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'one-user-avatar-tinymce-popup',      includes_url( 'js/tinymce/tiny_mce_popup.js' ) );
 			wp_enqueue_script( 'one-user-avatar-tinymce-form-utils', includes_url( 'js/tinymce/utils/form_utils.js' ) );
-			wp_enqueue_script( 'one-user-avatar-tinymce-window',     WPUA_URL . 'js/tinymce-window.js' );
+			wp_enqueue_script( 'one-user-avatar-tinymce-window',     WPUA_JS_URL . 'tinymce-window.js' );
 
 			break;
 

@@ -232,7 +232,7 @@ class WP_User_Avatar_Admin {
             'manage_options',
             'one-user-avatar',
             array( $this, 'wpua_options_page' ),
-            WPUA_URL . 'images/wpua-icon.png'
+            WPUA_IMG_URL . 'wpua-icon.png'
         );
 
 		add_submenu_page(

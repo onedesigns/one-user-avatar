@@ -76,19 +76,19 @@ $wpua_resize_h = get_option( 'wp_user_avatar_resize_h' );
 $wpua_resize_w = get_option( 'wp_user_avatar_resize_w' );
 
 // Default avatar 512x512
-$mustache_original  = WPUA_URL . 'images/wpua.png';
+$mustache_original  = WPUA_IMG_URL . 'wpua.png';
 
 // Default avatar 300x300
-$mustache_medium    = WPUA_URL . 'images/wpua-300x300.png';
+$mustache_medium    = WPUA_IMG_URL . 'wpua-300x300.png';
 
 // Default avatar 150x150
-$mustache_thumbnail = WPUA_URL . 'images/wpua-150x150.png';
+$mustache_thumbnail = WPUA_IMG_URL . 'wpua-150x150.png';
 
 // Default avatar 96x96
-$mustache_avatar    = WPUA_URL . 'images/wpua-96x96.png';
+$mustache_avatar    = WPUA_IMG_URL . 'wpua-96x96.png';
 
 // Default avatar 32x32
-$mustache_admin     = WPUA_URL . 'images/wpua-32x32.png';
+$mustache_admin     = WPUA_IMG_URL . 'wpua-32x32.png';
 
 // Check for updates
 $wpua_default_avatar_updated = get_option( 'wp_user_avatar_default_avatar_updated' );

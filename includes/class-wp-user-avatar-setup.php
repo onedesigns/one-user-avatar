@@ -32,12 +32,16 @@ class WP_User_Avatar_Setup {
 	private function _define_constants() {
 		$_file_ = One_User_Avatar::plugin_file_path();
 
-		define( 'WPUA_VERSION', '2.3.0' );
-		define( 'WPUA_FOLDER',  basename( dirname( $_file_ ) ) );
-		define( 'WPUA_DIR',     plugin_dir_path( $_file_ ) );
-		define( 'WPUA_INC',     WPUA_DIR . 'includes' . '/' );
-		define( 'WPUA_URL',     plugin_dir_url( WPUA_FOLDER ) . WPUA_FOLDER . '/' );
-		define( 'WPUA_INC_URL', WPUA_URL . 'includes'.'/' );
+		define( 'WPUA_VERSION',    '2.3.0' );
+		define( 'WPUA_FOLDER',     basename( dirname( $_file_ ) ) );
+		define( 'WPUA_DIR',        plugin_dir_path( $_file_ ) );
+		define( 'WPUA_INC',        WPUA_DIR . 'includes' . '/' );
+		define( 'WPUA_URL',        plugin_dir_url( WPUA_FOLDER ) . WPUA_FOLDER . '/' );
+		define( 'WPUA_ASSETS_URL', WPUA_URL . 'assets'.'/' );
+		define( 'WPUA_CSS_URL',    WPUA_ASSETS_URL . 'css'.'/' );
+		define( 'WPUA_JS_URL',     WPUA_ASSETS_URL . 'js'.'/' );
+		define( 'WPUA_IMG_URL',    WPUA_ASSETS_URL . 'images'.'/' );
+		define( 'WPUA_INC_URL',    WPUA_URL . 'includes'.'/' );
 	}
 
 	/**
