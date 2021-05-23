@@ -207,7 +207,7 @@ class WP_User_Avatar_Shortcode {
 	 * @uses wpua_is_author_or_above()
 	 * @return string
 	 */
-	public function wpua_edit_shortcode($atts) {
+	public function wpua_edit_shortcode( $atts ) {
 		global $current_user, $errors, $wp_user_avatar, $wpua_allow_upload;
 
 		// Shortcode only works for users with permission
@@ -235,13 +235,13 @@ class WP_User_Avatar_Shortcode {
 
 					// Check for errors
 					$errors = $this->wpua_edit_user( $valid_user->ID );
-				}
 
-				// Errors
-				if ( isset( $errors ) && is_wp_error( $errors ) ) {
-					printf( '<div class="error"><p>%s</p></div>', implode( "</p>\n<p>", $errors->get_error_messages() ) );
-				} else {
-					printf( '<div class="success"><p><strong>%s</strong></p></div>', __( 'Profile updated.', 'one-user-avatar' ) );
+					// Errors
+					if ( isset( $errors ) && is_wp_error( $errors ) ) {
+						printf( '<div class="error"><p>%s</p></div>', implode( "</p>\n<p>", $errors->get_error_messages() ) );
+					} else {
+						printf( '<div class="success"><p><strong>%s</strong></p></div>', __( 'Profile updated.', 'one-user-avatar' ) );
+					}
 				}
 
 				// Edit form
