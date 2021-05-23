@@ -28,6 +28,8 @@ WordPress currently only allows you to use custom avatars that are uploaded thro
 
 One User Avatar
 Copyright (c) 2021 One Designs https://onedesigns.com/
+License: GPLv2
+Source: https://github.com/onedesigns/one-user-avatar
 
 One User Avatar is based on WP User Avatar v2.2.16
 Copyright (c) 2020-2021 ProfilePress https://profilepress.net/
