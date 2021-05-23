@@ -54,8 +54,10 @@ class One_User_Avatar {
 	public function __construct() {
 		// Check for conflict
 		if ( class_exists( 'WP_User_Avatar_Setup' ) ) {
+			// Add admin notice
 			add_action( 'admin_notices', array( $this, 'conflict_admin_notice' ) );
 
+			// Bail
 			return;
 		}
 
