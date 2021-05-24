@@ -142,12 +142,10 @@ class WP_User_Avatar_Admin {
 
 			if ( isset( $_REQUEST['media'] ) && is_array( $_REQUEST['media'] ) ) {
 				$ids = $_REQUEST['media'];
-			} elseif ( isset( $_REQUEST['ids'] ) && is_string( $_REQUEST['ids'] ) ) {
-				$ids = explode( ',', $_REQUEST['ids'] );
 			}
 
 			foreach ( $ids as $post_id ) {
-				$post = get_post( $post_id );
+				$post = get_post( absint( $post_id ) );
 
 				if ( $post instanceof WP_Post ) {
 					$post_ids[] = $post->ID;
@@ -158,7 +156,7 @@ class WP_User_Avatar_Admin {
 
 			if ( $referer = wp_get_referer() ) {
 				if ( false !== strpos( $referer, 'admin.php' ) ) {
-					$location = remove_query_arg( array( 'trashed', 'untrashed', 'deleted', 'message', 'ids', 'posted' ), $referer );
+					$location = remove_query_arg( array( 'trashed', 'untrashed', 'deleted', 'message', 'posted' ), $referer );
 				}
 			}
 
