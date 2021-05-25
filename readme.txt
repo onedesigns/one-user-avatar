@@ -391,6 +391,11 @@ This would output:
 	</p>
 </div>`
 
+== Screenshots ==
+
+1. One User Avatar admin settings.
+2. One User Avatar lets you upload your own Default Avatar.
+
 == Changelog ==
 
 = 2.3.0 =
