@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: One User Avatar 2.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/one-user-avatar\n"
 "POT-Creation-Date: 2021-05-22T04:16:42+00:00\n"
-"PO-Revision-Date: 2021-05-23 07:00+0100\n"
+"PO-Revision-Date: 2021-05-25 21:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -19,8 +19,8 @@ msgstr ""
 #. Plugin Name of the plugin
 #: includes/class-wp-user-avatar-admin.php:230
 #: includes/class-wp-user-avatar-admin.php:429
-#: includes/class-wp-user-avatar-widget.php:32
-#: includes/wpua-options-page.php:55 includes/wpua-tinymce-window.php:31
+#: includes/class-wp-user-avatar-widget.php:32 includes/wpua-options-page.php:55
+#: includes/wpua-tinymce-window.php:31
 msgid "One User Avatar"
 msgstr "One User Avatar"
 
@@ -60,8 +60,7 @@ msgstr "Avatars"
 
 #: includes/class-wp-user-avatar-admin.php:240
 #: includes/class-wp-user-avatar-admin.php:241
-#: includes/class-wp-user-avatar-admin.php:465
-#: includes/wpua-options-page.php:93
+#: includes/class-wp-user-avatar-admin.php:465 includes/wpua-options-page.php:93
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -123,8 +122,8 @@ msgstr "Helpforums"
 msgid "Profile Picture"
 msgstr "Profielfoto"
 
-#: includes/class-wp-user-avatar-admin.php:563
-#: includes/wpua-options-page.php:300 includes/wpua-options-page.php:306
+#: includes/class-wp-user-avatar-admin.php:563 includes/wpua-options-page.php:300
+#: includes/wpua-options-page.php:306
 msgid "Default Avatar"
 msgstr "Standaard Avatar"
 
@@ -213,8 +212,8 @@ msgstr "Bekijken"
 #. translators: either wp_footer() or wp_print_footer_scripts() hook.
 #: includes/class-wp-user-avatar-resource-manager.php:190
 msgid ""
-"We're sorry, but your theme's page template didn't make a call to %s, which "
-"is required by One User Avatar. Please add this call to your page templates."
+"We're sorry, but your theme's page template didn't make a call to %s, which is "
+"required by One User Avatar. Please add this call to your page templates."
 msgstr ""
 "Het spijt ons, maar de pagina template van je thema heeft geen oproep gedaan "
 "naar %s, wat vereist is door One User Avatar. Voeg deze oproep toe aan je "
@@ -243,7 +242,7 @@ msgstr "Beschrijving:"
 
 #: includes/class-wp-user-avatar-widget.php:113
 msgid "Automatically add paragraphs"
-msgstr "Voeg automatisch paragrafen toe"
+msgstr "Automatisch paragrafen toevoegen"
 
 #. translators: user display name
 #: includes/class-wp-user-avatar.php:227
@@ -290,10 +289,9 @@ msgstr "Het geheugen is overschreden. Probeer opnieuw met een kleiner bestand."
 #. translators: directory path
 #: includes/class-wp-user-avatar.php:389
 msgid ""
-"Unable to create directory %s. Is its parent directory writable by the "
-"server?"
+"Unable to create directory %s. Is its parent directory writable by the server?"
 msgstr ""
-"Kan map %s niet aanmaken. Is de hoofd folder beschrijfbaar door de server?"
+"Kan map %s niet aanmaken. Is de bovenliggende map beschrijfbaar door de server?"
 
 #: includes/wpua-functions.php:109 includes/wpua-functions.php:118
 msgid "Image"
@@ -314,7 +312,7 @@ msgstr "Zoeken"
 
 #: includes/wpua-options-page.php:108
 msgid "Add avatar button to Visual Editor"
-msgstr "Voeg avatar-knop toe aan visuele editor"
+msgstr "Voeg avatar-knop toe aan de visuele editor"
 
 #: includes/wpua-options-page.php:119
 msgid "Allow Contributors & Subscribers to upload avatars"
@@ -384,15 +382,15 @@ msgstr "R &#8212; Alleen voor boven de 17"
 
 #: includes/wpua-options-page.php:281
 msgid "X &#8212; Even more mature than above"
-msgstr "X &#8212; Nog ouder"
+msgstr "X &#8212; Nog ouder dan hierboven"
 
 #: includes/wpua-options-page.php:310
 msgid ""
 "For users without a custom avatar of their own, you can either display a "
 "generic logo or a generated one based on their e-mail address."
 msgstr ""
-"Voor gebruikers zonder eigen avatar kun je een logo weergeven dat gemaakt "
-"word gebaseerd op hun e-mailadres."
+"Voor gebruikers zonder aangepaste avatar, kan je of een algemeen logo of een "
+"gegenereerd avatar op basis van hun e-mailadres weergeven."
 
 #: includes/wpua-tinymce-window.php:101
 msgid "User Name"
@@ -452,7 +450,7 @@ msgstr "URL:"
 
 #: includes/wpua-tinymce-window.php:170
 msgid "Open link in a new window"
-msgstr "Link openen in nieuw venster"
+msgstr "Link in nieuw venster openen"
 
 #: includes/wpua-tinymce-window.php:174
 msgid "Caption"
@@ -469,11 +467,11 @@ msgstr "Avatar invoegen"
 #. translators: placeholder for <a> and </a> tags.
 #: one-user-avatar.php:94
 msgid ""
-"The plugin One User Avatar is a replacement for the old WP User Avatar "
-"plugin. Please %1$sdeactivate WP User Avatar%2$s to start using it."
+"The plugin One User Avatar is a replacement for the old WP User Avatar plugin. "
+"Please %1$sdeactivate WP User Avatar%2$s to start using it."
 msgstr ""
-"De plug-in One User Avatar is een vervanging voor de oude WP User Avatar-"
-"plug-in. %1$sDeactiveer WP User Avatar%2$s om het te gebruiken."
+"De plug-in One User Avatar is een vervanging voor de oude WP User Avatar-plug-"
+"in. %1$sDeactiveer eerst WP User Avatar%2$s om het te gebruiken."
 
 #~ msgid "Edit Image"
 #~ msgstr "Afbeelding bewerken"
