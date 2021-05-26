@@ -21,13 +21,13 @@ class WP_User_Avatar_Profile_Widget extends WP_Widget {
 	 */
 	public function __construct() {
 		$widget_ops = array(
-            'classname'   => 'widget_wp_user_avatar',
-            'description' => sprintf(
+			'classname'   => 'widget_wp_user_avatar',
+			'description' => sprintf(
 				/* translators: [avatar_upload] shortcode */
 				__( 'Insert %s', 'one-user-avatar' ),
 				'[avatar_upload]'
 			),
-        );
+		);
 
 		parent::__construct( 'wp_user_avatar_profile', __( 'One User Avatar', 'one-user-avatar' ), $widget_ops );
 	}
@@ -76,7 +76,7 @@ class WP_User_Avatar_Profile_Widget extends WP_Widget {
 			// Get [avatar_upload] shortcode
 			echo $wpua_shortcode->wpua_edit_shortcode( '' );
 
-            // Add back profile title
+			// Add back profile title
 			remove_filter('wpua_profile_title', '__return_null');
 		}
 	}
@@ -89,10 +89,10 @@ class WP_User_Avatar_Profile_Widget extends WP_Widget {
 	 */
 	public function form( $instance ) {
 		$instance = wp_parse_args( (array) $instance, array(
-            'title' => '',
-            'text'  => '',
-        ) );
-    	?>
+			'title' => '',
+			'text'  => '',
+		) );
+		?>
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
@@ -113,7 +113,7 @@ class WP_User_Avatar_Profile_Widget extends WP_Widget {
 				<?php _e( 'Automatically add paragraphs', 'one-user-avatar' ); ?>
 			</label>
 		</p>
-    	<?php
+		<?php
 	}
 
 	/**

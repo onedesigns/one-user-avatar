@@ -95,13 +95,13 @@ class WP_User_Avatar_Setup {
 }
 
 function wp_user_avatar_setup() {
-    global $wp_user_avatar_setup;
+	global $wp_user_avatar_setup;
 
-    if ( ! isset( $wp_user_avatar_setup ) ) {
-        $wp_user_avatar_setup = new WP_User_Avatar_Setup();
-    }
+	if ( ! isset( $wp_user_avatar_setup ) ) {
+		$wp_user_avatar_setup = new WP_User_Avatar_Setup();
+	}
 
-    return $wp_user_avatar_setup;
+	return $wp_user_avatar_setup;
 }
 
 /**

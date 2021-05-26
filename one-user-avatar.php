@@ -140,10 +140,10 @@ class One_User_Avatar {
 function one_user_avatar() {
 	global $one_user_avatar;
 
-    if ( ! isset( $one_user_avatar ) ) {
-        $one_user_avatar = new One_User_Avatar();
-    }
+	if ( ! isset( $one_user_avatar ) ) {
+		$one_user_avatar = new One_User_Avatar();
+	}
 
-    return $one_user_avatar;
+	return $one_user_avatar;
 }
 add_action( 'plugins_loaded', 'one_user_avatar', 0 );

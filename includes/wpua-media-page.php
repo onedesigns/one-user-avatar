@@ -60,14 +60,14 @@ $wp_list_table->prepare_items();
 
 		<?php if ( ! empty( $_REQUEST['s'] ) ) : ?>
 			<span class="subtitle">
-                <?php
+				<?php
 				printf(
 					/* translators: search query */
 					__( 'Search results for %s','one-user-avatar' ),
 					sprintf( '&#8220;%s&#8221;', get_search_query() )
 				);
 				?>
-            </span>
+			</span>
 		<?php endif; ?>
 	</h2>
 
@@ -76,19 +76,19 @@ $wp_list_table->prepare_items();
 
 		if ( ! empty( $_GET['deleted'] ) && $deleted = absint( $_GET['deleted'] ) ) {
 			$message = sprintf(
-                _n(
-                    'Media attachment permanently deleted.',
-                    '%d media attachments permanently deleted.',
-                    $deleted
-                ),
-                number_format_i18n( $_GET['deleted'] )
-            );
+				_n(
+					'Media attachment permanently deleted.',
+					'%d media attachments permanently deleted.',
+					$deleted
+				),
+				number_format_i18n( $_GET['deleted'] )
+			);
 
 			$_SERVER['REQUEST_URI'] = remove_query_arg( array( 'deleted' ), $_SERVER['REQUEST_URI'] );
 		}
-    ?>
+	?>
 
-    <?php if ( ! empty( $message ) ) : ?>
+	<?php if ( ! empty( $message ) ) : ?>
 		<div id="message" class="updated"><p><?php echo $message; ?></p></div>
 	<?php endif; ?>
 

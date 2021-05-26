@@ -7,67 +7,67 @@
  */
 
 #wpua-tabs ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
 #wpua-tabs ul li {
-    float: left;
+	float: left;
 }
 
 #wpua-tabs ul li a {
-    float: left;
-    padding: 2px 5px;
-    background: #ddd;
-    border: 1px solid #eee;
-    border-bottom: 0;
-    display: block;
-    font-weight: 700;
-    outline: none;
-    text-decoration: none;
+	float: left;
+	padding: 2px 5px;
+	background: #ddd;
+	border: 1px solid #eee;
+	border-bottom: 0;
+	display: block;
+	font-weight: 700;
+	outline: none;
+	text-decoration: none;
 }
 
 #wpua-tabs ul li.ui-tabs-active a {
-    background: #fff;
+	background: #fff;
 }
 
 #wpua-tabs form {
-    clear: both;
-    background: #fff;
-    border: 1px solid #eee;
+	clear: both;
+	background: #fff;
+	border: 1px solid #eee;
 }
 
 #wpua-tabs p,
 #wpua-tabs h4 {
-    margin: 0;
-    padding: 12px 0 0;
+	margin: 0;
+	padding: 12px 0 0;
 }
 
 #wpua-tabs h4.center {
-    text-align: center;
+	text-align: center;
 }
 
 #wpua-tabs label {
-    width: 150px;
-    margin-right: 3px;
-    display: inline-block;
-    text-align: right;
-    vertical-align: top;
+	width: 150px;
+	margin-right: 3px;
+	display: inline-block;
+	text-align: right;
+	vertical-align: top;
 }
 
 #wpua-tabs .mceActionPanel {
-    padding: 7px 0 12px;
-    text-align: center;
+	padding: 7px 0 12px;
+	text-align: center;
 }
 
 #wpua-tabs .mceActionPanel #insert {
-    float: none;
-    width: 180px;
-    margin: 0 auto;
+	float: none;
+	width: 180px;
+	margin: 0 auto;
 }
 
 #wpua-tabs #wp_user_avatar_size_number_section,
 #wpua-tabs #wp_user_avatar_link_external_section {
-    display: none;
+	display: none;
 }

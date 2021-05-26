@@ -67,22 +67,22 @@ class WP_User_Avatar_Shortcode {
 
 		// Set shortcode attributes
 		extract( shortcode_atts( array(
-            'user'   => '',
-            'size'   => '96',
-            'align'  => '',
-            'link'   => '',
-            'target' => '',
-        ), $atts ) );
+			'user'   => '',
+			'size'   => '96',
+			'align'  => '',
+			'link'   => '',
+			'target' => '',
+		), $atts ) );
 
 		// Find user by ID, login, slug, or e-mail address
 		if ( ! empty( $user ) ) {
 			if ( 'current' == $user ) {
-        		$user = wp_get_current_user();
-    		} else {
-    			$user = is_numeric( $user ) ? get_user_by( 'id',    $user ) : get_user_by('login', $user);
-    			$user = empty( $user )      ? get_user_by( 'slug',  $user ) : $user;
-    			$user = empty( $user )      ? get_user_by( 'email', $user ) : $user;
-    		}
+				$user = wp_get_current_user();
+			} else {
+				$user = is_numeric( $user ) ? get_user_by( 'id',    $user ) : get_user_by('login', $user);
+				$user = empty( $user )      ? get_user_by( 'slug',  $user ) : $user;
+				$user = empty( $user )      ? get_user_by( 'email', $user ) : $user;
+			}
 		} else {
 			// Find author's name if id_or_email is empty
 			$author_name = get_query_var( 'author_name' );
@@ -135,12 +135,12 @@ class WP_User_Avatar_Shortcode {
 
 			// Wrap the avatar inside the link
 			$html = sprintf(
-                '<a href="%s" class="wp-user-avatar-link wp-user-avatar-%s"%s>%s</a>',
-                esc_attr( $link ),
-                esc_attr( $link_class ),
-                $target_link,
-                get_wp_user_avatar( $id_or_email, $get_size, $align )
-            );
+				'<a href="%s" class="wp-user-avatar-link wp-user-avatar-%s"%s>%s</a>',
+				esc_attr( $link ),
+				esc_attr( $link_class ),
+				$target_link,
+				get_wp_user_avatar( $id_or_email, $get_size, $align )
+			);
 		} else {
 			$html = get_wp_user_avatar( $id_or_email, $get_size, $align );
 		}
@@ -260,7 +260,7 @@ class WP_User_Avatar_Shortcode {
 	 */
 	private function wpua_edit_form($user) {
 		ob_start();
-    	?>
+		?>
 
 		<form id="wpua-edit-<?php echo esc_attr( $user->ID ); ?>" class="wpua-edit" action="" method="post" enctype="multipart/form-data">
 			<?php do_action('wpua_show_profile', $user); ?>
@@ -273,7 +273,7 @@ class WP_User_Avatar_Shortcode {
 			<?php submit_button( __( 'Update Profile', 'one-user-avatar' ) ); ?>
 		</form>
 
-    	<?php
+		<?php
 
 		return ob_get_clean();
 	}
@@ -286,10 +286,10 @@ class WP_User_Avatar_Shortcode {
 function wpua_shortcode_init() {
 	global $wpua_shortcode;
 
-    if ( ! isset( $wpua_shortcode ) ) {
-    	$wpua_shortcode = new WP_User_Avatar_Shortcode();
-    }
+	if ( ! isset( $wpua_shortcode ) ) {
+		$wpua_shortcode = new WP_User_Avatar_Shortcode();
+	}
 
-    return $wpua_shortcode;
+	return $wpua_shortcode;
 }
 add_action( 'init', 'wpua_shortcode_init' );

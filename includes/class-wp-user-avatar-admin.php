@@ -95,15 +95,14 @@ class WP_User_Avatar_Admin {
 
 			foreach ( $cron as $key => $value ) {
 				if ( is_array( $value ) ) {
-    				if ( array_key_exists( 'wpua_has_gravatar_cron_hook', $value ) ) {
-        				unset($cron[$key]);
-                    }
+					if ( array_key_exists( 'wpua_has_gravatar_cron_hook', $value ) ) {
+						unset($cron[$key]);
+					}
 				}
 			}
 
 			update_option( 'cron', $cron );
-    	}
-
+		}
 	}
 
 	/**
@@ -419,9 +418,9 @@ class WP_User_Avatar_Admin {
 
 		// Add WPUA to list
 		$wpua_list = sprintf(
-            '<label><input type="radio" name="avatar_default" id="wp_user_avatar_radio" value="wp_user_avatar" %s /> ',
-            $selected_avatar
-        );
+			'<label><input type="radio" name="avatar_default" id="wp_user_avatar_radio" value="wp_user_avatar" %s /> ',
+			$selected_avatar
+		);
 
 		$wpua_list .= preg_replace( "/src='(.+?)'/", "src='\$1'", $avatar_thumb_img );
 		$wpua_list .= ' ' . __( 'One User Avatar', 'one-user-avatar' ) . '</label>';
@@ -458,10 +457,10 @@ class WP_User_Avatar_Admin {
 	public function wpua_action_links( $links, $file ) {
 		if( basename( dirname( $file ) ) == 'one-user-avatar' ) {
 			$links[] = sprintf(
-                '<a href="%s">%s</a>',
-                esc_url( add_query_arg( array( 'page' => 'one-user-avatar' ), admin_url( 'admin.php' ) ) ),
-                __( 'Settings', 'one-user-avatar' )
-            );
+				'<a href="%s">%s</a>',
+				esc_url( add_query_arg( array( 'page' => 'one-user-avatar' ), admin_url( 'admin.php' ) ) ),
+				__( 'Settings', 'one-user-avatar' )
+			);
 		}
 
 		return $links;
@@ -477,10 +476,10 @@ class WP_User_Avatar_Admin {
 	public function wpua_row_meta( $links, $file ) {
 		if ( 'one-user-avatar' == basename( dirname( $file ) ) ) {
 			$links[] = sprintf(
-                '<a href="%s" target="_blank">%s</a>',
-                esc_url( 'https://onedesigns.com/support/forum/plugins/one-user-avatar/' ),
-                __( 'Support Forums', 'one-user-avatar' )
-            );
+				'<a href="%s" target="_blank">%s</a>',
+				esc_url( 'https://onedesigns.com/support/forum/plugins/one-user-avatar/' ),
+				__( 'Support Forums', 'one-user-avatar' )
+			);
 		}
 
 		return $links;
@@ -578,10 +577,10 @@ class WP_User_Avatar_Admin {
 function wpua_admin_init() {
 	global $wpua_admin;
 
-    if ( ! isset( $wpua_admin ) ) {
-    	$wpua_admin = new WP_User_Avatar_Admin();
-    }
+	if ( ! isset( $wpua_admin ) ) {
+		$wpua_admin = new WP_User_Avatar_Admin();
+	}
 
-    return $wpua_admin;
+	return $wpua_admin;
 }
 add_action( 'init', 'wpua_admin_init' );

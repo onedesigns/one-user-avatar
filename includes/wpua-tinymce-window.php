@@ -104,16 +104,16 @@ $hook_suffix = 'one-user-avatar_tinymce-window';
 						<option value=""></option>
 
 						<?php
-                        $users = get_users();
+						$users = get_users();
 
-                        foreach($users as $user) :
-                            ?>
+						foreach($users as $user) :
+							?>
 
 							<option value="<?php echo esc_attr( $user->user_login ); ?>"><?php echo esc_html( $user->display_name ); ?></option>
 
-    						<?php
-                        endforeach;
-                        ?>
+							<?php
+						endforeach;
+						?>
 					</select>
 				</p>
 

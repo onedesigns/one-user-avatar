@@ -60,9 +60,9 @@ class WP_User_Avatar_Subscriber {
 
 		$user_roles = get_option( $wp_user_roles );
 
-        if ( isset( $user_roles['subscriber']['capabilities']['edit_posts'] ) ) {
-            unset( $user_roles['subscriber']['capabilities']['edit_posts'] );
-        }
+		if ( isset( $user_roles['subscriber']['capabilities']['edit_posts'] ) ) {
+			unset( $user_roles['subscriber']['capabilities']['edit_posts'] );
+		}
 
 		update_option( $wp_user_roles, $user_roles );
 	}
@@ -75,10 +75,10 @@ class WP_User_Avatar_Subscriber {
 function wpua_subscriber_init() {
 	global $wpua_subscriber;
 
-    if ( ! isset( $wpua_subscriber ) ) {
-    	$wpua_subscriber = new WP_User_Avatar_Subscriber();
-    }
+	if ( ! isset( $wpua_subscriber ) ) {
+		$wpua_subscriber = new WP_User_Avatar_Subscriber();
+	}
 
-    return $wpua_subscriber;
+	return $wpua_subscriber;
 }
 add_action( 'init', 'wpua_subscriber_init' );

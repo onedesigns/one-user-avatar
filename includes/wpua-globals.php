@@ -53,7 +53,7 @@ global  $avatar_default,
 $wpua_hash_gravatar = get_option( 'wpua_hash_gravatar' );
 
 if ( false != $wpua_hash_gravatar ) {
-    $wpua_hash_gravatar = maybe_unserialize( $wpua_hash_gravatar );
+	$wpua_hash_gravatar = maybe_unserialize( $wpua_hash_gravatar );
 }
 
 // Default avatar name

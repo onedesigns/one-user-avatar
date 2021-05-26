@@ -98,18 +98,18 @@ function wpua_do_before_avatar() {
 	 * @param string $wpua_profile_title
 	 */
 	$wpua_profile_title = apply_filters( 'wpua_profile_title', $wpua_profile_title );
-    ?>
+	?>
 
 	<?php if ( class_exists( 'bbPress' ) && bbp_is_edit() ) :
-        // Add to bbPress profile with same style
-        ?>
+		// Add to bbPress profile with same style
+		?>
 		<h2 class="entry-title"><?php _e( 'Profile Picture', 'one-user-avatar' ); ?></h2>
 
 		<fieldset class="bbp-form">
 			<legend><?php _e( 'Image', 'one-user-avatar' ); ?></legend>
 	<?php elseif( class_exists( 'WPUF_Main' ) && wpuf_has_shortcode( 'wpuf_editprofile' ) ) :
-        // Add to WP User Frontend profile with same style
-        ?>
+		// Add to WP User Frontend profile with same style
+		?>
 		<fieldset>
 			<legend><?php _e( 'Profile Picture', 'one-user-avatar' ); ?></legend>
 
@@ -119,8 +119,8 @@ function wpua_do_before_avatar() {
 
 					<td>
 	<?php else :
-        // Add to profile without table
-        ?>
+		// Add to profile without table
+		?>
 		<div class="wpua-edit-container">
 			<?php echo $wpua_profile_title; ?>
 	<?php endif; ?>
@@ -136,21 +136,21 @@ add_action( 'wpua_before_avatar', 'wpua_do_before_avatar' );
  * @uses wpuf_has_shortcode()
  */
 function wpua_do_after_avatar() {
-    ?>
+	?>
 	<?php if ( class_exists( 'bbPress' ) && bbp_is_edit() ) :
-        // Add to bbPress profile with same style
-        ?>
+		// Add to bbPress profile with same style
+		?>
 		</fieldset>
 	<?php elseif ( class_exists( 'WPUF_Main' ) && wpuf_has_shortcode( 'wpuf_editprofile' ) ) :
-        // Add to WP User Frontend profile with same style
-        ?>
+		// Add to WP User Frontend profile with same style
+		?>
 					</td>
 				</tr>
 			</table>
 		</fieldset>
 	<?php else :
-        // Add to profile without table
-        ?>
+		// Add to profile without table
+		?>
 		</div>
 	<?php endif; ?>
 	<?php
@@ -180,7 +180,7 @@ function wpua_after_avatar_admin() {
  * @since 1.9.4
  */
 function wpua_do_before_avatar_admin() {
-    ?>
+	?>
 	<table class="form-table">
 		<tr>
 			<th><label for="wp_user_avatar"><?php _e( 'Profile Picture', 'one-user-avatar' ); ?></label></th>
@@ -195,7 +195,7 @@ add_action( 'wpua_before_avatar_admin', 'wpua_do_before_avatar_admin' );
  * @since 1.9.4
  */
 function wpua_do_after_avatar_admin() {
-    ?>
+	?>
 			</td>
 		</tr>
 	</table>

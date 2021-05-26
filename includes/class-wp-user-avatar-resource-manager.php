@@ -182,8 +182,8 @@ class WP_User_Avatar_Resource_Manager {
 			// scripts and manipulate the buffer, so we can only provide a warning
 			if ( defined( 'W3TC' ) && defined( 'WP_DEBUG' ) && WP_DEBUG && ! is_admin() ) {
 				if ( ! defined( 'DONOTCACHEPAGE' ) ) {
-                    define( 'DONOTCACHEPAGE', true );
-                }
+					define( 'DONOTCACHEPAGE', true );
+				}
 
 				error_log( sprintf(
 					/* translators: either wp_footer() or wp_print_footer_scripts() hook. */
@@ -221,8 +221,8 @@ class WP_User_Avatar_Resource_Manager {
 		// Once we have the footer scripts, we can modify the buffer and
 		// move the resources around
 		if ( $this->wrote_footer ) {
-            $this->move_resources();
-        }
+			$this->move_resources();
+		}
 
 		return $this->buffer;
 	}
@@ -233,8 +233,8 @@ class WP_User_Avatar_Resource_Manager {
 	 */
 	function shutdown() {
 		if ( $this->run_shutdown ) {
-            echo $this->output_buffer( true );
-        }
+			echo $this->output_buffer( true );
+		}
 	}
 
 	/**

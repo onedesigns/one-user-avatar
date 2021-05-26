@@ -93,7 +93,7 @@ class WP_User_Avatar_Update {
 			foreach ( $users as $user ) {
 				$wpua = get_user_meta( $user->ID, 'wp_user_avatar', true );
 
-                if ( ! empty( $wpua ) ) {
+				if ( ! empty( $wpua ) ) {
 					update_user_meta( $user->ID, $wpua_metakey, $wpua );
 					delete_user_meta( $user->ID, 'wp_user_avatar' );
 				}
@@ -120,11 +120,11 @@ class WP_User_Avatar_Update {
 		$wpua_metakey = $wpdb->get_blog_prefix( $blog_id ) . 'user_avatar';
 
 		$wpuas = $wpdb->get_results( $wpdb->prepare(
-            "SELECT * FROM $wpdb->usermeta WHERE meta_key = %s AND meta_value != %d AND meta_value != %d",
-            $wpua_metakey,
-            0,
-            ''
-        ) );
+			"SELECT * FROM $wpdb->usermeta WHERE meta_key = %s AND meta_value != %d AND meta_value != %d",
+			$wpua_metakey,
+			0,
+			''
+		) );
 
 		foreach( $wpuas as $usermeta ) {
 			add_post_meta( $usermeta->meta_value, '_wp_attachment_wp_user_avatar', $usermeta->user_id );
@@ -141,10 +141,10 @@ class WP_User_Avatar_Update {
 function wpua_update_init() {
 	global $wpua_update;
 
-    if ( ! isset( $wpua_update ) ) {
-    	$wpua_update = new WP_User_Avatar_Update();
-    }
+	if ( ! isset( $wpua_update ) ) {
+		$wpua_update = new WP_User_Avatar_Update();
+	}
 
-    return $wpua_update;
+	return $wpua_update;
 }
 add_action('init', 'wpua_update_init');

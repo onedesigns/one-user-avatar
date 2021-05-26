@@ -53,7 +53,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 		$avatars = array();
 
 		while ( $avatars_wp_query->have_posts() ) {
-            $avatars_wp_query->the_post();
+			$avatars_wp_query->the_post();
 
 			$avatars[] = $post->ID;
 		}
@@ -107,7 +107,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 		if ( ! empty( $_REQUEST['detached'] ) ) {
 			printf( '<input type="hidden" name="detached" value="%s" />', esc_attr( $_REQUEST['detached'] ) );
 		}
-    	?>
+		?>
 
 		<p class="search-box">
 			<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo $text; ?>:</label>
@@ -119,7 +119,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 			<?php submit_button( $text, 'button', false, false, array( 'id' => 'search-submit' ) ); ?>
 		</p>
 
-    	<?php
+		<?php
 	}
 
 	/**
@@ -166,21 +166,23 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 		$class        = ( empty( $_GET['post_mime_type'] ) && ! isset( $_GET['status'] ) ) ? ' class="current"' : '';
 
 		$type_links['all']  = sprintf(
-            ' <a href="%s">',
-            esc_url( add_query_arg( array(
-                'page' => 'wp-user-avatar-library',
-            ), 'admin.php') )
-        );
-        $type_links['all'] .= sprintf(
+			' <a href="%s">',
+			esc_url( add_query_arg( array(
+				'page' => 'wp-user-avatar-library',
+			), 'admin.php') )
+		);
+		$type_links['all'] .= sprintf(
 			/* translators: uploaded files */
-            _nx(
-                'All %s',
-                'All %s',
-                $_total_posts,
-                'uploaded files',
-                'one-user-avatar'
-            ), sprintf( '<span class="count">(%s)</span>', number_format_i18n( $_total_posts ) ) );
-        $type_links['all'] .= '</a>';
+			_nx(
+				'All %s',
+				'All %s',
+				$_total_posts,
+				'uploaded files',
+				'one-user-avatar'
+			),
+			sprintf( '<span class="count">(%s)</span>', number_format_i18n( $_total_posts ) )
+		);
+		$type_links['all'] .= '</a>';
 
 		return $type_links;
 	}
@@ -287,7 +289,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 		$alt = '';
 
 		while ( have_posts() ) :
-            the_post();
+			the_post();
 
 			$user_can_edit = current_user_can( 'edit_post', $post->ID );
 
@@ -297,212 +299,212 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 
 			$alt        = ( 'alternate' == $alt ) ? '' : 'alternate';
 			$post_owner = (get_current_user_id() == $post->post_author) ? 'self' : 'other';
-            $tr_class   = trim( $alt . ' author-' . $post_owner . ' status-' . $post->post_status );
+			$tr_class   = trim( $alt . ' author-' . $post_owner . ' status-' . $post->post_status );
 			$att_title  = _draft_or_post_title();
-        	?>
+			?>
 
-    		<tr id="post-<?php echo esc_attr( $post->ID ); ?>" class="<?php echo esc_attr( $tr_class ); ?>" valign="top">
-    			<?php
-    			list( $columns, $hidden ) = $this->get_column_info();
+			<tr id="post-<?php echo esc_attr( $post->ID ); ?>" class="<?php echo esc_attr( $tr_class ); ?>" valign="top">
+				<?php
+				list( $columns, $hidden ) = $this->get_column_info();
 
-    			foreach ( $columns as $column_name => $column_display_name ) {
-    				$class = sprintf( 'class="%1$s column-%1$s"', esc_attr( $column_name ) );
-    				$style = '';
+				foreach ( $columns as $column_name => $column_display_name ) {
+					$class = sprintf( 'class="%1$s column-%1$s"', esc_attr( $column_name ) );
+					$style = '';
 
-    				if ( in_array( $column_name, $hidden ) ) {
-    					$style = ' style="display:none;"';
-    				}
+					if ( in_array( $column_name, $hidden ) ) {
+						$style = ' style="display:none;"';
+					}
 
-    				$attributes = $class . $style;
+					$attributes = $class . $style;
 
-    				switch ( $column_name ) {
-    					case 'cb':
-    						?>
+					switch ( $column_name ) {
+						case 'cb':
+							?>
 
-    						<th scope="row" class="check-column">
-    							<?php if ( $user_can_edit ) : ?>
-    								<label class="screen-reader-text" for="cb-select-<?php the_ID(); ?>">
-                                        <?php
+							<th scope="row" class="check-column">
+								<?php if ( $user_can_edit ) : ?>
+									<label class="screen-reader-text" for="cb-select-<?php the_ID(); ?>">
+										<?php
 										/* translators: post title */
 										printf( __( 'Select %s','one-user-avatar' ), $att_title );
 										?>
-                                    </label>
+									</label>
 
-    								<input type="checkbox" name="media[]" id="cb-select-<?php the_ID(); ?>" value="<?php the_ID(); ?>" />
-    							<?php endif; ?>
-    						</th>
+									<input type="checkbox" name="media[]" id="cb-select-<?php the_ID(); ?>" value="<?php the_ID(); ?>" />
+								<?php endif; ?>
+							</th>
 
-    						<?php
-    						break;
+							<?php
+							break;
 
-    					case 'icon':
-    						$attributes = 'class="column-icon media-icon"' . $style;
-    						?>
+						case 'icon':
+							$attributes = 'class="column-icon media-icon"' . $style;
+							?>
 
-    						<td <?php echo $attributes ?>>
-                                <?php
-    							if ( $thumb = $wpua_functions->wpua_get_attachment_image( $post->ID, array( 80, 60 ), true ) ) {
-    								if ( $this->is_trash || ! $user_can_edit ) {
-    									echo $thumb;
-    								} else {
-        								?>
-    									<a href="<?php echo get_edit_post_link( $post->ID, true ); ?>" title="<?php echo esc_attr( sprintf( __( 'Edit %s' ), sprintf( '&#8220;%s&#8221;', $att_title ) ) ); ?>">
-    										<?php echo $thumb; ?>
-    									</a>
-        								<?php
-                                    }
-                                }
-    							?>
-    						</td>
+							<td <?php echo $attributes ?>>
+								<?php
+								if ( $thumb = $wpua_functions->wpua_get_attachment_image( $post->ID, array( 80, 60 ), true ) ) {
+									if ( $this->is_trash || ! $user_can_edit ) {
+										echo $thumb;
+									} else {
+										?>
+										<a href="<?php echo get_edit_post_link( $post->ID, true ); ?>" title="<?php echo esc_attr( sprintf( __( 'Edit %s' ), sprintf( '&#8220;%s&#8221;', $att_title ) ) ); ?>">
+											<?php echo $thumb; ?>
+										</a>
+										<?php
+									}
+								}
+								?>
+							</td>
 
-    						<?php
-    						break;
+							<?php
+							break;
 
-    					case 'title':
-        					?>
+						case 'title':
+							?>
 
-            				<td <?php echo $attributes ?>>
-                                <strong>
-                					<?php
-                                    if ( $this->is_trash || ! $user_can_edit ) {
-                						echo $att_title;
-                					} else {
-                                        ?>
-                    					<a
-                                            href="<?php echo get_edit_post_link( $post->ID, true ); ?>"
-                    						title="<?php echo esc_attr( sprintf( __( 'Edit %s' ), sprintf( '&#8220;%s&#8221;', $att_title ) ) ); ?>"
-                                        >
-                    						<?php echo $att_title; ?>
-                                        </a>
-                    					<?php
-                                    }
+							<td <?php echo $attributes ?>>
+								<strong>
+									<?php
+									if ( $this->is_trash || ! $user_can_edit ) {
+										echo $att_title;
+									} else {
+										?>
+										<a
+											href="<?php echo get_edit_post_link( $post->ID, true ); ?>"
+											title="<?php echo esc_attr( sprintf( __( 'Edit %s' ), sprintf( '&#8220;%s&#8221;', $att_title ) ) ); ?>"
+										>
+											<?php echo $att_title; ?>
+										</a>
+										<?php
+									}
 
-                					_media_states( $post );
-                                    ?>
-                                </strong>
+									_media_states( $post );
+									?>
+								</strong>
 
-            					<p>
-            						<?php
-        							if ( preg_match( '/^.*?\.(\w+)$/', get_attached_file( $post->ID ), $matches ) ) {
-        								echo esc_html( strtoupper( $matches[1] ) );
-        							} else {
-        								echo strtoupper( str_replace('image/', '', get_post_mime_type() ) );
-        							}
-            						?>
-            					</p>
+								<p>
+									<?php
+									if ( preg_match( '/^.*?\.(\w+)$/', get_attached_file( $post->ID ), $matches ) ) {
+										echo esc_html( strtoupper( $matches[1] ) );
+									} else {
+										echo strtoupper( str_replace('image/', '', get_post_mime_type() ) );
+									}
+									?>
+								</p>
 
-            					<?php echo $this->row_actions( $this->_get_row_actions( $post, $att_title ) ); ?>
-            				</td>
+								<?php echo $this->row_actions( $this->_get_row_actions( $post, $att_title ) ); ?>
+							</td>
 
-                			<?php
-            				break;
+							<?php
+							break;
 
-        				case 'author':
-                			?>
+						case 'author':
+							?>
 
-            				<td <?php echo $attributes ?>>
-            					<?php
-        						printf(
-                                    '<a href="%s">%s</a>',
-        							esc_url( add_query_arg( array( 'author' => get_the_author_meta( 'ID' ) ), 'upload.php' ) ),
-        							get_the_author()
-        						);
-                                ?>
-            				</td>
+							<td <?php echo $attributes ?>>
+								<?php
+								printf(
+									'<a href="%s">%s</a>',
+									esc_url( add_query_arg( array( 'author' => get_the_author_meta( 'ID' ) ), 'upload.php' ) ),
+									get_the_author()
+								);
+								?>
+							</td>
 
-                			<?php
-            				break;
+							<?php
+							break;
 
-        				case 'date':
-        					if( '0000-00-00 00:00:00' == $post->post_date ) {
-        						$h_time = __( 'Unpublished','one-user-avatar' );
-        					} else {
-        						$m_time = $post->post_date;
-        						$time   = get_post_time( 'G', true, $post, false );
-        						if ( ( abs( $t_diff = time() - $time ) ) < DAY_IN_SECONDS ) {
-        							if ( 0 > $t_diff ) {
-        								$h_time = sprintf(
+						case 'date':
+							if( '0000-00-00 00:00:00' == $post->post_date ) {
+								$h_time = __( 'Unpublished','one-user-avatar' );
+							} else {
+								$m_time = $post->post_date;
+								$time   = get_post_time( 'G', true, $post, false );
+								if ( ( abs( $t_diff = time() - $time ) ) < DAY_IN_SECONDS ) {
+									if ( 0 > $t_diff ) {
+										$h_time = sprintf(
 											/* translators: time from now */
 											_x( '%s from now', 'time from now', 'one-user-avatar' ),
 											human_time_diff( $time)
 										);
-        							} else {
-        								$h_time = sprintf(
+									} else {
+										$h_time = sprintf(
 											/* translators: time ago */
 											_x( '%s ago', 'time ago', 'one-user-avatar' ),
 											human_time_diff( $time )
 										);
-                                    }
-        						} else {
-        							$h_time = mysql2date( __( 'Y/m/d', 'one-user-avatar' ), $m_time );
-        						}
-        					}
-                			?>
+									}
+								} else {
+									$h_time = mysql2date( __( 'Y/m/d', 'one-user-avatar' ), $m_time );
+								}
+							}
+							?>
 
-                			<td <?php echo $attributes ?>><?php echo $h_time ?></td>
+							<td <?php echo $attributes ?>><?php echo $h_time ?></td>
 
-                			<?php
-            				break;
+							<?php
+							break;
 
-        				case 'parent':
-            				global $blog_id, $wpdb;
+						case 'parent':
+							global $blog_id, $wpdb;
 
-            				// Find all users with this WPUA
-            				$wpua_metakey = $wpdb->get_blog_prefix( $blog_id ) . 'user_avatar';
-            				$wpuas        = $wpdb->get_results( $wpdb->prepare(
-                                "SELECT wpum.user_id FROM $wpdb->usermeta AS wpum, $wpdb->users AS wpu WHERE wpum.meta_key = %s AND wpum.meta_value = %d AND wpum.user_id = wpu.ID ORDER BY wpu.user_login",
-                                $wpua_metakey,
-                                $post->ID
-                            ) );
+							// Find all users with this WPUA
+							$wpua_metakey = $wpdb->get_blog_prefix( $blog_id ) . 'user_avatar';
+							$wpuas        = $wpdb->get_results( $wpdb->prepare(
+								"SELECT wpum.user_id FROM $wpdb->usermeta AS wpum, $wpdb->users AS wpu WHERE wpum.meta_key = %s AND wpum.meta_value = %d AND wpum.user_id = wpu.ID ORDER BY wpu.user_login",
+								$wpua_metakey,
+								$post->ID
+							) );
 
-            				// Find users without WPUA
-            				$nowpuas = $wpdb->get_results( $wpdb->prepare(
-                                "SELECT wpu.ID FROM $wpdb->users AS wpu, $wpdb->usermeta AS wpum WHERE wpum.meta_key = %s AND wpum.meta_value = %d AND wpum.user_id = wpu.ID ORDER BY wpu.user_login",
-                                $wpua_metakey,
-                                ''
-                            ) );
+							// Find users without WPUA
+							$nowpuas = $wpdb->get_results( $wpdb->prepare(
+								"SELECT wpu.ID FROM $wpdb->users AS wpu, $wpdb->usermeta AS wpum WHERE wpum.meta_key = %s AND wpum.meta_value = %d AND wpum.user_id = wpu.ID ORDER BY wpu.user_login",
+								$wpua_metakey,
+								''
+							) );
 
-            				$user_array = array();
-                			?>
+							$user_array = array();
+							?>
 
-            				<td <?php echo $attributes ?>>
-            					<strong>
-                					<?php
-            						if ( ! empty( $wpuas ) ) {
-            							foreach ( $wpuas as $usermeta ) {
-            								$user         = get_userdata( $usermeta->user_id );
-            								$user_array[] = sprintf(
-                                                '<a href="%s">%s</a>',
-                                                get_edit_user_link( $user->ID ),
-                                                $user->user_login
-                                            );
-            							}
-            						} else {
-            							foreach ( $nowpuas as $usermeta ) {
-            								$user         = get_userdata($usermeta->ID);
-            								$user_array[] = sprintf(
-                                                '<a href="%s">%s</a>',
-                                                get_edit_user_link($user->ID),
-                                                $user->user_login
-                                            );
-            							}
-            						}
+							<td <?php echo $attributes ?>>
+								<strong>
+									<?php
+									if ( ! empty( $wpuas ) ) {
+										foreach ( $wpuas as $usermeta ) {
+											$user         = get_userdata( $usermeta->user_id );
+											$user_array[] = sprintf(
+												'<a href="%s">%s</a>',
+												get_edit_user_link( $user->ID ),
+												$user->user_login
+											);
+										}
+									} else {
+										foreach ( $nowpuas as $usermeta ) {
+											$user         = get_userdata($usermeta->ID);
+											$user_array[] = sprintf(
+												'<a href="%s">%s</a>',
+												get_edit_user_link($user->ID),
+												$user->user_login
+											);
+										}
+									}
 
-                                    echo implode( ', ', array_filter( $user_array ) );
-                                    ?>
-            					</strong>
-            				</td>
+									echo implode( ', ', array_filter( $user_array ) );
+									?>
+								</strong>
+							</td>
 
-                			<?php
-            				break;
-    				}
-    			}
-        		?>
+							<?php
+							break;
+					}
+				}
+				?>
 
-    		</tr>
+			</tr>
 
-        	<?php
-        endwhile;
+			<?php
+		endwhile;
 	}
 
 	/**
@@ -522,36 +524,36 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 
 		if ( current_user_can( 'edit_post', $post->ID ) && ! $this->is_trash ) {
 			$actions['edit'] = sprintf(
-                '<a href="%s">%s</a>',
-                get_edit_post_link( $post->ID, true ),
-                __( 'Edit', 'one-user-avatar' )
-            );
+				'<a href="%s">%s</a>',
+				get_edit_post_link( $post->ID, true ),
+				__( 'Edit', 'one-user-avatar' )
+			);
 		}
 
 		if ( current_user_can( 'delete_post', $post->ID ) ) {
 			if ( $this->is_trash ) {
 				$actions['untrash'] = sprintf(
-                    '<a class="submitdelete" href="%s">%s</a>',
-                    wp_nonce_url( sprintf( 'post.php?action=untrash&amp;post=%s', $post->ID ), 'untrash-post_' . $post->ID ),
-                    __( 'Restore', 'one-user-avatar' )
-                );
+					'<a class="submitdelete" href="%s">%s</a>',
+					wp_nonce_url( sprintf( 'post.php?action=untrash&amp;post=%s', $post->ID ), 'untrash-post_' . $post->ID ),
+					__( 'Restore', 'one-user-avatar' )
+				);
 			} elseif ( EMPTY_TRASH_DAYS && MEDIA_TRASH ) {
 				$actions['trash'] = sprintf(
-                    '<a class="submitdelete" href="%s">%s</a>',
-                    wp_nonce_url( sprintf( 'post.php?action=trash&amp;post=%s', $post->ID ), 'trash-post_' . $post->ID),
-                    __( 'Trash', 'one-user-avatar' )
-                );
+					'<a class="submitdelete" href="%s">%s</a>',
+					wp_nonce_url( sprintf( 'post.php?action=trash&amp;post=%s', $post->ID ), 'trash-post_' . $post->ID),
+					__( 'Trash', 'one-user-avatar' )
+				);
 			}
 
 			if ( $this->is_trash || ! EMPTY_TRASH_DAYS || ! MEDIA_TRASH ) {
 				$delete_ays = ( ! $this->is_trash && ! MEDIA_TRASH ) ? ' onclick="return showNotice.warn();"' : '';
 
 				$actions['delete'] = sprintf(
-                    '<a class="submitdelete"%s href="%s">%s</a>',
-                    $delete_ays,
-                    wp_nonce_url( sprintf( 'post.php?action=delete&amp;post=%s', $post->ID ), 'delete-post_'.$post->ID ),
-                    __( 'Delete Permanently', 'one-user-avatar' )
-                );
+					'<a class="submitdelete"%s href="%s">%s</a>',
+					$delete_ays,
+					wp_nonce_url( sprintf( 'post.php?action=delete&amp;post=%s', $post->ID ), 'delete-post_'.$post->ID ),
+					__( 'Delete Permanently', 'one-user-avatar' )
+				);
 			}
 		}
 
@@ -559,11 +561,11 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 			$title = _draft_or_post_title( $post->post_parent );
 
 			$actions['view'] = sprintf(
-                '<a href="%s" title="%s" rel="permalink">%s</a>',
-                get_permalink( $post->ID ),
-                esc_attr( sprintf( __( 'View %s' ), sprintf( '&#8220;%s&#8221;', $title ) ) ),
-                __( 'View', 'one-user-avatar' )
-            );
+				'<a href="%s" title="%s" rel="permalink">%s</a>',
+				get_permalink( $post->ID ),
+				esc_attr( sprintf( __( 'View %s' ), sprintf( '&#8220;%s&#8221;', $title ) ) ),
+				__( 'View', 'one-user-avatar' )
+			);
 		}
 
 		return $actions;

@@ -72,15 +72,15 @@ class WP_User_Avatar {
 
 	/**
 	 * Avatars have no parent posts
-     *
-     * @param array $settings
-     *
-     * @return array
-     * @uses object $post
-     * @uses bool $wpua_is_profile
-     * @uses is_admin()
-     * array $settings
-     * @since 1.8.4
+	 *
+	 * @param array $settings
+	 *
+	 * @return array
+	 * @uses object $post
+	 * @uses bool $wpua_is_profile
+	 * @uses is_admin()
+	 * array $settings
+	 * @since 1.8.4
 	 */
 	public function wpua_media_view_settings( $settings ) {
 		global $post, $wpua_is_profile;
@@ -456,14 +456,14 @@ class WP_User_Avatar {
 	 */
 	public static function wpua_action_process_option_update( $user_id ) {
 		global  $blog_id,
-                $post,
-                $wpdb,
-                $wp_user_avatar,
-                $wpua_resize_crop,
-                $wpua_resize_h,
-                $wpua_resize_upload,
-                $wpua_resize_w,
-                $wpua_admin;
+				$post,
+				$wpdb,
+				$wp_user_avatar,
+				$wpua_resize_crop,
+				$wpua_resize_h,
+				$wpua_resize_upload,
+				$wpua_resize_w,
+				$wpua_admin;
 
 		// Check if user has publish_posts capability
 		if ( $wp_user_avatar->wpua_is_author_or_above() ) {
@@ -498,7 +498,7 @@ class WP_User_Avatar {
 				$avatars_wp_query = new WP_Query( $q );
 
 				while( $avatars_wp_query->have_posts() ) {
-                    $avatars_wp_query->the_post();
+					$avatars_wp_query->the_post();
 
 					wp_delete_attachment( $post->ID );
 				}
@@ -518,8 +518,8 @@ class WP_User_Avatar {
 				$name = isset( $file['name'] ) ? sanitize_file_name( $file['name'] ) : '';
 				$type = isset( $file['type'] ) ? sanitize_mime_type( $file['type'] ) : '';
 				$file = wp_handle_upload( $file, array(
-                    'test_form' => false,
-                ) );
+					'test_form' => false,
+				) );
 
 				if ( isset( $file['url'] ) ) {
 					if ( ! empty( $type ) && preg_match( '/(jpe?g|gif|png)$/i' , $type ) ) {
@@ -587,10 +587,10 @@ class WP_User_Avatar {
 							$avatars_wp_query = new WP_Query( $q );
 
 							while ( $avatars_wp_query->have_posts() ){
-                                $avatars_wp_query->the_post();
+								$avatars_wp_query->the_post();
 
 								wp_delete_attachment($post->ID);
-                            }
+							}
 
 							wp_reset_query();
 
@@ -639,11 +639,11 @@ class WP_User_Avatar {
 	 */
 	public function wpua_is_author_or_above() {
 		$is_author_or_above = (
-            current_user_can( 'edit_published_posts' )  &&
-            current_user_can( 'upload_files' )          &&
-            current_user_can( 'publish_posts')          &&
-            current_user_can( 'delete_published_posts')
-        ) ? true : false;
+			current_user_can( 'edit_published_posts' )  &&
+			current_user_can( 'upload_files' )          &&
+			current_user_can( 'publish_posts')          &&
+			current_user_can( 'delete_published_posts')
+		) ? true : false;
 
 		/**
 		 * Filter Author privilege check
@@ -661,10 +661,10 @@ class WP_User_Avatar {
 function wpua_init() {
 	global $wp_user_avatar;
 
-    if ( ! isset( $wp_user_avatar ) ) {
-    	$wp_user_avatar = new WP_User_Avatar();
-    }
+	if ( ! isset( $wp_user_avatar ) ) {
+		$wp_user_avatar = new WP_User_Avatar();
+	}
 
-    return $wp_user_avatar;
+	return $wp_user_avatar;
 }
 add_action( 'init', 'wpua_init' );

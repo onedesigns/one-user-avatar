@@ -64,10 +64,10 @@ if ( is_multisite() ) {
 		delete_option( 'wp_user_avatar_default_avatar_updated' );
 		delete_option( 'wp_user_avatar_media_updated' );
 		delete_option( 'wp_user_avatar_users_updated' );
-        delete_option( 'wpua_has_gravatar' );
+		delete_option( 'wpua_has_gravatar' );
 	}
 
-    restore_current_blog();
+	restore_current_blog();
 } else {
 	foreach ( $users as $user ) {
 		delete_user_meta( $user->ID, $wpdb->get_blog_prefix( $blog_id ) . 'user_avatar' );
