@@ -52,20 +52,20 @@ class WP_User_Avatar_Setup {
 	private function _load_wp_includes() {
 		if ( ! is_admin() ) {
 			// wp_handle_upload
-			require_once( ABSPATH.'wp-admin/includes/file.php' );
+			require_once( ABSPATH . 'wp-admin/includes/file.php' );
 
-            // wp_generate_attachment_metadata
-			require_once( ABSPATH.'wp-admin/includes/image.php' );
+			// wp_generate_attachment_metadata
+			require_once( ABSPATH . 'wp-admin/includes/image.php' );
 
-            // image_add_caption
-			require_once( ABSPATH.'wp-admin/includes/media.php' );
+			// image_add_caption
+			require_once( ABSPATH . 'wp-admin/includes/media.php' );
 
 			// submit_button
-			require_once( ABSPATH.'wp-admin/includes/template.php' );
+			require_once( ABSPATH . 'wp-admin/includes/template.php' );
 		}
 
 		// add_screen_option
-		require_once(ABSPATH.'wp-admin/includes/screen.php');
+		require_once( ABSPATH . 'wp-admin/includes/screen.php' );
 	}
 
 	/**
