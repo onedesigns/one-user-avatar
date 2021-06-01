@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the One User Avatar plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: One User Avatar 2.3.0\n"
+"Project-Id-Version: One User Avatar 2.3.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/one-user-avatar\n"
-"POT-Creation-Date: 2021-05-22T04:16:42+00:00\n"
-"PO-Revision-Date: 2021-05-23 07:01+0100\n"
+"POT-Creation-Date: 2021-06-01T19:12:54+00:00\n"
+"PO-Revision-Date: 2021-06-01 20:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ro_RO\n"
@@ -18,8 +18,8 @@ msgstr ""
 "%100<=19) ? 1 : 2);\n"
 
 #. Plugin Name of the plugin
-#: includes/class-wp-user-avatar-admin.php:230
-#: includes/class-wp-user-avatar-admin.php:429
+#: includes/class-wp-user-avatar-admin.php:227
+#: includes/class-wp-user-avatar-admin.php:426
 #: includes/class-wp-user-avatar-widget.php:32
 #: includes/wpua-options-page.php:55 includes/wpua-tinymce-window.php:31
 msgid "One User Avatar"
@@ -46,102 +46,103 @@ msgstr "One Designs"
 msgid "https://onedesigns.com/"
 msgstr "https://onedesigns.com/"
 
-#: includes/class-wp-user-avatar-admin.php:173
+#: includes/class-wp-user-avatar-admin.php:170
 msgid "You are not allowed to delete this post."
 msgstr "Nu ai voie să ștergi această postare."
 
-#: includes/class-wp-user-avatar-admin.php:177
+#: includes/class-wp-user-avatar-admin.php:174
 msgid "Error in deleting."
 msgstr "Eroare la ștergere."
 
-#: includes/class-wp-user-avatar-admin.php:231
-#: includes/class-wp-user-avatar-admin.php:289 includes/wpua-media-page.php:59
+#: includes/class-wp-user-avatar-admin.php:228
+#: includes/class-wp-user-avatar-admin.php:286 includes/wpua-media-page.php:59
 msgid "Avatars"
 msgstr "Avatare"
 
-#: includes/class-wp-user-avatar-admin.php:240
-#: includes/class-wp-user-avatar-admin.php:241
-#: includes/class-wp-user-avatar-admin.php:465
+#: includes/class-wp-user-avatar-admin.php:237
+#: includes/class-wp-user-avatar-admin.php:238
+#: includes/class-wp-user-avatar-admin.php:462
 #: includes/wpua-options-page.php:93
 msgid "Settings"
 msgstr "Setări"
 
-#: includes/class-wp-user-avatar-admin.php:249
-#: includes/class-wp-user-avatar-admin.php:250
+#: includes/class-wp-user-avatar-admin.php:246
+#: includes/class-wp-user-avatar-admin.php:247
 msgid "Library"
 msgstr "Bibliotecă"
 
-#: includes/class-wp-user-avatar-admin.php:375
+#: includes/class-wp-user-avatar-admin.php:372
 msgid "Mystery Man"
 msgstr "Omul misterios"
 
-#: includes/class-wp-user-avatar-admin.php:376
+#: includes/class-wp-user-avatar-admin.php:373
 msgid "Blank"
 msgstr "Gol"
 
-#: includes/class-wp-user-avatar-admin.php:377
+#: includes/class-wp-user-avatar-admin.php:374
 msgid "Gravatar Logo"
 msgstr "Logo Gravatar"
 
-#: includes/class-wp-user-avatar-admin.php:378
+#: includes/class-wp-user-avatar-admin.php:375
 msgid "Identicon (Generated)"
 msgstr "Identicon (Generat)"
 
-#: includes/class-wp-user-avatar-admin.php:379
+#: includes/class-wp-user-avatar-admin.php:376
 msgid "Wavatar (Generated)"
 msgstr "Wavatar (Generat)"
 
-#: includes/class-wp-user-avatar-admin.php:380
+#: includes/class-wp-user-avatar-admin.php:377
 msgid "MonsterID (Generated)"
 msgstr "MonsterID (Generat)"
 
-#: includes/class-wp-user-avatar-admin.php:381
+#: includes/class-wp-user-avatar-admin.php:378
 msgid "Retro (Generated)"
 msgstr "Retro (Generat)"
 
-#: includes/class-wp-user-avatar-admin.php:430
+#: includes/class-wp-user-avatar-admin.php:427
 #: includes/class-wp-user-avatar.php:231
 msgid "Choose Image"
 msgstr "Alege imagine"
 
-#: includes/class-wp-user-avatar-admin.php:431
+#: includes/class-wp-user-avatar-admin.php:428
 msgid "Remove"
 msgstr "Elimină"
 
-#: includes/class-wp-user-avatar-admin.php:431
+#: includes/class-wp-user-avatar-admin.php:428
 #: includes/class-wp-user-avatar.php:292
 msgid "Undo"
 msgstr "Anulează"
 
-#: includes/class-wp-user-avatar-admin.php:484
+#: includes/class-wp-user-avatar-admin.php:480
+msgid "https://onedesigns.com/support/forum/plugins/one-user-avatar/"
+msgstr "https://onedesigns.com/support/forum/plugins/one-user-avatar/"
+
+#: includes/class-wp-user-avatar-admin.php:481
 msgid "Support Forums"
 msgstr "Forumuri de asistență"
 
-#: includes/class-wp-user-avatar-admin.php:498
-#: includes/class-wp-user-avatar-admin.php:559 includes/wpua-functions.php:93
+#: includes/class-wp-user-avatar-admin.php:495
+#: includes/class-wp-user-avatar-admin.php:556 includes/wpua-functions.php:93
 #: includes/wpua-functions.php:106 includes/wpua-functions.php:114
 #: includes/wpua-functions.php:186 includes/wpua-tinymce-window.php:94
 msgid "Profile Picture"
 msgstr "Poză de profil"
 
-#: includes/class-wp-user-avatar-admin.php:563
+#: includes/class-wp-user-avatar-admin.php:560
 #: includes/wpua-options-page.php:300 includes/wpua-options-page.php:306
 msgid "Default Avatar"
 msgstr "Avatar implicit"
 
 #: includes/class-wp-user-avatar-functions.php:515
-#: includes/class-wp-user-avatar-functions.php:719
+#: includes/class-wp-user-avatar-functions.php:716
 msgid "Avatar"
 msgstr "Avatar"
 
 #. translators: uploaded files
-#: includes/class-wp-user-avatar-list-table.php:172
+#: includes/class-wp-user-avatar-list-table.php:176
 msgctxt "uploaded files"
 msgid "All %s"
-msgid_plural "All %s"
-msgstr[0] "Toate %s"
-msgstr[1] "Toate %s"
-msgstr[2] "Toate %s"
+msgstr "Toate %s"
 
 #: includes/class-wp-user-avatar-list-table.php:192
 #: includes/class-wp-user-avatar-list-table.php:549
@@ -222,7 +223,7 @@ msgstr ""
 "necesitat de către One User Avatar. Vă rugăm să adăugați acest apel la "
 "șabloanele de pagină."
 
-#: includes/class-wp-user-avatar-shortcode.php:244
+#: includes/class-wp-user-avatar-shortcode.php:243
 msgid "Profile updated."
 msgstr "Profil actualizat."
 
@@ -470,7 +471,7 @@ msgid "Insert Avatar"
 msgstr "Introdu avatar"
 
 #. translators: placeholder for <a> and </a> tags.
-#: one-user-avatar.php:94
+#: one-user-avatar.php:127
 msgid ""
 "The plugin One User Avatar is a replacement for the old WP User Avatar "
 "plugin. Please %1$sdeactivate WP User Avatar%2$s to start using it."

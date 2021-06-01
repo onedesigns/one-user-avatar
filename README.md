@@ -385,6 +385,16 @@ This would output:
 
 ## Changelog
 
+### 2.3.1
+* Add Portuguese translation
+* Add One_User_Avatar::plugin_dir_path() function
+* Improve Dutch translation
+* Remove redundant plural translation for 'All %s'
+* Make URLs translatable
+* Remove obsolete translation strings
+* Fix indentation
+* Fix nested call to wp_nonce_url()
+
 ### 2.3.0
 * Rename to One User Avatar
 * Rewrite to conform with WordPress Coding Standards

@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.0
+ * @version    2.3.1
  */
 
 class WP_User_Avatar_Admin {
@@ -477,7 +477,7 @@ class WP_User_Avatar_Admin {
 		if ( 'one-user-avatar' == basename( dirname( $file ) ) ) {
 			$links[] = sprintf(
 				'<a href="%s" target="_blank">%s</a>',
-				esc_url( 'https://onedesigns.com/support/forum/plugins/one-user-avatar/' ),
+				esc_url( __( 'https://onedesigns.com/support/forum/plugins/one-user-avatar/', 'one-user-avatar' ) ),
 				__( 'Support Forums', 'one-user-avatar' )
 			);
 		}

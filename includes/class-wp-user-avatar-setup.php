@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.0
+ * @version    2.3.1
  */
 
 class WP_User_Avatar_Setup {
@@ -30,11 +30,9 @@ class WP_User_Avatar_Setup {
 	 * @since 1.9.2
 	 */
 	private function _define_constants() {
-		$_file_ = One_User_Avatar::plugin_file_path();
-
-		define( 'WPUA_VERSION',    '2.3.0' );
-		define( 'WPUA_FOLDER',     basename( dirname( $_file_ ) ) );
-		define( 'WPUA_DIR',        plugin_dir_path( $_file_ ) );
+		define( 'WPUA_VERSION',    '2.3.1' );
+		define( 'WPUA_FOLDER',     basename( dirname( One_User_Avatar::plugin_file_path() ) ) );
+		define( 'WPUA_DIR',        One_User_Avatar::plugin_dir_path() );
 		define( 'WPUA_INC',        WPUA_DIR . 'includes' . '/' );
 		define( 'WPUA_URL',        plugin_dir_url( WPUA_FOLDER ) . WPUA_FOLDER . '/' );
 		define( 'WPUA_ASSETS_URL', WPUA_URL . 'assets'.'/' );

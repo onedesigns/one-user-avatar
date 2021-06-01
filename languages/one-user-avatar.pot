@@ -2,21 +2,21 @@
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: One User Avatar 2.3.0\n"
+"Project-Id-Version: One User Avatar 2.3.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/one-user-avatar\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-05-22T04:16:42+00:00\n"
+"POT-Creation-Date: 2021-06-01T19:12:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: one-user-avatar\n"
 
 #. Plugin Name of the plugin
-#: includes/class-wp-user-avatar-admin.php:230
-#: includes/class-wp-user-avatar-admin.php:429
+#: includes/class-wp-user-avatar-admin.php:227
+#: includes/class-wp-user-avatar-admin.php:426
 #: includes/class-wp-user-avatar-widget.php:32
 #: includes/wpua-options-page.php:55
 #: includes/wpua-tinymce-window.php:31
@@ -39,80 +39,84 @@ msgstr ""
 msgid "https://onedesigns.com/"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:173
+#: includes/class-wp-user-avatar-admin.php:170
 msgid "You are not allowed to delete this post."
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:177
+#: includes/class-wp-user-avatar-admin.php:174
 msgid "Error in deleting."
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:231
-#: includes/class-wp-user-avatar-admin.php:289
+#: includes/class-wp-user-avatar-admin.php:228
+#: includes/class-wp-user-avatar-admin.php:286
 #: includes/wpua-media-page.php:59
 msgid "Avatars"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:240
-#: includes/class-wp-user-avatar-admin.php:241
-#: includes/class-wp-user-avatar-admin.php:465
+#: includes/class-wp-user-avatar-admin.php:237
+#: includes/class-wp-user-avatar-admin.php:238
+#: includes/class-wp-user-avatar-admin.php:462
 #: includes/wpua-options-page.php:93
 msgid "Settings"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:249
-#: includes/class-wp-user-avatar-admin.php:250
+#: includes/class-wp-user-avatar-admin.php:246
+#: includes/class-wp-user-avatar-admin.php:247
 msgid "Library"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:375
+#: includes/class-wp-user-avatar-admin.php:372
 msgid "Mystery Man"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:376
+#: includes/class-wp-user-avatar-admin.php:373
 msgid "Blank"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:377
+#: includes/class-wp-user-avatar-admin.php:374
 msgid "Gravatar Logo"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:378
+#: includes/class-wp-user-avatar-admin.php:375
 msgid "Identicon (Generated)"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:379
+#: includes/class-wp-user-avatar-admin.php:376
 msgid "Wavatar (Generated)"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:380
+#: includes/class-wp-user-avatar-admin.php:377
 msgid "MonsterID (Generated)"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:381
+#: includes/class-wp-user-avatar-admin.php:378
 msgid "Retro (Generated)"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:430
+#: includes/class-wp-user-avatar-admin.php:427
 #: includes/class-wp-user-avatar.php:231
 msgid "Choose Image"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:431
+#: includes/class-wp-user-avatar-admin.php:428
 msgid "Remove"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:431
+#: includes/class-wp-user-avatar-admin.php:428
 #: includes/class-wp-user-avatar.php:292
 msgid "Undo"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:484
+#: includes/class-wp-user-avatar-admin.php:480
+msgid "https://onedesigns.com/support/forum/plugins/one-user-avatar/"
+msgstr ""
+
+#: includes/class-wp-user-avatar-admin.php:481
 msgid "Support Forums"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:498
-#: includes/class-wp-user-avatar-admin.php:559
+#: includes/class-wp-user-avatar-admin.php:495
+#: includes/class-wp-user-avatar-admin.php:556
 #: includes/wpua-functions.php:93
 #: includes/wpua-functions.php:106
 #: includes/wpua-functions.php:114
@@ -121,24 +125,22 @@ msgstr ""
 msgid "Profile Picture"
 msgstr ""
 
-#: includes/class-wp-user-avatar-admin.php:563
+#: includes/class-wp-user-avatar-admin.php:560
 #: includes/wpua-options-page.php:300
 #: includes/wpua-options-page.php:306
 msgid "Default Avatar"
 msgstr ""
 
 #: includes/class-wp-user-avatar-functions.php:515
-#: includes/class-wp-user-avatar-functions.php:719
+#: includes/class-wp-user-avatar-functions.php:716
 msgid "Avatar"
 msgstr ""
 
 #. translators: uploaded files
-#: includes/class-wp-user-avatar-list-table.php:172
+#: includes/class-wp-user-avatar-list-table.php:176
 msgctxt "uploaded files"
 msgid "All %s"
-msgid_plural "All %s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 #: includes/class-wp-user-avatar-list-table.php:192
 #: includes/class-wp-user-avatar-list-table.php:549
@@ -214,7 +216,7 @@ msgstr ""
 msgid "We're sorry, but your theme's page template didn't make a call to %s, which is required by One User Avatar. Please add this call to your page templates."
 msgstr ""
 
-#: includes/class-wp-user-avatar-shortcode.php:244
+#: includes/class-wp-user-avatar-shortcode.php:243
 msgid "Profile updated."
 msgstr ""
 
@@ -466,6 +468,6 @@ msgid "Insert Avatar"
 msgstr ""
 
 #. translators: placeholder for <a> and </a> tags.
-#: one-user-avatar.php:94
+#: one-user-avatar.php:127
 msgid "The plugin One User Avatar is a replacement for the old WP User Avatar plugin. Please %1$sdeactivate WP User Avatar%2$s to start using it."
 msgstr ""

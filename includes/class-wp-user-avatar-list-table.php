@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.0
+ * @version    2.3.1
  */
 
 class WP_User_Avatar_List_Table extends WP_List_Table {
@@ -173,13 +173,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 		);
 		$type_links['all'] .= sprintf(
 			/* translators: uploaded files */
-			_nx(
-				'All %s',
-				'All %s',
-				$_total_posts,
-				'uploaded files',
-				'one-user-avatar'
-			),
+			_x( 'All %s', 'uploaded files', 'one-user-avatar' ),
 			sprintf( '<span class="count">(%s)</span>', number_format_i18n( $_total_posts ) )
 		);
 		$type_links['all'] .= '</a>';

@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the One User Avatar plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: One User Avatar 2.3.0\n"
+"Project-Id-Version: One User Avatar 2.3.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/one-user-avatar\n"
-"POT-Creation-Date: 2021-05-22T04:16:42+00:00\n"
-"PO-Revision-Date: 2021-05-25 21:11+0100\n"
+"POT-Creation-Date: 2021-06-01T19:12:54+00:00\n"
+"PO-Revision-Date: 2021-06-01 20:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -17,10 +17,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Plugin Name of the plugin
-#: includes/class-wp-user-avatar-admin.php:230
-#: includes/class-wp-user-avatar-admin.php:429
-#: includes/class-wp-user-avatar-widget.php:32 includes/wpua-options-page.php:55
-#: includes/wpua-tinymce-window.php:31
+#: includes/class-wp-user-avatar-admin.php:227
+#: includes/class-wp-user-avatar-admin.php:426
+#: includes/class-wp-user-avatar-widget.php:32
+#: includes/wpua-options-page.php:55 includes/wpua-tinymce-window.php:31
 msgid "One User Avatar"
 msgstr "One User Avatar"
 
@@ -45,100 +45,103 @@ msgstr "One Designs"
 msgid "https://onedesigns.com/"
 msgstr "https://onedesigns.com/"
 
-#: includes/class-wp-user-avatar-admin.php:173
+#: includes/class-wp-user-avatar-admin.php:170
 msgid "You are not allowed to delete this post."
 msgstr "Je hebt geen toestemming om dit bericht te verwijderen."
 
-#: includes/class-wp-user-avatar-admin.php:177
+#: includes/class-wp-user-avatar-admin.php:174
 msgid "Error in deleting."
 msgstr "Fout tijdens het verwijderen."
 
-#: includes/class-wp-user-avatar-admin.php:231
-#: includes/class-wp-user-avatar-admin.php:289 includes/wpua-media-page.php:59
+#: includes/class-wp-user-avatar-admin.php:228
+#: includes/class-wp-user-avatar-admin.php:286 includes/wpua-media-page.php:59
 msgid "Avatars"
 msgstr "Avatars"
 
-#: includes/class-wp-user-avatar-admin.php:240
-#: includes/class-wp-user-avatar-admin.php:241
-#: includes/class-wp-user-avatar-admin.php:465 includes/wpua-options-page.php:93
+#: includes/class-wp-user-avatar-admin.php:237
+#: includes/class-wp-user-avatar-admin.php:238
+#: includes/class-wp-user-avatar-admin.php:462
+#: includes/wpua-options-page.php:93
 msgid "Settings"
 msgstr "Instellingen"
 
-#: includes/class-wp-user-avatar-admin.php:249
-#: includes/class-wp-user-avatar-admin.php:250
+#: includes/class-wp-user-avatar-admin.php:246
+#: includes/class-wp-user-avatar-admin.php:247
 msgid "Library"
 msgstr "Bibliotheek"
 
-#: includes/class-wp-user-avatar-admin.php:375
+#: includes/class-wp-user-avatar-admin.php:372
 msgid "Mystery Man"
 msgstr "Mysterieuze Man"
 
-#: includes/class-wp-user-avatar-admin.php:376
+#: includes/class-wp-user-avatar-admin.php:373
 msgid "Blank"
 msgstr "Leeg"
 
-#: includes/class-wp-user-avatar-admin.php:377
+#: includes/class-wp-user-avatar-admin.php:374
 msgid "Gravatar Logo"
 msgstr "Gravatar Logo"
 
-#: includes/class-wp-user-avatar-admin.php:378
+#: includes/class-wp-user-avatar-admin.php:375
 msgid "Identicon (Generated)"
 msgstr "Identicon (Gegenereerd)"
 
-#: includes/class-wp-user-avatar-admin.php:379
+#: includes/class-wp-user-avatar-admin.php:376
 msgid "Wavatar (Generated)"
 msgstr "Wavatar (Gegenereerd)"
 
-#: includes/class-wp-user-avatar-admin.php:380
+#: includes/class-wp-user-avatar-admin.php:377
 msgid "MonsterID (Generated)"
 msgstr "MonsterID (Gegenereerd)"
 
-#: includes/class-wp-user-avatar-admin.php:381
+#: includes/class-wp-user-avatar-admin.php:378
 msgid "Retro (Generated)"
 msgstr "Retro (Gegenereerd)"
 
-#: includes/class-wp-user-avatar-admin.php:430
+#: includes/class-wp-user-avatar-admin.php:427
 #: includes/class-wp-user-avatar.php:231
 msgid "Choose Image"
 msgstr "Kies foto"
 
-#: includes/class-wp-user-avatar-admin.php:431
+#: includes/class-wp-user-avatar-admin.php:428
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: includes/class-wp-user-avatar-admin.php:431
+#: includes/class-wp-user-avatar-admin.php:428
 #: includes/class-wp-user-avatar.php:292
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: includes/class-wp-user-avatar-admin.php:484
+#: includes/class-wp-user-avatar-admin.php:480
+msgid "https://onedesigns.com/support/forum/plugins/one-user-avatar/"
+msgstr "https://onedesigns.com/support/forum/plugins/one-user-avatar/"
+
+#: includes/class-wp-user-avatar-admin.php:481
 msgid "Support Forums"
 msgstr "Helpforums"
 
-#: includes/class-wp-user-avatar-admin.php:498
-#: includes/class-wp-user-avatar-admin.php:559 includes/wpua-functions.php:93
+#: includes/class-wp-user-avatar-admin.php:495
+#: includes/class-wp-user-avatar-admin.php:556 includes/wpua-functions.php:93
 #: includes/wpua-functions.php:106 includes/wpua-functions.php:114
 #: includes/wpua-functions.php:186 includes/wpua-tinymce-window.php:94
 msgid "Profile Picture"
 msgstr "Profielfoto"
 
-#: includes/class-wp-user-avatar-admin.php:563 includes/wpua-options-page.php:300
-#: includes/wpua-options-page.php:306
+#: includes/class-wp-user-avatar-admin.php:560
+#: includes/wpua-options-page.php:300 includes/wpua-options-page.php:306
 msgid "Default Avatar"
 msgstr "Standaard Avatar"
 
 #: includes/class-wp-user-avatar-functions.php:515
-#: includes/class-wp-user-avatar-functions.php:719
+#: includes/class-wp-user-avatar-functions.php:716
 msgid "Avatar"
 msgstr "Avatar"
 
 #. translators: uploaded files
-#: includes/class-wp-user-avatar-list-table.php:172
+#: includes/class-wp-user-avatar-list-table.php:176
 msgctxt "uploaded files"
 msgid "All %s"
-msgid_plural "All %s"
-msgstr[0] "Alle %s"
-msgstr[1] "Alle %s"
+msgstr "Alle %s"
 
 #: includes/class-wp-user-avatar-list-table.php:192
 #: includes/class-wp-user-avatar-list-table.php:549
@@ -212,14 +215,14 @@ msgstr "Bekijken"
 #. translators: either wp_footer() or wp_print_footer_scripts() hook.
 #: includes/class-wp-user-avatar-resource-manager.php:190
 msgid ""
-"We're sorry, but your theme's page template didn't make a call to %s, which is "
-"required by One User Avatar. Please add this call to your page templates."
+"We're sorry, but your theme's page template didn't make a call to %s, which "
+"is required by One User Avatar. Please add this call to your page templates."
 msgstr ""
 "Het spijt ons, maar de pagina template van je thema heeft geen oproep gedaan "
 "naar %s, wat vereist is door One User Avatar. Voeg deze oproep toe aan je "
 "pagina template."
 
-#: includes/class-wp-user-avatar-shortcode.php:244
+#: includes/class-wp-user-avatar-shortcode.php:243
 msgid "Profile updated."
 msgstr "Profiel bijgewerkt."
 
@@ -289,9 +292,11 @@ msgstr "Het geheugen is overschreden. Probeer opnieuw met een kleiner bestand."
 #. translators: directory path
 #: includes/class-wp-user-avatar.php:389
 msgid ""
-"Unable to create directory %s. Is its parent directory writable by the server?"
+"Unable to create directory %s. Is its parent directory writable by the "
+"server?"
 msgstr ""
-"Kan map %s niet aanmaken. Is de bovenliggende map beschrijfbaar door de server?"
+"Kan map %s niet aanmaken. Is de bovenliggende map beschrijfbaar door de "
+"server?"
 
 #: includes/wpua-functions.php:109 includes/wpua-functions.php:118
 msgid "Image"
@@ -465,24 +470,10 @@ msgid "Insert Avatar"
 msgstr "Avatar invoegen"
 
 #. translators: placeholder for <a> and </a> tags.
-#: one-user-avatar.php:94
+#: one-user-avatar.php:127
 msgid ""
-"The plugin One User Avatar is a replacement for the old WP User Avatar plugin. "
-"Please %1$sdeactivate WP User Avatar%2$s to start using it."
+"The plugin One User Avatar is a replacement for the old WP User Avatar "
+"plugin. Please %1$sdeactivate WP User Avatar%2$s to start using it."
 msgstr ""
-"De plug-in One User Avatar is een vervanging voor de oude WP User Avatar-plug-"
-"in. %1$sDeactiveer eerst WP User Avatar%2$s om het te gebruiken."
-
-#~ msgid "Edit Image"
-#~ msgstr "Afbeelding bewerken"
-
-#, php-format
-#~ msgid "Edit %s"
-#~ msgstr "%s bewerken"
-
-#, php-format
-#~ msgid "View %s"
-#~ msgstr "%s bekijken"
-
-#~ msgid "Media attachment permanently deleted."
-#~ msgstr "Mediabijlage permanent verwijderd."
+"De plug-in One User Avatar is een vervanging voor de oude WP User Avatar-"
+"plug-in. %1$sDeactiveer eerst WP User Avatar%2$s om het te gebruiken."

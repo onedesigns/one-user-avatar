@@ -44,7 +44,7 @@
 				author:    'One Designs',
 				authorurl: 'https://onedesigns.com/',
 				infourl:   'https://onedesigns.com/plugins/one-user-avatar/',
-				version:   '2.3.0',
+				version:   '2.3.1',
 			};
 		},
 	});
