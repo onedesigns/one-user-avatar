@@ -1,4 +1,4 @@
-/*! One User Avatar - v1.12.1 - 2021-05-21
+/*! One User Avatar - 2.3.2
  * Copyright One Designs
  * Copyright ProfilePress
  * Copyright Flippercode

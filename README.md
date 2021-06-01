@@ -385,6 +385,9 @@ This would output:
 
 ## Changelog
 
+### 2.3.2
+* Fix missing Portuguese translation
+
 ### 2.3.1
 * Add Portuguese translation
 * Add One_User_Avatar::plugin_dir_path() function

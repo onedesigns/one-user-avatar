@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the One User Avatar plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: One User Avatar 2.3.1\n"
+"Project-Id-Version: One User Avatar 2.3.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/one-user-avatar\n"
 "POT-Creation-Date: 2021-06-01T19:12:54+00:00\n"
 "PO-Revision-Date: 2021-06-01 20:17+0100\n"
