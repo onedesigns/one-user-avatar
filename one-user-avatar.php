@@ -80,7 +80,7 @@ class One_User_Avatar {
 	 * @since 2.3.0
 	 */
 	public static function plugin_dir_path() {
-		return plugin_dir_path( __FILE__ )
+		return plugin_dir_path( __FILE__ );
 	}
 
 	/**
