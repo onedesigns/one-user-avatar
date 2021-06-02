@@ -1,4 +1,4 @@
-/*! One User Avatar - 2.3.2
+/*! One User Avatar - 2.3.3
  * Copyright One Designs
  * Copyright ProfilePress
  * Copyright Flippercode

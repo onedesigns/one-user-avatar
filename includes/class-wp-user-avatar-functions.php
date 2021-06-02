@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.2
+ * @version    2.3.3
  */
 
 class WP_User_Avatar_Functions {
@@ -560,7 +560,7 @@ class WP_User_Avatar_Functions {
 					esc_url( $wpua_final_avatar_image_src ),
 					$default_image_details['dimensions'],
 					esc_attr( $alt ),
-					esc_attr( $size ),
+					esc_attr( $size )
 				);
 			// User doesn't have WPUA or Gravatar and Default Avatar is wp_user_avatar, show custom Default Avatar
 			} elseif ( 'wp_user_avatar' == $avatar_default ) {

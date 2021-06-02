@@ -385,6 +385,9 @@ This would output:
 
 ## Changelog
 
+### 2.3.3
+* Fix parse error in PHP 7
+
 ### 2.3.2
 * Fix missing Portuguese translation
 
