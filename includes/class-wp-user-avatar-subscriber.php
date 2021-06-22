@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.3
+ * @version    2.3.4
  */
 
 class WP_User_Avatar_Subscriber {
@@ -27,7 +27,7 @@ class WP_User_Avatar_Subscriber {
 	public function __construct() {
 		global $wpua_allow_upload;
 
-		if( 1 == (bool) $wpua_allow_upload ) {
+		if ( 1 == (bool) $wpua_allow_upload ) {
 			add_action( 'user_edit_form_tag', array( $this, 'wpua_add_edit_form_multipart_encoding' ) );
 		}
 

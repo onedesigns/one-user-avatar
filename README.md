@@ -385,6 +385,9 @@ This would output:
 
 ## Changelog
 
+### 2.3.4
+* Add option to force the file uploader in avatar upload shortcode
+
 ### 2.3.3
 * Fix parse error in PHP 7
 

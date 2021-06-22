@@ -4,7 +4,7 @@ Contributors: onedesigns, properfraction, collizo4sky
 Tags: user profile, avatar, gravatar, author image, author photo, author avatar, bbPress, profile avatar, profile image, user avatar, user image, user photo, widget
 Requires at least: 4.0
 Tested up to: 5.7.2
-Stable tag: 2.3.3
+Stable tag: 2.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -397,6 +397,9 @@ This would output:
 2. One User Avatar lets you upload your own Default Avatar.
 
 == Changelog ==
+
+= 2.3.4 =
+* Add option to force the file uploader in avatar upload shortcode
 
 = 2.3.3 =
 * Fix parse error in PHP 7

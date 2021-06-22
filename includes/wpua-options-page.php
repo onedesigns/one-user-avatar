@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.3
+ * @version    2.3.4
  */
 
 /**
@@ -41,7 +41,21 @@
  * @uses wpua_add_default_avatar()
  */
 
-global $show_avatars, $upload_size_limit_with_units, $wpua_admin, $wpua_allow_upload, $wpua_disable_gravatar, $wpua_edit_avatar, $wpua_resize_crop, $wpua_resize_h, $wpua_resize_upload, $wpua_resize_w, $wpua_subscriber, $wpua_tinymce, $wpua_upload_size_limit, $wpua_upload_size_limit_with_units;
+global $show_avatars,
+       $upload_size_limit_with_units,
+	   $wpua_admin,
+	   $wpua_allow_upload,
+	   $wpua_force_file_uploader,
+	   $wpua_disable_gravatar,
+	   $wpua_edit_avatar,
+	   $wpua_resize_crop,
+	   $wpua_resize_h,
+	   $wpua_resize_upload,
+	   $wpua_resize_w,
+	   $wpua_subscriber,
+	   $wpua_tinymce,
+	   $wpua_upload_size_limit,
+	   $wpua_upload_size_limit_with_units;
 
 $updated = false;
 
@@ -128,6 +142,19 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 										</fieldset>',
 										checked( $wpua_disable_gravatar, true, false ),
 										__( 'Disable Gravatar and use only local avatars', 'one-user-avatar' )
+									);
+
+									$wpua_settings['force_file_uploader'] = sprintf(
+										'<fieldset>
+											<label for="wp_user_avatar_force_file_uploader">
+												<input name="wp_user_avatar_force_file_uploader" type="checkbox" id="wp_user_avatar_force_file_uploader" value="1" %s />
+												%s
+											</label>
+											<p class="description">%s</p>
+										</fieldset>',
+										checked( $wpua_force_file_uploader, true, false ),
+										__( 'Always use the browser file uploader to upload avatars', 'one-user-avatar' ),
+										__( 'Check this if another plugin is conflicting with the WordPress Media Uploader.', 'one-user-avatar' )
 									);
 
 									/**

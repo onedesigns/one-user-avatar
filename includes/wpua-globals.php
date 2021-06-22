@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.3
+ * @version    2.3.4
  */
 
 /**
@@ -25,6 +25,7 @@
 global  $avatar_default,
 		$show_avatars,
 		$wpua_allow_upload,
+		$wpua_force_file_uploader,
 		$wpua_avatar_default,
 		$wpua_disable_gravatar,
 		$wpua_edit_avatar,
@@ -63,13 +64,14 @@ $avatar_default = get_option( 'avatar_default' );
 $wpua_avatar_default = get_option( 'avatar_default_wp_user_avatar' );
 
 // Booleans
-$show_avatars          = get_option( 'show_avatars' );
-$wpua_allow_upload     = get_option( 'wp_user_avatar_allow_upload' );
-$wpua_disable_gravatar = get_option( 'wp_user_avatar_disable_gravatar' );
-$wpua_edit_avatar      = get_option( 'wp_user_avatar_edit_avatar' );
-$wpua_resize_crop      = get_option( 'wp_user_avatar_resize_crop' );
-$wpua_resize_upload    = get_option( 'wp_user_avatar_resize_upload' );
-$wpua_tinymce          = get_option( 'wp_user_avatar_tinymce' );
+$show_avatars             = get_option( 'show_avatars' );
+$wpua_allow_upload        = get_option( 'wp_user_avatar_allow_upload' );
+$wpua_force_file_uploader = get_option( 'wp_user_avatar_force_file_uploader' );
+$wpua_disable_gravatar    = get_option( 'wp_user_avatar_disable_gravatar' );
+$wpua_edit_avatar         = get_option( 'wp_user_avatar_edit_avatar' );
+$wpua_resize_crop         = get_option( 'wp_user_avatar_resize_crop' );
+$wpua_resize_upload       = get_option( 'wp_user_avatar_resize_upload' );
+$wpua_tinymce             = get_option( 'wp_user_avatar_tinymce' );
 
 // Resize dimensions
 $wpua_resize_h = get_option( 'wp_user_avatar_resize_h' );

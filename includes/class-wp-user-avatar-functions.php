@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.3
+ * @version    2.3.4
  */
 
 class WP_User_Avatar_Functions {
@@ -110,7 +110,7 @@ class WP_User_Avatar_Functions {
 			$url = $wpua_avatar_default_image[0];
 		} else {
 			// Get mustache image based on numeric size comparison
-			if ( $size > get_option( 'medium_size_w ') ) {
+			if ( $size > get_option( 'medium_size_w' ) ) {
 				$url = $mustache_original;
 			} elseif ( $size <= get_option( 'medium_size_w' ) && $size > get_option( 'thumbnail_size_w' ) ) {
 				$url = $mustache_medium;

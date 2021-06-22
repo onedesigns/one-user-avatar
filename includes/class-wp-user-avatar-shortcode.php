@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.3
+ * @version    2.3.4
  */
 
 class WP_User_Avatar_Shortcode {
@@ -263,7 +263,7 @@ class WP_User_Avatar_Shortcode {
 		?>
 
 		<form id="wpua-edit-<?php echo esc_attr( $user->ID ); ?>" class="wpua-edit" action="" method="post" enctype="multipart/form-data">
-			<?php do_action('wpua_show_profile', $user); ?>
+			<?php do_action( 'wpua_show_profile', $user ); ?>
 
 			<input type="hidden" name="wpua_action" value="update" />
 			<input type="hidden" name="user_id" id="user_id" value="<?php echo esc_attr( $user->ID ); ?>" />

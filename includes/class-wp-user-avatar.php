@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.3
+ * @version    2.3.4
  */
 
 class WP_User_Avatar {
@@ -67,6 +67,7 @@ class WP_User_Avatar {
 				add_filter( 'wp_handle_upload_prefilter', array(  $this, 'wpua_handle_upload_prefilter' ) );
 			}
 		}
+
 		add_filter( 'media_view_settings', array( $this, 'wpua_media_view_settings' ), 10, 1 );
 	}
 
@@ -125,6 +126,7 @@ class WP_User_Avatar {
 				$post,
 				$show_avatars,
 				$wp_user_avatar,
+				$wpua_force_file_uploader,
 				$wpua_admin,
 				$wpua_functions,
 				$wpua_is_profile,
@@ -139,7 +141,7 @@ class WP_User_Avatar {
 
 		wp_enqueue_script( 'jquery' );
 
-		if ( $wp_user_avatar->wpua_is_author_or_above() ) {
+		if ( $wp_user_avatar->wpua_is_author_or_above() && ! $wpua_force_file_uploader ) {
 			wp_enqueue_script( 'admin-bar' );
 			wp_enqueue_media( array( 'post' => $post ) );
 			wp_enqueue_script( 'wp-user-avatar', WPUA_JS_URL . 'wp-user-avatar.js', array( 'jquery', 'media-editor' ), WPUA_VERSION, true );
@@ -180,6 +182,7 @@ class WP_User_Avatar {
 				$show_avatars,
 				$wpdb,
 				$wp_user_avatar,
+				$wpua_force_file_uploader,
 				$wpua_edit_avatar,
 				$wpua_functions,
 				$wpua_upload_size_limit_with_units;
@@ -212,7 +215,7 @@ class WP_User_Avatar {
 		<input type="hidden" name="wp-user-avatar" id="<?php echo ( 'add-new-user' == $user ) ? 'wp-user-avatar' : 'wp-user-avatar-existing' ?>" value="<?php echo $wpua; ?>" />
 
 		<?php
-		if ( $wp_user_avatar->wpua_is_author_or_above() ) :
+		if ( $wp_user_avatar->wpua_is_author_or_above() && ! $wpua_force_file_uploader ) :
 			// Button to launch Media Uploader
 			?>
 
@@ -233,7 +236,7 @@ class WP_User_Avatar {
 			</p>
 
 			<?php
-		elseif ( ! $wp_user_avatar->wpua_is_author_or_above()) :
+		elseif ( ! $wp_user_avatar->wpua_is_author_or_above() || $wpua_force_file_uploader ) :
 			// Upload button
 			?>
 
@@ -459,6 +462,7 @@ class WP_User_Avatar {
 				$post,
 				$wpdb,
 				$wp_user_avatar,
+				$wpua_force_file_uploader,
 				$wpua_resize_crop,
 				$wpua_resize_h,
 				$wpua_resize_upload,
@@ -466,7 +470,7 @@ class WP_User_Avatar {
 				$wpua_admin;
 
 		// Check if user has publish_posts capability
-		if ( $wp_user_avatar->wpua_is_author_or_above() ) {
+		if ( $wp_user_avatar->wpua_is_author_or_above() && ! $wpua_force_file_uploader ) {
 			$wpua_id = isset( $_POST['wp-user-avatar'] ) ? absint( $_POST['wp-user-avatar'] ) : 0;
 
 			// Remove old attachment postmeta

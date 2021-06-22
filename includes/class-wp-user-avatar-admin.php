@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.3
+ * @version    2.3.4
  */
 
 class WP_User_Avatar_Admin {
@@ -77,16 +77,17 @@ class WP_User_Avatar_Admin {
 	 * @uses add_option()
 	 */
 	public function wpua_options() {
-		add_option( 'avatar_default_wp_user_avatar', '' );
-		add_option( 'wp_user_avatar_allow_upload', '0' );
-		add_option( 'wp_user_avatar_disable_gravatar', '0' );
-		add_option( 'wp_user_avatar_edit_avatar', '1' );
-		add_option( 'wp_user_avatar_resize_crop', '0' );
-		add_option( 'wp_user_avatar_resize_h', '96' );
-		add_option( 'wp_user_avatar_resize_upload', '0' );
-		add_option( 'wp_user_avatar_resize_w', '96' );
-		add_option( 'wp_user_avatar_tinymce', '1' );
-		add_option( 'wp_user_avatar_upload_size_limit', '0' );
+		add_option( 'avatar_default_wp_user_avatar',       '' );
+		add_option( 'wp_user_avatar_allow_upload',        '0' );
+		add_option( 'wp_user_avatar_force_file_uploader', '0' );
+		add_option( 'wp_user_avatar_disable_gravatar',    '0' );
+		add_option( 'wp_user_avatar_edit_avatar',         '1' );
+		add_option( 'wp_user_avatar_resize_crop',         '0' );
+		add_option( 'wp_user_avatar_resize_h',           '96' );
+		add_option( 'wp_user_avatar_resize_upload',       '0' );
+		add_option( 'wp_user_avatar_resize_w',           '96' );
+		add_option( 'wp_user_avatar_tinymce',             '1' );
+		add_option( 'wp_user_avatar_upload_size_limit',   '0' );
 
 		if ( wp_next_scheduled( 'wpua_has_gravatar_cron_hook' ) ) {
 			$cron = get_option( 'cron' );
@@ -321,19 +322,20 @@ class WP_User_Avatar_Admin {
 	public function wpua_register_settings() {
 		$settings = array();
 
-		$settings[] = register_setting( 'wpua-settings-group', 'avatar_rating');
-		$settings[] = register_setting( 'wpua-settings-group', 'avatar_default');
-		$settings[] = register_setting( 'wpua-settings-group', 'avatar_default_wp_user_avatar');
-		$settings[] = register_setting( 'wpua-settings-group', 'show_avatars',                     'intval');
-		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_tinymce',           'intval');
-		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_allow_upload',      'intval');
-		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_disable_gravatar',  'intval');
-		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_edit_avatar',       'intval');
-		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_resize_crop',       'intval');
-		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_resize_h',          'intval');
-		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_resize_upload',     'intval');
-		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_resize_w',          'intval');
-		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_upload_size_limit', 'intval');
+		$settings[] = register_setting( 'wpua-settings-group', 'avatar_rating'                                );
+		$settings[] = register_setting( 'wpua-settings-group', 'avatar_default'                               );
+		$settings[] = register_setting( 'wpua-settings-group', 'avatar_default_wp_user_avatar'                );
+		$settings[] = register_setting( 'wpua-settings-group', 'show_avatars',                       'intval' );
+		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_tinymce',             'intval' );
+		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_allow_upload',        'intval' );
+		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_force_file_uploader', 'intval' );
+		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_disable_gravatar',    'intval' );
+		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_edit_avatar',         'intval' );
+		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_resize_crop',         'intval' );
+		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_resize_h',            'intval' );
+		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_resize_upload',       'intval' );
+		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_resize_w',            'intval' );
+		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_upload_size_limit',   'intval' );
 
 		/**
 		 * Filter admin whitelist settings
