@@ -5,7 +5,7 @@ Plugin URI:   https://onedesigns.com/plugins/one-user-avatar/
 Description:  Use any image from your WordPress Media Library as a custom user avatar. Add your own Default Avatar. Fork of WP User Avatar v2.2.16.
 Author:       One Designs
 Author URI:   https://onedesigns.com/
-Version:      2.3.4
+Version:      2.3.5
 Text Domain:  one-user-avatar
 Domain Path:  /languages/
 
@@ -32,13 +32,6 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
-
-One User Avatar bundles the following third-party resources:
-
-jQuery UI Slider v1.12.1
-Copyright (c) 2021 jQuery Foundation
-License: MIT
-Source: https://github.com/jquery/jquery-ui
 */
 
 if ( ! defined( 'ABSPATH' ) ) {

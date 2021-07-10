@@ -1,4 +1,4 @@
-/*! One User Avatar - 2.3.4
+/*! One User Avatar - 2.3.5
  * Copyright One Designs
  * Copyright ProfilePress
  * Copyright Flippercode
@@ -44,7 +44,7 @@
 				author:    'One Designs',
 				authorurl: 'https://onedesigns.com/',
 				infourl:   'https://onedesigns.com/plugins/one-user-avatar/',
-				version:   '2.3.4',
+				version:   '2.3.5',
 			};
 		},
 	});

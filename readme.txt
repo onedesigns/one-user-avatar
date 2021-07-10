@@ -3,8 +3,8 @@
 Contributors: onedesigns, properfraction, collizo4sky
 Tags: user profile, avatar, gravatar, author image, author photo, author avatar, bbPress, profile avatar, profile image, user avatar, user image, user photo, widget
 Requires at least: 4.0
-Tested up to: 5.7.2
-Stable tag: 2.3.4
+Tested up to: 5.8
+Stable tag: 2.3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,13 +49,6 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
-
-One User Avatar bundles the following third-party resources:
-
-jQuery UI Slider v1.12.1
-Copyright (c) 2021 jQuery Foundation
-License: MIT
-Source: https://github.com/jquery/jquery-ui
 
 == Installation ==
 
@@ -397,6 +390,11 @@ This would output:
 2. One User Avatar lets you upload your own Default Avatar.
 
 == Changelog ==
+
+= 2.3.5 =
+* Fix "Choose Image" button not triggering media uploader on admin discussion page
+* Remove jQuery UI dependency
+* Prettify avatar library table
 
 = 2.3.4 =
 * Add option to force the file uploader in avatar upload shortcode

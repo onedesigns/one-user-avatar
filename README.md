@@ -42,13 +42,6 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
-One User Avatar bundles the following third-party resources:
-
-jQuery UI Slider v1.12.1  
-Copyright (c) 2021 jQuery Foundation  
-License: MIT  
-Source: https://github.com/jquery/jquery-ui
-
 ## Installation
 
 1. Download, install, and activate the One User Avatar plugin.
@@ -384,6 +377,11 @@ This would output:
     </div>
 
 ## Changelog
+
+### 2.3.5
+* Fix "Choose Image" button not triggering media uploader on admin discussion page
+* Remove jQuery UI dependency
+* Prettify avatar library table
 
 ### 2.3.4
 * Add option to force the file uploader in avatar upload shortcode

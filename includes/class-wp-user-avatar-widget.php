@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.4
+ * @version    2.3.5
  */
 
 class WP_User_Avatar_Profile_Widget extends WP_Widget {

@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.4
+ * @version    2.3.5
  */
 
 class WP_User_Avatar {
@@ -141,7 +141,7 @@ class WP_User_Avatar {
 
 		wp_enqueue_script( 'jquery' );
 
-		if ( $wp_user_avatar->wpua_is_author_or_above() && ! $wpua_force_file_uploader ) {
+		if ( ( $wp_user_avatar->wpua_is_author_or_above() && ! $wpua_force_file_uploader ) || 'options-discussion.php' == $pagenow ) {
 			wp_enqueue_script( 'admin-bar' );
 			wp_enqueue_media( array( 'post' => $post ) );
 			wp_enqueue_script( 'wp-user-avatar', WPUA_JS_URL . 'wp-user-avatar.js', array( 'jquery', 'media-editor' ), WPUA_VERSION, true );
@@ -151,11 +151,6 @@ class WP_User_Avatar {
 
 		// Admin scripts
 		if ( $pagenow == 'options-discussion.php' || $wpua_admin->wpua_is_menu_page() ) {
-			// Size limit slider
-			wp_enqueue_script( 'jquery-ui-slider' );
-			wp_enqueue_style( 'wp-user-avatar-jqueryui', WPUA_CSS_URL . 'jquery-ui.css', '', null );
-
-			// Default avatar
 			wp_localize_script( 'wp-user-avatar', 'wpua_custom', array(
 				'avatar_thumb' => $mustache_admin,
 			) );

@@ -1,4 +1,4 @@
-/*! One User Avatar - 2.3.4
+/*! One User Avatar - 2.3.5
  * Copyright One Designs
  * Copyright ProfilePress
  * Copyright Flippercode
@@ -25,22 +25,8 @@ jQuery(function($) {
 		}
 	});
 
-	// Add size slider
-	$('#wpua-slider').slider({
-		value: parseInt(wpua_admin.upload_size_limit),
-		min: 0,
-		max: parseInt(wpua_admin.max_upload_size),
-		step: 1,
-		slide: function(event, ui) {
-			$('#wp_user_avatar_upload_size_limit').val(ui.value);
-			$('#wpua-readable-size').html(Math.floor(ui.value / 1024) + 'KB');
-			$('#wpua-readable-size-error').hide();
-			$('#wpua-readable-size').removeClass('wpua-error');
-		}
-	});
-
 	// Update readable size on keyup
-	$('#wp_user_avatar_upload_size_limit').keyup(function() {
+	$('#wp_user_avatar_upload_size_limit').on('input', function() {
 		var wpuaUploadSizeLimit = $(this).val();
 
 		wpuaUploadSizeLimit = wpuaUploadSizeLimit.replace(/\D/g, "");
@@ -51,6 +37,4 @@ jQuery(function($) {
 		$('#wpua-readable-size-error').toggle( wpuaUploadSizeLimit > parseInt( wpua_admin.max_upload_size ) );
 		$('#wpua-readable-size').toggleClass( 'wpua-error', wpuaUploadSizeLimit > parseInt( wpua_admin.max_upload_size ) );
 	});
-
-	$('#wp_user_avatar_upload_size_limit').val( $('#wpua-slider').slider('value') );
 });

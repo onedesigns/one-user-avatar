@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.4
+ * @version    2.3.5
  */
 
 class WP_User_Avatar_Admin {
@@ -116,8 +116,9 @@ class WP_User_Avatar_Admin {
 			return;
 		}
 
+		wp_enqueue_style( 'wp-user-avatar', WPUA_CSS_URL . 'wp-user-avatar.css', '', WPUA_VERSION );
+		
 		wp_enqueue_script( 'wp-ajax-response' );
-		wp_enqueue_script( 'jquery-ui-draggable' );
 		wp_enqueue_script( 'media' );
 	}
 
@@ -419,7 +420,7 @@ class WP_User_Avatar_Admin {
 		$avatar_thumb_img = sprintf( '<div id="wpua-preview"><img src="%s" width="32" /></div>', esc_url( $avatar_thumb ) );
 
 		// Add WPUA to list
-		$wpua_list = sprintf(
+		$wpua_list  = sprintf(
 			'<label><input type="radio" name="avatar_default" id="wp_user_avatar_radio" value="wp_user_avatar" %s /> ',
 			$selected_avatar
 		);
@@ -430,6 +431,7 @@ class WP_User_Avatar_Admin {
 		$wpua_list .= '<span id="wpua-remove-button"' . $hide_remove . '><a href="#" id="wpua-remove">' . __('Remove','one-user-avatar') . '</a></span><span id="wpua-undo-button"><a href="#" id="wpua-undo">' . __('Undo','one-user-avatar') . '</a></span></p>';
 		$wpua_list .= '<input type="hidden" id="wp-user-avatar" name="avatar_default_wp_user_avatar" value="' . $wpua_avatar_default . '">';
 		$wpua_list .= '<div id="wpua-modal"></div>';
+
 		if ( 1 != (bool) $wpua_disable_gravatar ) {
 			return $wpua_list . '<div id="wp-avatars">' . $avatar_list . '</div>';
 		} else {

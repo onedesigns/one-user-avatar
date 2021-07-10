@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.4
+ * @version    2.3.5
  */
 
 /**
@@ -196,7 +196,7 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 											</span>
 										</legend>
 
-										<input name="wp_user_avatar_upload_size_limit" type="text" id="wp_user_avatar_upload_size_limit" value="<?php echo esc_attr( $wpua_upload_size_limit ); ?>" class="regular-text" />
+										<input name="wp_user_avatar_upload_size_limit" type="range" id="wp_user_avatar_upload_size_limit" value="<?php echo esc_attr( $wpua_upload_size_limit ); ?>" min="0" max="<?php echo esc_attr( wp_max_upload_size() ); ?>" class="regular-text" />
 
 										<span id="wpua-readable-size"><?php echo $wpua_upload_size_limit_with_units; ?></span>
 
@@ -206,9 +206,7 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 											''
 										); ?></span>
 
-										<div id="wpua-slider"></div>
-
-										<span class="description">
+										<p class="description">
 											<?php
 												printf(
 													/* translators: file size in KB */
@@ -216,7 +214,7 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 													esc_html( wp_max_upload_size() ) . esc_html( sprintf( ' bytes (%s)', $upload_size_limit_with_units ) )
 												);
 											?>
-										</span>
+										</p>
 									</fieldset>
 
 									<fieldset>

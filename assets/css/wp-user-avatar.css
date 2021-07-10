@@ -1,4 +1,4 @@
-/*! One User Avatar - 2.3.4
+/*! One User Avatar - 2.3.5
  * Copyright One Designs
  * Copyright ProfilePress
  * Copyright Flippercode
@@ -71,11 +71,6 @@
 	margin-left: 10px !important;
 }
 
-#wpua-slider {
-	width: 22.75em;
-	margin: 1em 0;
-}
-
 #wpua-upload-messages span {
 	display: block;
 }
@@ -86,4 +81,19 @@
 
 .wpua-no-avatars {
 	display: none;
+}
+
+.avatars_page_wp-user-avatar-library .wp-list-table.media .manage-column.column-icon,
+.avatars_page_wp-user-avatar-library .wp-list-table.media .column-icon.media-icon {
+	width: 62px;
+}
+
+.avatars_page_wp-user-avatar-library .wp-list-table.media .column-icon.media-icon a {
+	display: block;
+}
+
+.avatars_page_wp-user-avatar-library .wp-list-table.media .column-icon.media-icon img {
+	display: block;
+	max-width: 60px;
+    height: auto;
 }
