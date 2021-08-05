@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.5
+ * @version    2.3.6
  */
 
 class WP_User_Avatar_Functions {
@@ -33,6 +33,8 @@ class WP_User_Avatar_Functions {
 		// Filter to display One User Avatar by URL at Buddypress
 		add_filter( 'bp_core_fetch_avatar_url', array( $this, 'wpua_bp_core_fetch_avatar_url_filter' ), 10, 5 );
 
+		// Maybe replace the custom avatars functionality in the Ultimate Member plugin
+		add_action( 'init',                     array( $this, 'wpua_maybe_disable_um_avatars' ),        10, 0 );
 	}
 
 
@@ -864,6 +866,35 @@ class WP_User_Avatar_Functions {
 		}
 
 		return $wpua_image_src;
+	}
+
+	/**
+	 * Maybe replace the custom avatars functionality in the Ultimate Member plugin
+	 * @since 1.1
+	 * @param int|string $id_or_email
+	 * @param int|string $size
+	 * @param string $align
+	 * @uses get_wp_user_avatar()
+	 * @return string
+	 */
+	public function wpua_maybe_disable_um_avatars() {
+		global $wpua_disable_um_avatars;
+
+		if ( ! function_exists( 'um_get_avatar' ) ) {
+			return;
+		}
+
+		if ( ! $wpua_disable_um_avatars ) {
+			return;
+		}
+
+		$priority = has_filter( 'get_avatar', 'um_get_avatar' );
+
+		if ( false === $priority ) {
+			return;
+		}
+
+		remove_filter( 'get_avatar', 'um_get_avatar', $priority );
 	}
 }
 

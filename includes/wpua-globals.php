@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.5
+ * @version    2.3.6
  */
 
 /**
@@ -26,6 +26,7 @@ global  $avatar_default,
 		$show_avatars,
 		$wpua_allow_upload,
 		$wpua_force_file_uploader,
+		$wpua_disable_um_avatars,
 		$wpua_avatar_default,
 		$wpua_disable_gravatar,
 		$wpua_edit_avatar,
@@ -66,6 +67,7 @@ $wpua_avatar_default = get_option( 'avatar_default_wp_user_avatar' );
 // Booleans
 $show_avatars             = get_option( 'show_avatars' );
 $wpua_allow_upload        = get_option( 'wp_user_avatar_allow_upload' );
+$wpua_disable_um_avatars  = get_option( 'wp_user_avatar_disable_um_avatars' );
 $wpua_force_file_uploader = get_option( 'wp_user_avatar_force_file_uploader' );
 $wpua_disable_gravatar    = get_option( 'wp_user_avatar_disable_gravatar' );
 $wpua_edit_avatar         = get_option( 'wp_user_avatar_edit_avatar' );

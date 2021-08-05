@@ -378,6 +378,9 @@ This would output:
 
 ## Changelog
 
+### 2.3.6
+* Add option to replace custom avatar functionality in Ultimate Member plugin
+
 ### 2.3.5
 * Fix "Choose Image" button not triggering media uploader on admin discussion page
 * Remove jQuery UI dependency

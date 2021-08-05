@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.5
+ * @version    2.3.6
  */
 
 /**
@@ -45,6 +45,7 @@ global $show_avatars,
        $upload_size_limit_with_units,
 	   $wpua_admin,
 	   $wpua_allow_upload,
+	   $wpua_disable_um_avatars,
 	   $wpua_force_file_uploader,
 	   $wpua_disable_gravatar,
 	   $wpua_edit_avatar,
@@ -143,6 +144,19 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 										checked( $wpua_disable_gravatar, true, false ),
 										__( 'Disable Gravatar and use only local avatars', 'one-user-avatar' )
 									);
+
+									if ( function_exists( 'um_get_avatar' ) ) {
+										$wpua_settings['disable_um_avatars'] = sprintf(
+											'<fieldset>
+												<label for="wp_user_avatar_disable_um_avatars">
+													<input name="wp_user_avatar_disable_um_avatars" type="checkbox" id="wp_user_avatar_disable_um_avatars" value="1" %s />
+													%s
+												</label>
+											</fieldset>',
+											checked( $wpua_disable_um_avatars, true, false ),
+											__( 'Replace the custom avatars functionality in the Ultimate Member plugin', 'one-user-avatar' )
+										);
+									}
 
 									$wpua_settings['force_file_uploader'] = sprintf(
 										'<fieldset>

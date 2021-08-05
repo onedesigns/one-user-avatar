@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.5
+ * @version    2.3.6
  */
 
 class WP_User_Avatar_Admin {
@@ -79,6 +79,7 @@ class WP_User_Avatar_Admin {
 	public function wpua_options() {
 		add_option( 'avatar_default_wp_user_avatar',       '' );
 		add_option( 'wp_user_avatar_allow_upload',        '0' );
+		add_option( 'wp_user_avatar_disable_um_avatars',  '0' );
 		add_option( 'wp_user_avatar_force_file_uploader', '0' );
 		add_option( 'wp_user_avatar_disable_gravatar',    '0' );
 		add_option( 'wp_user_avatar_edit_avatar',         '1' );
@@ -117,7 +118,7 @@ class WP_User_Avatar_Admin {
 		}
 
 		wp_enqueue_style( 'wp-user-avatar', WPUA_CSS_URL . 'wp-user-avatar.css', '', WPUA_VERSION );
-		
+
 		wp_enqueue_script( 'wp-ajax-response' );
 		wp_enqueue_script( 'media' );
 	}
@@ -329,6 +330,7 @@ class WP_User_Avatar_Admin {
 		$settings[] = register_setting( 'wpua-settings-group', 'show_avatars',                       'intval' );
 		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_tinymce',             'intval' );
 		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_allow_upload',        'intval' );
+		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_disable_um_avatars',  'intval' );
 		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_force_file_uploader', 'intval' );
 		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_disable_gravatar',    'intval' );
 		$settings[] = register_setting( 'wpua-settings-group', 'wp_user_avatar_edit_avatar',         'intval' );
