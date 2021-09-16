@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.6
+ * @version    2.3.7
  */
 
 class WP_User_Avatar_Admin {
@@ -559,7 +559,7 @@ class WP_User_Avatar_Admin {
 		$is_wpua = isset( $post->ID ) ? get_post_custom_values( '_wp_attachment_wp_user_avatar', $post->ID ) : '';
 
 		if ( ! empty( $is_wpua ) ) {
-			$states[] = __( 'Profile Picture','one-user-avatar' );
+			$states[] = __( 'Profile Picture', 'one-user-avatar' );
 		}
 
 		if ( ! empty ( $wpua_avatar_default ) && isset( $post->ID ) && ( $wpua_avatar_default == $post->ID ) ) {

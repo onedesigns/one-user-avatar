@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.6
+ * @version    2.3.7
  */
 
 class WP_User_Avatar_Shortcode {
@@ -119,10 +119,10 @@ class WP_User_Avatar_Shortcode {
 			// CSS class is same as link type, except for URL
 			$link_class = $link;
 
-			if( 'file' == $link ) {
+			if ( 'file' == $link ) {
 				// Get image src
 				$link = get_wp_user_avatar_src( $id_or_email, 'original' );
-			} elseif($link == 'attachment') {
+			} elseif ( $link == 'attachment' ) {
 				// Get attachment URL
 				$link = get_attachment_link( get_the_author_meta( $wpdb->get_blog_prefix( $blog_id ) . 'user_avatar', $id_or_email ) );
 			} else {
@@ -131,12 +131,12 @@ class WP_User_Avatar_Shortcode {
 			}
 
 			// Open in new window
-			$target_link = ! empty( $target ) ? sprintf( ' target="%s"', $target ) : '';
+			$target_link = ! empty( $target ) ? sprintf( ' target="%s"', esc_attr( $target ) ) : '';
 
 			// Wrap the avatar inside the link
 			$html = sprintf(
 				'<a href="%s" class="wp-user-avatar-link wp-user-avatar-%s"%s>%s</a>',
-				esc_attr( $link ),
+				esc_url( $link ),
 				esc_attr( $link_class ),
 				$target_link,
 				get_wp_user_avatar( $id_or_email, $get_size, $align )
@@ -146,20 +146,20 @@ class WP_User_Avatar_Shortcode {
 		}
 
 		// Check if caption is set
-		if(!empty($content)) {
+		if ( ! empty( $content ) ) {
 			// Get attachment ID
 			$wpua    = get_user_meta( $id_or_email, $wpdb->get_blog_prefix( $blog_id ) . 'user_avatar', true );
 
 			// Clean up caption
-			$content = trim($content);
+			$content = trim( $content );
 			$content = preg_replace( '/\r|\n/', '', $content );
 			$content = preg_replace( '/<\/p><p>/', '', $content, 1 );
 			$content = preg_replace( '/<\/p><p>$/', '', $content );
 			$content = str_replace( '</p><p>', '<br /><br />', $content );
 
-			$avatar  = do_shortcode(image_add_caption($html, $wpua, $content, $title="", $align, $link, $get_size, $alt=""));
+			$avatar  = do_shortcode( image_add_caption( $html, $wpua, $content, $title = '', $align, $link, $get_size, $alt = ''));
 		} else {
-			$avatar = $html;
+			$avatar  = $html;
 		}
 
 		return $avatar;
@@ -230,7 +230,13 @@ class WP_User_Avatar_Shortcode {
 			// Show form only for valid user
 			if ( $valid_user ) {
 				// Save
-				if ( isset( $_POST['submit'] ) && $_POST['submit'] && 'update' == $_POST['wpua_action'] ) {
+				if (
+					( isset( $_POST['submit'] ) && $_POST['submit'] )
+					&&
+					( isset( $_POST['wpua_action'] ) && 'update' == $_POST['wpua_action'] )
+					&&
+					( isset( $_POST[ '_wpnonce'] ) && wp_verify_nonce( $_POST[ '_wpnonce'], 'update-user_' . $valid_user->ID ) )
+				) {
 					do_action( 'wpua_update', $valid_user->ID );
 
 					// Check for errors

@@ -378,6 +378,9 @@ This would output:
 
 ## Changelog
 
+### 2.3.7
+* Fix XSS vulnerability
+
 ### 2.3.6
 * Add option to replace custom avatar functionality in Ultimate Member plugin
 

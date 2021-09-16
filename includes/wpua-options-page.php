@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.6
+ * @version    2.3.7
  */
 
 /**
@@ -83,11 +83,11 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 	<table>
 		<tr valign="top">
 			<td align="top">
-				<form method="post" action="<?php echo admin_url('options.php'); ?>">
+				<form method="post" action="<?php echo admin_url( 'options.php' ); ?>">
 
-					<?php settings_fields('wpua-settings-group'); ?>
+					<?php settings_fields( 'wpua-settings-group' ); ?>
 
-					<?php do_settings_fields('wpua-settings-group', ""); ?>
+					<?php do_settings_fields( 'wpua-settings-group', '' ); ?>
 
 					<table class="form-table">
 						<?php
