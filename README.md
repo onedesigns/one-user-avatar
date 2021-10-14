@@ -378,6 +378,10 @@ This would output:
 
 ## Changelog
 
+### 2.3.8
+* Pass $args parameter from get_avatar to custom avatar filter
+* Replace png icon with svg icon in admin menu
+
 ### 2.3.7
 * Fix XSS vulnerability
 

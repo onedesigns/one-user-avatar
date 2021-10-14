@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.7
+ * @version    2.3.8
  */
 
 class WP_User_Avatar_Functions {
@@ -500,7 +500,7 @@ class WP_User_Avatar_Functions {
 	 * @uses get_option()
 	 * @return string $avatar
 	 */
-	public function wpua_get_avatar_filter( $avatar, $id_or_email = '', $size = '', $default = '', $alt = '') {
+	public function wpua_get_avatar_filter( $avatar, $id_or_email = '', $size = '', $default = '', $alt = '', $args = null ) {
 		global  $avatar_default,
 				$mustache_admin,
 				$mustache_avatar,
@@ -658,7 +658,7 @@ class WP_User_Avatar_Functions {
 		}
 
 		// Enable get_avatar filter
-		add_filter( 'get_avatar',     array( $this, 'wpua_get_avatar_filter' ), 10, 5 );
+		add_filter( 'get_avatar',     array( $this, 'wpua_get_avatar_filter' ), 10, 6 );
 		add_filter( 'get_avatar_url', array( $this, 'wpua_get_avatar_url' ),    10, 3 );
 
 		/**
@@ -766,6 +766,8 @@ class WP_User_Avatar_Functions {
 		// Add alignment class
 		$alignclass = ! empty( $align ) && ( 'left' == $align || 'right' == $align || 'center' == $align ) ? ' align' . $align : ' alignnone';
 
+		$class_string = ! empty( $class ) ? ' ' . $class : '';
+
 		// User has WPUA, check if on excluded list and bypass get_avatar
 		if ( ! empty( $wpua_meta ) && $wpua_functions->wpua_attachment_is_image( $wpua_meta ) ) {
 			// Numeric size use size array
@@ -781,16 +783,15 @@ class WP_User_Avatar_Functions {
 				esc_attr( $wpua_image[2] )
 			) : '';
 
-			$class_string = ! empty( $class ) ? ' ' . $class : '';
-
 			// Construct the img tag
 			$avatar = sprintf(
-				'<img src="%1$s"%2$s alt="%3$s" class="avatar avatar-%4$s wp-user-avatar wp-user-avatar-%4$s%5$s photo" />',
+				'<img src="%1$s"%2$s alt="%3$s" class="avatar avatar-%4$s wp-user-avatar wp-user-avatar-%4$s%5$s photo%6$s" />',
 				esc_url( $wpua_image[0] ),
 				$dimensions,
 				esc_attr( $alt ),
 				esc_attr( $size ),
-				esc_attr( $alignclass )
+				esc_attr( $alignclass ),
+				esc_attr( $class_string )
 			);
 		} else {
 			// Check for custom image sizes
@@ -827,7 +828,7 @@ class WP_User_Avatar_Functions {
 				'',
 				'',
 				'avatar-' . $size,
-				'wp-user-avatar wp-user-avatar-' . $size . $alignclass . ' photo'
+				'wp-user-avatar wp-user-avatar-' . esc_attr( $size ) . esc_attr( $alignclass ) . ' photo' . esc_attr( $class_string )
 			);
 			$avatar = str_replace( $replace, $replacements, $avatar );
 		}

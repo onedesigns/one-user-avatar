@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: One User Avatar 2.3.7\n"
+"Project-Id-Version: One User Avatar 2.3.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/one-user-avatar\n"
 "POT-Creation-Date: 2021-08-05T19:36:27+00:00\n"
 "PO-Revision-Date: 2021-08-05 21:42+0200\n"
