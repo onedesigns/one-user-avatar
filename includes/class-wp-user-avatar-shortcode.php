@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.8
+ * @version    2.3.9
  */
 
 class WP_User_Avatar_Shortcode {
@@ -130,15 +130,17 @@ class WP_User_Avatar_Shortcode {
 				$link_class = 'custom';
 			}
 
-			// Open in new window
-			$target_link = ! empty( $target ) ? sprintf( ' target="%s"', esc_attr( $target ) ) : '';
+			// Link target
+			if ( ! in_array( $target, array( '_blank', '_self', '_parent', '_top' ) ) ) {
+				$target = '';
+			}
 
 			// Wrap the avatar inside the link
 			$html = sprintf(
 				'<a href="%s" class="wp-user-avatar-link wp-user-avatar-%s"%s>%s</a>',
 				esc_url( $link ),
 				esc_attr( $link_class ),
-				$target_link,
+				( $target ? sprintf( ' target="%s"', esc_attr( $target ) ) : '' ),
 				get_wp_user_avatar( $id_or_email, $get_size, $align )
 			);
 		} else {
@@ -162,7 +164,7 @@ class WP_User_Avatar_Shortcode {
 			$avatar  = $html;
 		}
 
-		return $avatar;
+		return wp_kses_post( $avatar );
 	}
 
 	/**
@@ -227,6 +229,8 @@ class WP_User_Avatar_Shortcode {
 				$valid_user = current_user_can( 'edit_user', $get_user->ID ) ? $get_user : null;
 			}
 
+			$output = '';
+
 			// Show form only for valid user
 			if ( $valid_user ) {
 				// Save
@@ -237,6 +241,8 @@ class WP_User_Avatar_Shortcode {
 					&&
 					( isset( $_POST[ '_wpnonce'] ) && wp_verify_nonce( $_POST[ '_wpnonce'], 'update-user_' . $valid_user->ID ) )
 				) {
+					ob_start();
+
 					do_action( 'wpua_update', $valid_user->ID );
 
 					// Check for errors
@@ -248,10 +254,30 @@ class WP_User_Avatar_Shortcode {
 					} else {
 						printf( '<div class="success"><p><strong>%s</strong></p></div>', __( 'Profile updated.', 'one-user-avatar' ) );
 					}
+
+					$output .= ob_get_clean();
 				}
 
 				// Edit form
-				return $this->wpua_edit_form( $valid_user );
+				$output .= $this->wpua_edit_form( $valid_user );
+
+				return wp_kses( $output, array_merge( wp_kses_allowed_html( 'post' ), array(
+					'form'  => array(
+						'id'      => true,
+						'class'   => true,
+						'action'  => true,
+						'class'   => true,
+						'method'  => true,
+						'enctype' => true,
+					),
+					'input' => array(
+						'type'    => true,
+						'name'    => true,
+						'id'      => true,
+						'class'   => true,
+						'value'   => true,
+					),
+				) ) );
 			}
 		}
 	}

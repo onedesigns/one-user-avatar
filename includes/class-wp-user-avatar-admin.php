@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.8
+ * @version    2.3.9
  */
 
 class WP_User_Avatar_Admin {
@@ -170,11 +170,11 @@ class WP_User_Avatar_Admin {
 
 					foreach ( $post_ids as $post_id_del ) {
 						if ( ! current_user_can( 'delete_post', $post_id_del ) ) {
-							wp_die( __('You are not allowed to delete this post.', 'one-user-avatar' ) );
+							wp_die( esc_html__( 'You are not allowed to delete this post.', 'one-user-avatar' ) );
 						}
 
 						if ( ! wp_delete_attachment( $post_id_del ) ) {
-							wp_die( __( 'Error in deleting.','one-user-avatar' ) );
+							wp_die( esc_html__( 'Error in deleting.','one-user-avatar' ) );
 						}
 					}
 
@@ -241,7 +241,7 @@ class WP_User_Avatar_Admin {
 		add_submenu_page(
             'one-user-avatar',
             __( 'Settings', 'one-user-avatar' ),
-            __( 'Settings' , 'one-user-avatar' ),
+            __( 'Settings', 'one-user-avatar' ),
             'manage_options',
             'one-user-avatar',
             array( $this, 'wpua_options_page' )
@@ -249,7 +249,7 @@ class WP_User_Avatar_Admin {
 
 		$hook = add_submenu_page(
             'one-user-avatar',
-            __( 'Library','one-user-avatar' ),
+            __( 'Library', 'one-user-avatar' ),
             __( 'Library', 'one-user-avatar' ),
             'manage_options',
             'wp-user-avatar-library',
@@ -432,8 +432,8 @@ class WP_User_Avatar_Admin {
 
 		$wpua_list .= preg_replace( "/src='(.+?)'/", "src='\$1'", $avatar_thumb_img );
 		$wpua_list .= ' ' . __( 'One User Avatar', 'one-user-avatar' ) . '</label>';
-		$wpua_list .= '<p id="wpua-edit"><button type="button" class="button" id="wpua-add" name="wpua-add" data-avatar_default="true" data-title="' . __('Choose Image') . ': ' . __('Default Avatar') . '">' . __( 'Choose Image','one-user-avatar' ) . '</button>';
-		$wpua_list .= '<span id="wpua-remove-button"' . $hide_remove . '><a href="#" id="wpua-remove">' . __('Remove','one-user-avatar') . '</a></span><span id="wpua-undo-button"><a href="#" id="wpua-undo">' . __('Undo','one-user-avatar') . '</a></span></p>';
+		$wpua_list .= '<p id="wpua-edit"><button type="button" class="button" id="wpua-add" name="wpua-add" data-avatar_default="true" data-title="' . __( 'Choose Image', 'one-user-avatar' ) . ': ' . __( 'Default Avatar', 'one-user-avatar' ) . '">' . __( 'Choose Image', 'one-user-avatar' ) . '</button>';
+		$wpua_list .= '<span id="wpua-remove-button"' . $hide_remove . '><a href="#" id="wpua-remove">' . __( 'Remove', 'one-user-avatar' ) . '</a></span><span id="wpua-undo-button"><a href="#" id="wpua-undo">' . __( 'Undo', 'one-user-avatar' ) . '</a></span></p>';
 		$wpua_list .= '<input type="hidden" id="wp-user-avatar" name="avatar_default_wp_user_avatar" value="' . $wpua_avatar_default . '">';
 		$wpua_list .= '<div id="wpua-modal"></div>';
 

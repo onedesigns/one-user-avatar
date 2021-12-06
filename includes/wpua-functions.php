@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.8
+ * @version    2.3.9
  */
 
 /**
@@ -90,7 +90,7 @@ function wpua_after_avatar() {
  * @uses wpuf_has_shortcode()
  */
 function wpua_do_before_avatar() {
-	$wpua_profile_title = sprintf( '<h3>%s</h3>', __( 'Profile Picture', 'one-user-avatar' ) );
+	$wpua_profile_title = __( 'Profile Picture', 'one-user-avatar' );
 
 	/**
 	 * Filter profile title
@@ -103,26 +103,28 @@ function wpua_do_before_avatar() {
 	<?php if ( class_exists( 'bbPress' ) && bbp_is_edit() ) :
 		// Add to bbPress profile with same style
 		?>
-		<h2 class="entry-title"><?php _e( 'Profile Picture', 'one-user-avatar' ); ?></h2>
+		<h2 class="entry-title"><?php esc_html_e( 'Profile Picture', 'one-user-avatar' ); ?></h2>
 
 		<fieldset class="bbp-form">
-			<legend><?php _e( 'Image', 'one-user-avatar' ); ?></legend>
+			<legend><?php esc_html_e( 'Image', 'one-user-avatar' ); ?></legend>
 	<?php elseif( class_exists( 'WPUF_Main' ) && wpuf_has_shortcode( 'wpuf_editprofile' ) ) :
 		// Add to WP User Frontend profile with same style
 		?>
 		<fieldset>
-			<legend><?php _e( 'Profile Picture', 'one-user-avatar' ); ?></legend>
+			<legend><?php esc_html_e( 'Profile Picture', 'one-user-avatar' ); ?></legend>
 
 			<table class="wpuf-table">
 				<tr>
-					<th><label for="wp_user_avatar"><?php _e( 'Image', 'one-user-avatar' ); ?></label></th>
+					<th><label for="wp_user_avatar"><?php esc_html_e( 'Image', 'one-user-avatar' ); ?></label></th>
 
 					<td>
 	<?php else :
 		// Add to profile without table
 		?>
 		<div class="wpua-edit-container">
-			<?php echo $wpua_profile_title; ?>
+			<?php if ( ! empty( $wpua_profile_title ) ) : ?>
+				<h3><?php echo esc_html( $wpua_profile_title ); ?></h3>
+			<?php endif; ?>
 	<?php endif; ?>
 
 	<?php
@@ -183,7 +185,7 @@ function wpua_do_before_avatar_admin() {
 	?>
 	<table class="form-table">
 		<tr>
-			<th><label for="wp_user_avatar"><?php _e( 'Profile Picture', 'one-user-avatar' ); ?></label></th>
+			<th><label for="wp_user_avatar"><?php esc_html_e( 'Profile Picture', 'one-user-avatar' ); ?></label></th>
 
 			<td>
 	<?php

@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.8
+ * @version    2.3.9
  */
 
 /**
@@ -56,7 +56,7 @@ $wp_list_table->prepare_items();
 
 <div class="wrap">
 	<h2>
-		<?php _e('Avatars','one-user-avatar'); ?>
+		<?php esc_html_e('Avatars','one-user-avatar'); ?>
 
 		<?php if ( ! empty( $_REQUEST['s'] ) ) : ?>
 			<span class="subtitle">
@@ -89,12 +89,12 @@ $wp_list_table->prepare_items();
 	?>
 
 	<?php if ( ! empty( $message ) ) : ?>
-		<div id="message" class="updated"><p><?php echo $message; ?></p></div>
+		<div id="message" class="updated"><p><?php echo esc_html( $message ); ?></p></div>
 	<?php endif; ?>
 
 	<?php $wp_list_table->views(); ?>
 
-	<form id="posts-filter" action="" method="get">
+	<form class="wpua-media-form" id="posts-filter" action="" method="get">
 		<?php $wp_list_table->search_box( __('Search','one-user-avatar'), 'media' ); ?>
 
 		<?php $wp_list_table->display(); ?>

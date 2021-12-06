@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.8
+ * @version    2.3.9
  */
 
 class WP_User_Avatar_List_Table extends WP_List_Table {
@@ -110,7 +110,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 		?>
 
 		<p class="search-box">
-			<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo $text; ?>:</label>
+			<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_html( $text ); ?>:</label>
 
 			<input type="hidden" id="page" name="page" value="wp-user-avatar-library" />
 
@@ -189,7 +189,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 	public function get_bulk_actions() {
 		$actions = array();
 
-		$actions['delete'] = __( 'Delete Permanently','one-user-avatar' );
+		$actions['delete'] = esc_html__( 'Delete Permanently','one-user-avatar' );
 
 		return $actions;
 	}
@@ -232,10 +232,10 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 
 		$columns['cb']     = '<input type="checkbox" />';
 		$columns['icon']   = '';
-		$columns['title']  = _x( 'File', 'column name', 'one-user-avatar' );
-		$columns['author'] = __( 'Author','one-user-avatar', 'one-user-avatar' );
-		$columns['parent'] = _x( 'Uploaded to', 'column name', 'one-user-avatar' );
-		$columns['date']   = _x( 'Date', 'column name', 'one-user-avatar' );
+		$columns['title']  = esc_html_x( 'File', 'column name', 'one-user-avatar' );
+		$columns['author'] = esc_html__( 'Author','one-user-avatar', 'one-user-avatar' );
+		$columns['parent'] = esc_html_x( 'Uploaded to', 'column name', 'one-user-avatar' );
+		$columns['date']   = esc_html_x( 'Date', 'column name', 'one-user-avatar' );
 
 		return $columns;
 	}
@@ -302,14 +302,13 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 				list( $columns, $hidden ) = $this->get_column_info();
 
 				foreach ( $columns as $column_name => $column_display_name ) {
-					$class = sprintf( 'class="%1$s column-%1$s"', esc_attr( $column_name ) );
-					$style = '';
+					$class = sprintf( '%1$s column-%1$s', esc_attr( $column_name ) );
 
 					if ( in_array( $column_name, $hidden ) ) {
-						$style = ' style="display:none;"';
+						$class .= ' hidden';
 					}
 
-					$attributes = $class . $style;
+					$class = sanitize_html_class( $class );
 
 					switch ( $column_name ) {
 						case 'cb':
@@ -320,7 +319,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 									<label class="screen-reader-text" for="cb-select-<?php the_ID(); ?>">
 										<?php
 										/* translators: post title */
-										printf( __( 'Select %s','one-user-avatar' ), $att_title );
+										echo esc_html( sprintf( __( 'Select %s','one-user-avatar' ), $att_title ) );
 										?>
 									</label>
 
@@ -332,18 +331,17 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 							break;
 
 						case 'icon':
-							$attributes = 'class="column-icon media-icon"' . $style;
 							?>
 
-							<td <?php echo $attributes ?>>
+							<td class="media-icon <?php echo esc_attr( $class ); ?>">
 								<?php
 								if ( $thumb = $wpua_functions->wpua_get_attachment_image( $post->ID, array( 80, 60 ), true ) ) {
 									if ( $this->is_trash || ! $user_can_edit ) {
-										echo $thumb;
+										echo wp_kses_post( $thumb );
 									} else {
 										?>
-										<a href="<?php echo get_edit_post_link( $post->ID, true ); ?>" title="<?php echo esc_attr( sprintf( __( 'Edit %s' ), sprintf( '&#8220;%s&#8221;', $att_title ) ) ); ?>">
-											<?php echo $thumb; ?>
+										<a href="<?php echo esc_url( get_edit_post_link( $post->ID, true ) ); ?>" title="<?php echo esc_attr( sprintf( __( 'Edit %s' ), sprintf( '&#8220;%s&#8221;', $att_title ) ) ); ?>">
+											<?php echo wp_kses_post( $thumb ); ?>
 										</a>
 										<?php
 									}
@@ -357,18 +355,18 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 						case 'title':
 							?>
 
-							<td <?php echo $attributes ?>>
+							<td class="<?php echo esc_attr( $class ); ?>">
 								<strong>
 									<?php
 									if ( $this->is_trash || ! $user_can_edit ) {
-										echo $att_title;
+										echo esc_html( $att_title );
 									} else {
 										?>
 										<a
-											href="<?php echo get_edit_post_link( $post->ID, true ); ?>"
+											href="<?php echo esc_url( get_edit_post_link( $post->ID, true ) ); ?>"
 											title="<?php echo esc_attr( sprintf( __( 'Edit %s' ), sprintf( '&#8220;%s&#8221;', $att_title ) ) ); ?>"
 										>
-											<?php echo $att_title; ?>
+											<?php echo esc_html( $att_title ); ?>
 										</a>
 										<?php
 									}
@@ -382,7 +380,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 									if ( preg_match( '/^.*?\.(\w+)$/', get_attached_file( $post->ID ), $matches ) ) {
 										echo esc_html( strtoupper( $matches[1] ) );
 									} else {
-										echo strtoupper( str_replace('image/', '', get_post_mime_type() ) );
+										echo esc_html( strtoupper( str_replace('image/', '', get_post_mime_type() ) ) );
 									}
 									?>
 								</p>
@@ -396,7 +394,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 						case 'author':
 							?>
 
-							<td <?php echo $attributes ?>>
+							<td class="<?php echo esc_attr( $class ); ?>">
 								<?php
 								printf(
 									'<a href="%s">%s</a>',
@@ -435,7 +433,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 							}
 							?>
 
-							<td <?php echo $attributes ?>><?php echo $h_time ?></td>
+							<td class="<?php echo esc_attr( $class ); ?>"><?php echo esc_html( $h_time); ?></td>
 
 							<?php
 							break;
@@ -461,7 +459,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 							$user_array = array();
 							?>
 
-							<td <?php echo $attributes ?>>
+							<td class="<?php echo esc_attr( $class ); ?>">
 								<strong>
 									<?php
 									if ( ! empty( $wpuas ) ) {
@@ -469,7 +467,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 											$user         = get_userdata( $usermeta->user_id );
 											$user_array[] = sprintf(
 												'<a href="%s">%s</a>',
-												get_edit_user_link( $user->ID ),
+												esc_url( get_edit_user_link( $user->ID ) ),
 												$user->user_login
 											);
 										}
@@ -478,13 +476,13 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 											$user         = get_userdata($usermeta->ID);
 											$user_array[] = sprintf(
 												'<a href="%s">%s</a>',
-												get_edit_user_link($user->ID),
+												esc_url( get_edit_user_link($user->ID) ),
 												$user->user_login
 											);
 										}
 									}
 
-									echo implode( ', ', array_filter( $user_array ) );
+									echo wp_kses_post( implode( ', ', array_filter( $user_array ) ) );
 									?>
 								</strong>
 							</td>
@@ -519,7 +517,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 		if ( current_user_can( 'edit_post', $post->ID ) && ! $this->is_trash ) {
 			$actions['edit'] = sprintf(
 				'<a href="%s">%s</a>',
-				get_edit_post_link( $post->ID, true ),
+				esc_url( get_edit_post_link( $post->ID, true ) ),
 				__( 'Edit', 'one-user-avatar' )
 			);
 		}
@@ -540,11 +538,8 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 			}
 
 			if ( $this->is_trash || ! EMPTY_TRASH_DAYS || ! MEDIA_TRASH ) {
-				$delete_ays = ( ! $this->is_trash && ! MEDIA_TRASH ) ? ' onclick="return showNotice.warn();"' : '';
-
 				$actions['delete'] = sprintf(
-					'<a class="submitdelete"%s href="%s">%s</a>',
-					$delete_ays,
+					'<a class="submitdelete" href="%s">%s</a>',
 					wp_nonce_url( sprintf( 'post.php?action=delete&amp;post=%s', $post->ID ), 'delete-post_'.$post->ID ),
 					__( 'Delete Permanently', 'one-user-avatar' )
 				);

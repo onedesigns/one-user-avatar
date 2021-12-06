@@ -1,4 +1,4 @@
-/*! One User Avatar - 2.3.8
+/*! One User Avatar - 2.3.9
  * Copyright One Designs
  * Copyright ProfilePress
  * Copyright Flippercode
@@ -36,5 +36,13 @@ jQuery(function($) {
 		$('#wpua-readable-size').html( Math.floor( wpuaUploadSizeLimit / 1024 ) + 'KB' );
 		$('#wpua-readable-size-error').toggle( wpuaUploadSizeLimit > parseInt( wpua_admin.max_upload_size ) );
 		$('#wpua-readable-size').toggleClass( 'wpua-error', wpuaUploadSizeLimit > parseInt( wpua_admin.max_upload_size ) );
+	});
+
+	// Confirm deleting avatar
+	$('.wpua-media-form .submitdelete').on('click', function() {
+		console.log(typeof showNotice);
+		if ( typeof showNotice == 'object' && typeof showNotice.warn == 'function' ) {
+			return showNotice.warn();
+		}
 	});
 });

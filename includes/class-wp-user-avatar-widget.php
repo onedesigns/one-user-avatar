@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.8
+ * @version    2.3.9
  */
 
 class WP_User_Avatar_Profile_Widget extends WP_Widget {
@@ -61,12 +61,12 @@ class WP_User_Avatar_Profile_Widget extends WP_Widget {
 			echo $before_widget;
 
 			if ( ! empty( $title ) ) {
-				echo $before_title . $title . $after_title;
+				echo $before_title . esc_html( $title ) . $after_title;
 			}
 
 			if ( ! empty( $text ) ) {
 				echo '<div class="textwidget">';
-				echo ! empty( $instance['filter'] ) ? wpautop($text) : $text;
+				echo wp_kses_post( ! empty( $instance['filter'] ) ? wpautop( $text ) : $text );
 				echo '</div>';
 			}
 
@@ -96,13 +96,13 @@ class WP_User_Avatar_Profile_Widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
-				<?php _e( 'Title:', 'one-user-avatar' ); ?>
+				<?php esc_html_e( 'Title:', 'one-user-avatar' ); ?>
 			</label>
 
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name('title') ); ?>" type="text" value="<?php echo esc_attr( wp_kses( $instance['title'], 'data' ) ); ?>" />
 		</p>
 
-		<label for="<?php echo esc_attr( $this->get_field_id( 'filter' ) ); ?>"><?php _e( 'Description:', 'one-user-avatar' ); ?></label>
+		<label for="<?php echo esc_attr( $this->get_field_id( 'filter' ) ); ?>"><?php esc_html_e( 'Description:', 'one-user-avatar' ); ?></label>
 
 		<textarea class="widefat" rows="3" cols="20" id="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'text' ) ); ?>"><?php echo esc_textarea( $instance['text'] ); ?></textarea>
 
@@ -110,7 +110,7 @@ class WP_User_Avatar_Profile_Widget extends WP_Widget {
 			<input id="<?php echo esc_attr( $this->get_field_id( 'filter' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'filter' ) ); ?>" type="checkbox" <?php checked( isset( $instance['filter'] ) ? $instance['filter'] : 0 ); ?> />
 
 			<label for="<?php echo esc_attr( $this->get_field_id( 'filter' ) ); ?>">
-				<?php _e( 'Automatically add paragraphs', 'one-user-avatar' ); ?>
+				<?php esc_html_e( 'Automatically add paragraphs', 'one-user-avatar' ); ?>
 			</label>
 		</p>
 		<?php

@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.8
+ * @version    2.3.9
  */
 
 /**
@@ -64,9 +64,6 @@ if ( isset( $_GET['settings-updated'] ) && 'true' == $_GET['settings-updated'] )
 	$updated = true;
 }
 
-$hide_size   = true !== (bool) $wpua_allow_upload  ? ' style="display:none;"' : '';
-$hide_resize = true !== (bool) $wpua_resize_upload ? ' style="display:none;"' : '';
-
 $wpua_options_page_title = __( 'One User Avatar', 'one-user-avatar' );
 
 /**
@@ -78,12 +75,12 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 ?>
 
 <div class="wrap">
-	<h2><?php echo $wpua_options_page_title; ?></h2>
+	<h2><?php echo esc_html( $wpua_options_page_title ); ?></h2>
 
 	<table>
 		<tr valign="top">
 			<td align="top">
-				<form method="post" action="<?php echo admin_url( 'options.php' ); ?>">
+				<form method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>">
 
 					<?php settings_fields( 'wpua-settings-group' ); ?>
 
@@ -101,11 +98,11 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 							 */
 							$wpua_before_settings = apply_filters( 'wpua_before_settings', $wpua_before_settings );
 
-							echo implode( '', $wpua_before_settings );
+							echo wp_kses_post( implode( '', $wpua_before_settings ) );
 						?>
 
 						<tr valign="top">
-							<th scope="row"><?php _e( 'Settings', 'one-user-avatar' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Settings', 'one-user-avatar' ); ?></th>
 
 							<td>
 								<?php
@@ -191,13 +188,13 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 						ob_start();
 					?>
 
-					<div id="wpua-contributors-subscribers"<?php echo $hide_size; ?>>
+					<div id="wpua-contributors-subscribers"<?php if ( true !== (bool) $wpua_allow_upload ) : ?> style="display: none;"<?php endif; ?>>
 						<table class="form-table">
 							<tr valign="top">
 								<th scope="row">
 									<label for="wp_user_avatar_upload_size_limit">'
-										<?php _e( 'Upload Size Limit', 'one-user-avatar' ); ?>
-										<?php _e( '(only for Contributors & Subscribers)', 'one-user-avatar' ); ?>
+										<?php esc_html_e( 'Upload Size Limit', 'one-user-avatar' ); ?>
+										<?php esc_html_e( '(only for Contributors & Subscribers)', 'one-user-avatar' ); ?>
 									</label>
 								</th>
 
@@ -205,14 +202,14 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 									<fieldset>
 										<legend class="screen-reader-text">
 											<span>
-												<?php _e( 'Upload Size Limit', 'one-user-avatar' ); ?>
-												<?php _e( '(only for Contributors & Subscribers)', 'one-user-avatar' ); ?>
+												<?php esc_html_e( 'Upload Size Limit', 'one-user-avatar' ); ?>
+												<?php esc_html_e( '(only for Contributors & Subscribers)', 'one-user-avatar' ); ?>
 											</span>
 										</legend>
 
 										<input name="wp_user_avatar_upload_size_limit" type="range" id="wp_user_avatar_upload_size_limit" value="<?php echo esc_attr( $wpua_upload_size_limit ); ?>" min="0" max="<?php echo esc_attr( wp_max_upload_size() ); ?>" class="regular-text" />
 
-										<span id="wpua-readable-size"><?php echo $wpua_upload_size_limit_with_units; ?></span>
+										<span id="wpua-readable-size"><?php echo esc_html( $wpua_upload_size_limit_with_units ); ?></span>
 
 										<span id="wpua-readable-size-error"><?php printf(
 											/* translators: file name */
@@ -235,7 +232,7 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 										<label for="wp_user_avatar_edit_avatar">
 											<input name="wp_user_avatar_edit_avatar" type="checkbox" id="wp_user_avatar_edit_avatar" value="1" <?php checked( $wpua_edit_avatar ); ?> />
 
-											<?php _e( 'Allow users to edit avatars', 'one-user-avatar' ); ?>
+											<?php esc_html_e( 'Allow users to edit avatars', 'one-user-avatar' ); ?>
 										</label>
 									</fieldset>
 
@@ -243,16 +240,16 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 										<label for="wp_user_avatar_resize_upload">
 											<input name="wp_user_avatar_resize_upload" type="checkbox" id="wp_user_avatar_resize_upload" value="1" <?php checked( $wpua_resize_upload ); ?> />
 
-											<?php _e( 'Resize avatars on upload', 'one-user-avatar' ); ?>
+											<?php esc_html_e( 'Resize avatars on upload', 'one-user-avatar' ); ?>
 										</label>
 									</fieldset>
 
-									<fieldset id="wpua-resize-sizes"'.$hide_resize.'>
-										<label for="wp_user_avatar_resize_w"><?php _e( 'Width', 'one-user-avatar' ); ?></label>
+									<fieldset id="wpua-resize-sizes"<?php if ( true !== (bool) $wpua_resize_upload ) : ?> style="display: none;"<?php endif; ?>>
+										<label for="wp_user_avatar_resize_w"><?php esc_html_e( 'Width', 'one-user-avatar' ); ?></label>
 
 										<input name="wp_user_avatar_resize_w" type="number" step="1" min="0" id="wp_user_avatar_resize_w" value="<?php echo esc_attr( get_option( 'wp_user_avatar_resize_w' ) ); ?>" class="small-text" />
 
-										<label for="wp_user_avatar_resize_h"><?php _e( 'Height', 'one-user-avatar' ); ?></label>
+										<label for="wp_user_avatar_resize_h"><?php esc_html_e( 'Height', 'one-user-avatar' ); ?></label>
 
 										<input name="wp_user_avatar_resize_h" type="number" step="1" min="0" id="wp_user_avatar_resize_h" value="<?php echo esc_attr( get_option( 'wp_user_avatar_resize_h' ) ); ?>" class="small-text" />
 
@@ -260,7 +257,7 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 
 										<input name="wp_user_avatar_resize_crop" type="checkbox" id="wp_user_avatar_resize_crop" value="1" <?php checked( '1', $wpua_resize_crop ); ?> />
 
-										<label for="wp_user_avatar_resize_crop"><?php _e( 'Crop avatars to exact dimensions', 'one-user-avatar' ); ?></label>
+										<label for="wp_user_avatar_resize_crop"><?php esc_html_e( 'Crop avatars to exact dimensions', 'one-user-avatar' ); ?></label>
 									</fieldset>
 								</td>
 							</tr>
@@ -282,33 +279,33 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 
 					<table class="form-table">
 						<tr valign="top">
-							<th scope="row"><?php _e( 'Avatar Display', 'one-user-avatar' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Avatar Display', 'one-user-avatar' ); ?></th>
 
 							<td>
 								<fieldset>
 									<legend class="screen-reader-text">
 										<span>
-											<?php _e( 'Avatar Display', 'one-user-avatar' ); ?>
+											<?php esc_html_e( 'Avatar Display', 'one-user-avatar' ); ?>
 										</span>
 									</legend>
 
 									<label for="show_avatars">
 										<input type="checkbox" id="show_avatars" name="show_avatars" value="1" <?php checked( $show_avatars ); ?> />
 
-										<?php _e( 'Show Avatars', 'one-user-avatar' ); ?>
+										<?php esc_html_e( 'Show Avatars', 'one-user-avatar' ); ?>
 									</label>
 								</fieldset>
 							</td>
 						</tr>
 
-						<tr valign="top" id="avatar-rating"<?php echo ( 1 === (bool) $wpua_disable_gravatar ) ? ' style="display:none"' : '' ?>>
-							<th scope="row"><?php _e( 'Maximum Rating', 'one-user-avatar' ); ?></th>
+						<tr valign="top" id="avatar-rating"<?php if ( true === (bool) $wpua_disable_gravatar ) : ?> style="display: none;"<?php endif; ?>>
+							<th scope="row"><?php esc_html_e( 'Maximum Rating', 'one-user-avatar' ); ?></th>
 
 							<td>
 								<fieldset>
 									<legend class="screen-reader-text">
 										<span>
-											<?php _e( 'Maximum Rating', 'one-user-avatar' ); ?>
+											<?php esc_html_e( 'Maximum Rating', 'one-user-avatar' ); ?>
 										</span>
 									</legend>
 
@@ -324,7 +321,7 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 											?>
 											<label>
 												<input type="radio" name="avatar_rating" value="<?php echo esc_attr( $key ); ?>" <?php checked( $key, get_option( 'avatar_rating' ) ); ?> />
-												<?php echo $rating; ?>
+												<?php echo esc_html( $rating ); ?>
 											</label>
 
 											<br />
@@ -336,21 +333,29 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 						</tr>
 
 						<tr valign="top">
-							<th scope="row"><?php _e( 'Default Avatar', 'one-user-avatar' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Default Avatar', 'one-user-avatar' ); ?></th>
 
 							<td class="defaultavatarpicker">
 								<fieldset>
 									<legend class="screen-reader-text">
 										<span>
-											<?php _e( 'Default Avatar', 'one-user-avatar' ); ?>
+											<?php esc_html_e( 'Default Avatar', 'one-user-avatar' ); ?>
 										</span>
 									</legend>
 
-									<?php _e( 'For users without a custom avatar of their own, you can either display a generic logo or a generated one based on their e-mail address.', 'one-user-avatar' ); ?>
+									<?php esc_html_e( 'For users without a custom avatar of their own, you can either display a generic logo or a generated one based on their e-mail address.', 'one-user-avatar' ); ?>
 
 									<br />
 
-									<?php echo $wpua_admin->wpua_add_default_avatar(); ?>
+									<?php echo wp_kses( $wpua_admin->wpua_add_default_avatar(), array_merge( wp_kses_allowed_html( 'post' ), array(
+                    'input' => array(
+          						'type'    => true,
+          						'name'    => true,
+          						'id'      => true,
+          						'class'   => true,
+          						'value'   => true,
+          					),
+          				) ) ); ?>
 								</fieldset>
 							</td>
 						</tr>

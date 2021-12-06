@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.8
+ * @version    2.3.9
  */
 
 class WP_User_Avatar {
@@ -35,8 +35,8 @@ class WP_User_Avatar {
 		// Add WPUA to profile for users with permission
 		if ( $this->wpua_is_author_or_above() || ( 1 == (bool) $wpua_allow_upload && is_user_logged_in() ) ) {
 			// Profile functions and scripts
-			add_action('show_user_profile', array( $this, 'wpua_maybe_show_user_profile' ) );
-			add_action('edit_user_profile', array( $this, 'wpua_maybe_show_user_profile' ) );
+			add_action( 'show_user_profile', array( $this, 'wpua_maybe_show_user_profile' ) );
+			add_action( 'edit_user_profile', array( $this, 'wpua_maybe_show_user_profile' ) );
 
 			add_action( 'personal_options_update',  array( $this, 'wpua_action_process_option_update' ) );
 			add_action( 'edit_user_profile_update', array( $this, 'wpua_action_process_option_update' ) );
@@ -47,10 +47,10 @@ class WP_User_Avatar {
 			add_filter( 'user_profile_picture_description', array( $this, 'wpua_description_show_user_profile' ), PHP_INT_MAX, 2 );
 
 			// Admin scripts
-			$pages = array( 'profile.php', 'options-discussion.php', 'user-edit.php', 'user-new.php' );
+			$pages = array( 'profile.php', 'options-discussion.php', 'user-edit.php', 'user-new.php', 'admin.php' );
 
 			if ( in_array( $pagenow, $pages ) || $wpua_admin->wpua_is_menu_page() ) {
-				add_action('admin_enqueue_scripts', array( $this, 'wpua_media_upload_scripts' ) );
+				add_action( 'admin_enqueue_scripts', array( $this, 'wpua_media_upload_scripts' ) );
 			}
 
 			// Front pages
@@ -123,6 +123,7 @@ class WP_User_Avatar {
 		global  $current_user,
 				$mustache_admin,
 				$pagenow,
+				$plugin_page,
 				$post,
 				$show_avatars,
 				$wp_user_avatar,
@@ -150,11 +151,25 @@ class WP_User_Avatar {
 		}
 
 		// Admin scripts
-		if ( $pagenow == 'options-discussion.php' || $wpua_admin->wpua_is_menu_page() ) {
+		if ( 'options-discussion.php' == $pagenow || $wpua_admin->wpua_is_menu_page() ) {
 			wp_localize_script( 'wp-user-avatar', 'wpua_custom', array(
 				'avatar_thumb' => $mustache_admin,
 			) );
+		}
 
+		if (
+			'options-discussion.php' == $pagenow
+			||
+			$wpua_admin->wpua_is_menu_page()
+			||
+			(
+				'admin.php' == $pagenow
+				&&
+				isset( $plugin_page )
+				&&
+				'wp-user-avatar-library' == $plugin_page
+			)
+		) {
 			// Settings control
 			wp_enqueue_script( 'wp-user-avatar-admin', WPUA_JS_URL . 'wp-user-avatar-admin.js', array( 'wp-user-avatar' ), WPUA_VERSION, true );
 			wp_localize_script( 'wp-user-avatar-admin', 'wpua_admin', array(
@@ -207,26 +222,26 @@ class WP_User_Avatar {
 		), admin_url( 'post.php' ) ) );
 		?>
 
-		<input type="hidden" name="wp-user-avatar" id="<?php echo ( 'add-new-user' == $user ) ? 'wp-user-avatar' : 'wp-user-avatar-existing' ?>" value="<?php echo $wpua; ?>" />
+		<input type="hidden" name="wp-user-avatar" id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wp-user-avatar' : 'wp-user-avatar-existing' ) ?>" value="<?php echo esc_attr( $wpua ); ?>" />
 
 		<?php
 		if ( $wp_user_avatar->wpua_is_author_or_above() && ! $wpua_force_file_uploader ) :
 			// Button to launch Media Uploader
 			?>
 
-			<p id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-add-button' : 'wpua-add-button-existing' ?>">
+			<p id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-add-button' : 'wpua-add-button-existing' ); ?>">
 				<button
 					type="button"
 					class="button"
-					id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-add' : 'wpua-add-existing' ?>"
-					name="<?php echo ( 'add-new-user' == $user ) ? 'wpua-add' : 'wpua-add-existing' ?>"
+					id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-add' : 'wpua-add-existing' ); ?>"
+					name="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-add' : 'wpua-add-existing' ); ?>"
 					data-title="<?php printf(
 						/* translators: user display name */
 						__( 'Choose Image: %s', 'one-user-avatar' ),
 						( ! empty( $user->display_name ) ? esc_attr( $user->display_name ) : '' )
 					); ?>"
 				>
-					<?php _e( 'Choose Image', 'one-user-avatar' ); ?>
+					<?php esc_html_e( 'Choose Image', 'one-user-avatar' ); ?>
 				</button>
 			</p>
 
@@ -235,26 +250,26 @@ class WP_User_Avatar {
 			// Upload button
 			?>
 
-			<p id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-upload-button' : 'wpua-upload-button-existing'; ?>">
-				<input name="wpua-file" id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-file' : 'wpua-file-existing'; ?>" type="file" />
+			<p id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-upload-button' : 'wpua-upload-button-existing' ); ?>">
+				<input name="wpua-file" id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-file' : 'wpua-file-existing' ); ?>" type="file" />
 
-				<button type="submit" class="button" id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-upload' : 'wpua-upload-existing'; ?>" name="submit" value="<?php _e( 'Upload', 'one-user-avatar' ); ?>">
-					<?php _e( 'Upload', 'one-user-avatar' ); ?>
+				<button type="submit" class="button" id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-upload' : 'wpua-upload-existing' ); ?>" name="submit" value="<?php esc_html_e( 'Upload', 'one-user-avatar' ); ?>">
+					<?php esc_html_e( 'Upload', 'one-user-avatar' ); ?>
 				</button>
 			</p>
 
-			<p id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-upload-messages' : 'wpua-upload-messages-existing'; ?>">
-				<span id="<?php echo ($user == 'add-new-user') ? 'wpua-max-upload' : 'wpua-max-upload-existing'; ?>" class="description">
+			<p id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-upload-messages' : 'wpua-upload-messages-existing' ); ?>">
+				<span id="<?php echo esc_attr( ( $user == 'add-new-user') ? 'wpua-max-upload' : 'wpua-max-upload-existing' ); ?>" class="description">
 					<?php
 					printf(
 						/* translators: file size in KB */
 						__( 'Maximum upload file size: %s.', 'one-user-avatar' ),
-						esc_html($wpua_upload_size_limit_with_units) . esc_html('KB')
+						esc_html( $wpua_upload_size_limit_with_units . 'KB' )
 					);
 					?>
 				</span>
 
-				<span id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-allowed-files' : 'wpua-allowed-files-existing'; ?>" class="description">
+				<span id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-allowed-files' : 'wpua-allowed-files-existing' ); ?>" class="description">
 					<?php
 					printf(
 						/* translators: allowed file extensions */
@@ -269,25 +284,25 @@ class WP_User_Avatar {
 		endif;
 		?>
 
-		<div id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-images' : 'wpua-images-existing'; ?>" class="<?php echo $hide_images; ?>">
-			<p id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-preview' : 'wpua-preview-existing'; ?>">
+		<div id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-images' : 'wpua-images-existing' ); ?>" class="<?php echo esc_attr( $hide_images ); ?>">
+			<p id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-preview' : 'wpua-preview-existing' ); ?>">
 				<img src="<?php echo esc_url( $avatar_medium ); ?>" alt="<?php echo esc_attr( __( 'Original Size', 'one-user-avatar' ) ); ?>" />
 
-				<span class="description"><?php _e( 'Original Size', 'one-user-avatar' ); ?></span>
+				<span class="description"><?php esc_html_e( 'Original Size', 'one-user-avatar' ); ?></span>
 			</p>
 
-			<p id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-thumbnail' : 'wpua-thumbnail-existing'; ?>">
+			<p id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-thumbnail' : 'wpua-thumbnail-existing' ); ?>">
 				<img src="<?php echo esc_url( $avatar_thumbnail ); ?>" alt="<?php echo esc_attr( __( 'Thumbnail', 'one-user-avatar' ) ); ?>"/>
 
-				<span class="description"><?php _e( 'Thumbnail', 'one-user-avatar' ); ?></span>
+				<span class="description"><?php esc_html_e( 'Thumbnail', 'one-user-avatar' ); ?></span>
 			</p>
 
-			<p id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-remove-button' : 'wpua-remove-button-existing' ?>" class="<?php echo $hide_remove; ?>">
-				<button type="button" class="button" id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-remove' : 'wpua-remove-existing' ?>" name="wpua-remove"><?php _e( 'Remove Image', 'one-user-avatar' ); ?></button>
+			<p id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-remove-button' : 'wpua-remove-button-existing' ); ?>" class="<?php echo esc_attr( $hide_remove ); ?>">
+				<button type="button" class="button" id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-remove' : 'wpua-remove-existing' ); ?>" name="wpua-remove"><?php esc_html_e( 'Remove Image', 'one-user-avatar' ); ?></button>
 			</p>
 
-			<p id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-undo-button' : 'wpua-undo-button-existing' ?>">
-				<button type="button" class="button" id="<?php echo ( 'add-new-user' == $user ) ? 'wpua-undo' : 'wpua-undo-existing' ?>" name="wpua-undo"><?php _e( 'Undo', 'one-user-avatar' ); ?></button>
+			<p id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-undo-button' : 'wpua-undo-button-existing' ); ?>">
+				<button type="button" class="button" id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-undo' : 'wpua-undo-existing' ); ?>" name="wpua-undo"><?php esc_html_e( 'Undo', 'one-user-avatar' ); ?></button>
 			</p>
 		</div>
 
@@ -343,7 +358,12 @@ class WP_User_Avatar {
 	public function wpua_description_show_user_profile( $description = '', $profileuser = null ) {
 		ob_start();
 
-		echo '<style>.user-profile-picture > td > .avatar { display: none; }</style>';
+		echo wp_specialchars_decode( wp_kses(
+			'<style>.user-profile-picture > td > .avatar { display: none; }</style>',
+			array(
+				'style' => array(),
+			)
+		) );
 
 		self::wpua_core_show_user_profile( $profileuser );
 

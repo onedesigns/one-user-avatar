@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.8
+ * @version    2.3.9
  */
 
 class WP_User_Avatar_Functions {
@@ -514,7 +514,7 @@ class WP_User_Avatar_Functions {
 
 		// User has WPUA
 		if ( '' == $alt ) {
-			 $alt = apply_filters( 'wpua_default_alt_tag', __( 'Avatar', 'one-user-avatar' ) );
+			 $alt = apply_filters( 'wpua_default_alt_tag', esc_html__( 'Avatar', 'one-user-avatar' ) );
 		}
 
 		$alt   = esc_attr($alt);
@@ -715,7 +715,7 @@ class WP_User_Avatar_Functions {
 
 		// Checks if comment
 		if ( '' == $alt ) {
-			 $alt = apply_filters( 'wpua_default_alt_tag', __( 'Avatar', 'one-user-avatar' ) );
+			 $alt = apply_filters( 'wpua_default_alt_tag', esc_html__( 'Avatar', 'one-user-avatar' ) );
 		}
 
 		if ( is_object( $id_or_email ) ) {
