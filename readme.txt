@@ -3,7 +3,7 @@
 Contributors: onedesigns, properfraction, collizo4sky
 Tags: user profile, avatar, gravatar, author image, author photo, author avatar, bbPress, profile avatar, profile image, user avatar, user image, user photo, widget
 Requires at least: 4.0
-Tested up to: 5.8
+Tested up to: 5.8.2
 Stable tag: 2.3.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
