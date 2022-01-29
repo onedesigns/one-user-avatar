@@ -290,7 +290,7 @@ class WP_User_Avatar_Shortcode {
 	 * @uses submit_button()
 	 * @uses wp_nonce_field()
 	 */
-	private function wpua_edit_form($user) {
+	private function wpua_edit_form( $user ) {
 		ob_start();
 		?>
 

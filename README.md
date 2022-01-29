@@ -378,6 +378,9 @@ This would output:
 
 ## Changelog
 
+### 2.3.9
+* Escape, sanintize & validate data
+
 ### 2.3.8
 * Pass $args parameter from get_avatar to custom avatar filter
 * Replace png icon with svg icon in admin menu
