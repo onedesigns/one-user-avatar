@@ -39,13 +39,21 @@ class WP_User_Avatar_Functions {
 
 
 
-	function wpua_get_avatar_url( $url, $id_or_email, $args ){
+	function wpua_get_avatar_url( $url, $id_or_email, $args ) {
 		global $wpua_disable_gravatar;
 
 		$user_id = null;
 
 		if ( is_object( $id_or_email ) ) {
-			 if ( ! empty( $id_or_email->comment_author_email ) ) {
+			if ( isset( $id_or_email->comment_ID ) ) {
+				$id_or_email = get_comment( $id_or_email );
+			}
+
+			if ( $id_or_email instanceof WP_User ) {
+				$user_id = $id_or_email->ID;
+			} elseif ( $id_or_email instanceof WP_Post ) {
+				$user_id = $id_or_email->post_author;
+			} elseif ( $id_or_email instanceof WP_Comment ) {
 				$user_id = $id_or_email->user_id;
 			}
 		} else {
@@ -73,6 +81,7 @@ class WP_User_Avatar_Functions {
 			}
 
 		}
+
 		/**
 		 * Filter get_avatar_url filter
 		 * @since 4.1.9
@@ -237,7 +246,7 @@ class WP_User_Avatar_Functions {
 
 				if (
 					array_key_exists( $hash, $wpua_hash_gravatar )          &&
-					is_array( $wpua_hash_gravatar[$hash] )                  &&
+					is_array( $wpua_hash_gravatar[ $hash ] )                  &&
 					array_key_exists( $date, $wpua_hash_gravatar[ $hash ] )
 				) {
 					return (bool) $wpua_hash_gravatar[ $hash ][ $date ];

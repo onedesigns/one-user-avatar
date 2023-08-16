@@ -136,13 +136,19 @@ class WP_User_Avatar {
 		// This is a profile page
 		$wpua_is_profile = 1;
 
-		$user = ( $pagenow == 'user-edit.php' && isset( $_GET['user_id'] ) ) ? get_user_by( 'id', absint( $_GET['user_id'] ) ) : $current_user;
+		$user = ( 'user-edit.php' == $pagenow && isset( $_GET['user_id'] ) ) ? get_user_by( 'id', absint( $_GET['user_id'] ) ) : $current_user;
 
 		wp_enqueue_style( 'wp-user-avatar', WPUA_CSS_URL . 'wp-user-avatar.css', '', WPUA_VERSION );
 
 		wp_enqueue_script( 'jquery' );
 
-		if ( ( $wp_user_avatar->wpua_is_author_or_above() && ! $wpua_force_file_uploader ) || 'options-discussion.php' == $pagenow ) {
+		if (
+			( $wp_user_avatar->wpua_is_author_or_above() && ! $wpua_force_file_uploader )
+			||
+			$wpua_admin->wpua_is_menu_page()
+			||
+			'options-discussion.php' == $pagenow
+		) {
 			wp_enqueue_script( 'admin-bar' );
 			wp_enqueue_media( array( 'post' => $post ) );
 			wp_enqueue_script( 'wp-user-avatar', WPUA_JS_URL . 'wp-user-avatar.js', array( 'jquery', 'media-editor' ), WPUA_VERSION, true );
@@ -264,7 +270,7 @@ class WP_User_Avatar {
 					printf(
 						/* translators: file size in KB */
 						__( 'Maximum upload file size: %s.', 'one-user-avatar' ),
-						esc_html( $wpua_upload_size_limit_with_units . 'KB' )
+						esc_html( $wpua_upload_size_limit_with_units )
 					);
 					?>
 				</span>

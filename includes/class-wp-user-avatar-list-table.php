@@ -231,7 +231,6 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 		$columns = array();
 
 		$columns['cb']     = '<input type="checkbox" />';
-		$columns['icon']   = '';
 		$columns['title']  = esc_html_x( 'File', 'column name', 'one-user-avatar' );
 		$columns['author'] = esc_html__( 'Author','one-user-avatar', 'one-user-avatar' );
 		$columns['parent'] = esc_html_x( 'Uploaded to', 'column name', 'one-user-avatar' );
@@ -280,8 +279,6 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 
 		add_filter( 'the_title','esc_html' );
 
-		$alt = '';
-
 		while ( have_posts() ) :
 			the_post();
 
@@ -291,13 +288,12 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 				continue;
 			}
 
-			$alt        = ( 'alternate' == $alt ) ? '' : 'alternate';
 			$post_owner = (get_current_user_id() == $post->post_author) ? 'self' : 'other';
-			$tr_class   = trim( $alt . ' author-' . $post_owner . ' status-' . $post->post_status );
+			$tr_class   = trim( ' author-' . $post_owner . ' status-' . $post->post_status );
 			$att_title  = _draft_or_post_title();
 			?>
 
-			<tr id="post-<?php echo esc_attr( $post->ID ); ?>" class="<?php echo esc_attr( $tr_class ); ?>" valign="top">
+			<tr id="post-<?php echo esc_attr( $post->ID ); ?>" class="<?php echo esc_attr( $tr_class ); ?>">
 				<?php
 				list( $columns, $hidden ) = $this->get_column_info();
 
@@ -308,7 +304,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 						$class .= ' hidden';
 					}
 
-					$class = sanitize_html_class( $class );
+					$class = join( ' ', array_map( 'sanitize_html_class', explode( ' ', $class ) ) );
 
 					switch ( $column_name ) {
 						case 'cb':
@@ -316,11 +312,13 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 
 							<th scope="row" class="check-column">
 								<?php if ( $user_can_edit ) : ?>
-									<label class="screen-reader-text" for="cb-select-<?php the_ID(); ?>">
-										<?php
-										/* translators: post title */
-										echo esc_html( sprintf( __( 'Select %s','one-user-avatar' ), $att_title ) );
-										?>
+									<label class="label-covers-full-cell" for="cb-select-<?php the_ID(); ?>">
+										<span class="screen-reader-text">
+											<?php
+											/* translators: post title */
+											echo esc_html( sprintf( __( 'Select %s','one-user-avatar' ), $att_title ) );
+											?>
+										</span>
 									</label>
 
 									<input type="checkbox" name="media[]" id="cb-select-<?php the_ID(); ?>" value="<?php the_ID(); ?>" />
@@ -335,7 +333,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 
 							<td class="media-icon <?php echo esc_attr( $class ); ?>">
 								<?php
-								if ( $thumb = $wpua_functions->wpua_get_attachment_image( $post->ID, array( 80, 60 ), true ) ) {
+								if ( $thumb = $wpua_functions->wpua_get_attachment_image( $post->ID, array( 60, 60 ), true ) ) {
 									if ( $this->is_trash || ! $user_can_edit ) {
 										echo wp_kses_post( $thumb );
 									} else {
@@ -353,10 +351,11 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 							break;
 
 						case 'title':
+							$thumb = $wpua_functions->wpua_get_attachment_image( $post->ID, array( 60, 60 ), true );
 							?>
 
-							<td class="<?php echo esc_attr( $class ); ?>">
-								<strong>
+							<td class="<?php echo esc_attr( $class ); ?> has-row-actions column-primary">
+								<strong<?php if ( $thumb ) : ?> class="has-media-icon"<?php endif; ?>>
 									<?php
 									if ( $this->is_trash || ! $user_can_edit ) {
 										echo esc_html( $att_title );
@@ -364,8 +363,14 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 										?>
 										<a
 											href="<?php echo esc_url( get_edit_post_link( $post->ID, true ) ); ?>"
-											title="<?php echo esc_attr( sprintf( __( 'Edit %s' ), sprintf( '&#8220;%s&#8221;', $att_title ) ) ); ?>"
+											aria-label="<?php echo esc_attr( sprintf( __( '&#8220;%s&#8221; (Edit)' ), $att_title ) ); ?>"
 										>
+											<?php if ( $thumb ) : ?>
+												<span class="media-icon image-icon">
+													<?php echo wp_kses_post( $thumb ); ?>
+												</span>
+											<?php endif; ?>
+
 											<?php echo esc_html( $att_title ); ?>
 										</a>
 										<?php

@@ -3,8 +3,8 @@
 Contributors: onedesigns, properfraction, collizo4sky
 Tags: user profile, avatar, gravatar, author image, author photo, author avatar, bbPress, profile avatar, profile image, user avatar, user image, user photo, widget
 Requires at least: 4.0
-Tested up to: 5.9
-Stable tag: 2.3.9
+Tested up to: 6.3
+Stable tag: 2.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,7 +27,7 @@ WordPress currently only allows you to use custom avatars that are uploaded thro
 == Copyright ==
 
 One User Avatar
-Copyright (c) 2021 One Designs https://onedesigns.com/
+Copyright (c) 2023 One Designs https://onedesigns.com/
 License: GPLv2
 Source: https://github.com/onedesigns/one-user-avatar
 
@@ -390,6 +390,14 @@ This would output:
 2. One User Avatar lets you upload your own Default Avatar.
 
 == Changelog ==
+
+= 2.4.0 =
+* Add compatibility for WordPress 6.3
+* Fix custom avatars not returning in REST API calls
+* Fix mobile view of avatar library
+* Fix unable to change the default avatar when the browser file uploader option is active
+* Fix default avatar radio not showing as checked on the settings page
+* Fix unit showing twice under maximum upload file size when using the browser uploader
 
 = 2.3.9 =
 * Escape, sanintize & validate data

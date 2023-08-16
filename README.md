@@ -19,7 +19,7 @@ WordPress currently only allows you to use custom avatars that are uploaded thro
 ## Copyright
 
 One User Avatar  
-Copyright (c) 2021 [One Designs](https://onedesigns.com/)  
+Copyright (c) 2023 [One Designs](https://onedesigns.com/)  
 License: GPLv2  
 Source: https://github.com/onedesigns/one-user-avatar
 
@@ -377,6 +377,14 @@ This would output:
     </div>
 
 ## Changelog
+
+### 2.4.0
+* Add compatibility for WordPress 6.3
+* Fix custom avatars not returning in REST API calls
+* Fix mobile view of avatar library
+* Fix unable to change the default avatar when the browser file uploader option is active
+* Fix default avatar radio not showing as checked on the settings page
+* Fix unit showing twice under maximum upload file size when using the browser uploader
 
 ### 2.3.9
 * Escape, sanintize & validate data

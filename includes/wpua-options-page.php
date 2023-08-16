@@ -348,14 +348,15 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 									<br />
 
 									<?php echo wp_kses( $wpua_admin->wpua_add_default_avatar(), array_merge( wp_kses_allowed_html( 'post' ), array(
-                    'input' => array(
-          						'type'    => true,
-          						'name'    => true,
-          						'id'      => true,
-          						'class'   => true,
-          						'value'   => true,
-          					),
-          				) ) ); ?>
+										'input' => array(
+											'type'    => true,
+											'name'    => true,
+											'id'      => true,
+											'class'   => true,
+											'value'   => true,
+											'checked' => true,
+										),
+									) ) ); ?>
 								</fieldset>
 							</td>
 						</tr>
