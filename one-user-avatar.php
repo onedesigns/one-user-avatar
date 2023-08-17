@@ -5,7 +5,7 @@ Plugin URI:   https://onedesigns.com/plugins/one-user-avatar/
 Description:  Use any image from your WordPress Media Library as a custom user avatar. Add your own Default Avatar. Fork of WP User Avatar v2.2.16.
 Author:       One Designs
 Author URI:   https://onedesigns.com/
-Version:      2.3.9
+Version:      2.4.0
 Text Domain:  one-user-avatar
 Domain Path:  /languages/
 
