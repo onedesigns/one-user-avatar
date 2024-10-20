@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.9
+ * @version    2.5.0
  */
 
 /**
@@ -72,6 +72,29 @@ $wpua_options_page_title = __( 'One User Avatar', 'one-user-avatar' );
  * @param string $wpua_options_page_title
  */
 $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_options_page_title );
+
+$allowed_html = wp_kses_allowed_html( 'post' );
+
+if ( ! isset( $allowed_html['img'] ) ) {
+	$allowed_html['img'] = array();
+}
+
+$allowed_html['img'] = array_merge( $allowed_html['img'], array(
+	'srcset' => true,
+) );
+
+if ( ! isset( $allowed_html['input'] ) ) {
+	$allowed_html['input'] = array();
+}
+
+$allowed_html['input'] = array_merge( $allowed_html['input'], array(
+	'type'    => true,
+	'name'    => true,
+	'id'      => true,
+	'class'   => true,
+	'value'   => true,
+	'checked' => true,
+) );
 ?>
 
 <div class="wrap">
@@ -347,16 +370,11 @@ $wpua_options_page_title = apply_filters( 'wpua_options_page_title', $wpua_optio
 
 									<br />
 
-									<?php echo wp_kses( $wpua_admin->wpua_add_default_avatar(), array_merge( wp_kses_allowed_html( 'post' ), array(
-										'input' => array(
-											'type'    => true,
-											'name'    => true,
-											'id'      => true,
-											'class'   => true,
-											'value'   => true,
-											'checked' => true,
-										),
-									) ) ); ?>
+									<?php echo str_replace(
+										' data-srcset=',
+										' srcset=',
+										wp_kses( $wpua_admin->wpua_add_default_avatar(), $allowed_html )
+									); ?>
 								</fieldset>
 							</td>
 						</tr>

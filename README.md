@@ -378,6 +378,22 @@ This would output:
 
 ## Changelog
 
+### 2.5.0
+* Add compatibility for WordPress 6.6
+* Add support for retina avatars
+* Add trashed avatars view to library
+* Don't show confirmation dialog when moving avatar to the trash
+* Fix deprecated notices in avatars library
+* Fix avatar library counters
+* Fix undefined reference error in TinyMCE
+* Fix alert when uploading avatar using browser file uploader
+* Fix default avatars in admin when Gravatar is disabled
+* Fix PHP warnings in add user form
+* Fix activation and deactivation hooks
+* Fix unable to get user by slug or email in avatar shortcode
+* Fix unattached avatars showing for users with empty avatar meta
+* Fix avatar dimensions in BuddyPress
+
 ### 2.4.0
 * Add compatibility for WordPress 6.3
 * Fix custom avatars not returning in REST API calls

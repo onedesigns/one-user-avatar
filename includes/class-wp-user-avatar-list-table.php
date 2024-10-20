@@ -11,10 +11,35 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.9
+ * @version    2.5.0
  */
 
 class WP_User_Avatar_List_Table extends WP_List_Table {
+
+	/**
+	 * Holds the total number of avatars.
+	 *
+	 * @since 2.5.0
+	 * @var int
+	 */
+	private $total_count;
+
+	/**
+	 * Holds the number of trashed avatars.
+	 *
+	 * @since 2.5.0
+	 * @var int
+	 */
+	private $trash_count;
+
+	/**
+	 * Whether the current view is the trash.
+	 *
+	 * @since 2.5.0
+	 * @var bool
+	 */
+	private $is_trash;
+
 	/**
 	 * Constructor
 	 * @since 1.8
@@ -30,14 +55,22 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 	 * @uses wp_reset_query()
 	 */
 	public function __construct( $args = array() ) {
-		global $avatars, $post, $wpua_avatar_default;
+		global $avatars, $post, $wpdb, $wpua_avatar_default;
 
-		$paged = ( get_query_var('page') ) ? get_query_var(' page' ) : 1;
+		$post_type = get_post_type_object( 'attachment' );
+		$states    = 'inherit';
 
-		$q = array(
+		if ( current_user_can( $post_type->cap->read_private_posts ) ) {
+			$states .= ',private';
+		}
+
+		$status = ! empty( $_GET['status'] ) ? $_GET['status'] : $states;
+		$paged  = get_query_var( 'page' ) ? get_query_var( 'page' ) : 1;
+
+		$query = array(
 			'paged'          => $paged,
 			'post_type'      => 'attachment',
-			'post_status'    => 'inherit',
+			'post_status'    => $status,
 			'posts_per_page' => '-1',
 			'meta_query'     => array(
 				array(
@@ -48,7 +81,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 			),
 		);
 
-		$avatars_wp_query = new WP_Query( $q );
+		$avatars_wp_query = new WP_Query( $query );
 
 		$avatars = array();
 
@@ -60,8 +93,52 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 
 		wp_reset_query();
 
-		// Include default avatar
-		$avatars[] = $wpua_avatar_default;
+		if ( 'trash' != $status ) {
+			// Include default avatar
+			$avatars[] = $wpua_avatar_default;
+		}
+
+		$post_status = array( "'inherit'" );
+
+		if ( current_user_can( $post_type->cap->read_private_posts ) ) {
+			$post_status[] = "'private'";
+		}
+
+		$this->total_count = (int) $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT COUNT( 1 )
+				FROM $wpdb->posts
+				INNER JOIN $wpdb->postmeta
+				ON $wpdb->posts.id = $wpdb->postmeta.post_id
+				WHERE $wpdb->posts.post_type = '%s'
+				AND $wpdb->posts.post_status IN ( " . join( ', ', $post_status ) . " )
+				AND $wpdb->postmeta.meta_key = '%s'
+				AND $wpdb->postmeta.meta_value != ''",
+				'attachment',
+				'_wp_attachment_wp_user_avatar'
+			)
+		);
+
+		if ( ! empty( $wpua_avatar_default ) ) {
+			// Include default avatar
+			++$this->total_count;
+		}
+
+		$this->trash_count = (int) $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT COUNT( 1 )
+				FROM $wpdb->posts
+				INNER JOIN $wpdb->postmeta
+				ON $wpdb->posts.id = $wpdb->postmeta.post_id
+				WHERE $wpdb->posts.post_type = '%s'
+				AND $wpdb->posts.post_status = '%s'
+				AND $wpdb->postmeta.meta_key = '%s'
+				AND $wpdb->postmeta.meta_value != ''",
+				'attachment',
+				'trash',
+				'_wp_attachment_wp_user_avatar'
+			)
+		);
 
 		parent::__construct( array(
 			'plural' => 'media',
@@ -131,15 +208,27 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 	public function prepare_items() {
 		global $avail_post_mime_types, $avatars, $lost, $post, $post_mime_types, $wp_query, $wpdb;
 
-		$q = $_REQUEST;
-
-		if ( ! is_array( $q ) ) {
-			$q = array();
+		if ( empty( $avatars ) ) {
+			return;
 		}
 
-		$q['post__in'] = $avatars;
+		$post_type = get_post_type_object( 'attachment' );
+		$states    = 'inherit';
 
-		list( $post_mime_types, $avail_post_mime_types ) = wp_edit_attachments_query( $q );
+		if ( current_user_can( $post_type->cap->read_private_posts ) ) {
+			$states .= ',private';
+		}
+
+		$status = ! empty( $_GET['status'] ) ? $_GET['status'] : $states;
+		$paged  = get_query_var( 'page' ) ? get_query_var( 'page' ) : 1;
+
+		$query = array(
+			'page'              => $paged,
+			'post__in'          => $avatars,
+			'attachment-filter' => $status,
+		);
+
+		list( $post_mime_types, $avail_post_mime_types ) = wp_edit_attachments_query( $query );
 
 		$this->is_trash = isset( $_REQUEST['status'] ) && 'trash' == $_REQUEST['status'];
 
@@ -153,32 +242,41 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 	/**
 	 * Links to available table views
 	 * @since 1.8
-	 * @uses array $avatars
 	 * @uses add_query_arg()
 	 * @uses number_format_i18n()
 	 * @return array
 	 */
 	public function get_views() {
-		global $avatars;
+		$links = array();
 
-		$type_links   = array();
-		$_total_posts = count( array_filter( $avatars ) );
-		$class        = ( empty( $_GET['post_mime_type'] ) && ! isset( $_GET['status'] ) ) ? ' class="current"' : '';
-
-		$type_links['all']  = sprintf(
-			' <a href="%s">',
-			esc_url( add_query_arg( array(
-				'page' => 'wp-user-avatar-library',
-			), 'admin.php') )
+		$links['all']  = array(
+			'url'     => esc_url( add_query_arg( array(
+					'page' => 'wp-user-avatar-library',
+				), 'admin.php') ),
+			'label'   => sprintf(
+					/* translators: uploaded files */
+					_x( 'All %s', 'uploaded files', 'one-user-avatar' ),
+					sprintf( '<span class="count">(%s)</span>', number_format_i18n( $this->total_count ) )
+				),
+			'current' => empty( $_GET['post_mime_type'] ) && ! isset( $_GET['status'] ),
 		);
-		$type_links['all'] .= sprintf(
-			/* translators: uploaded files */
-			_x( 'All %s', 'uploaded files', 'one-user-avatar' ),
-			sprintf( '<span class="count">(%s)</span>', number_format_i18n( $_total_posts ) )
-		);
-		$type_links['all'] .= '</a>';
 
-		return $type_links;
+		if ( $this->trash_count && ( $this->is_trash || ( defined( 'MEDIA_TRASH' ) && MEDIA_TRASH ) ) ) {
+			$links['trash']  = array(
+				'url'     => esc_url( add_query_arg( array(
+						'page'   => 'wp-user-avatar-library',
+						'status' => 'trash',
+					), 'admin.php') ),
+				'label'   => sprintf(
+						/* translators: uploaded files */
+						_x( 'Trash %s', 'trashed files', 'one-user-avatar' ),
+						sprintf( '<span class="count">(%s)</span>', number_format_i18n( $this->trash_count ) )
+					),
+				'current' => $this->is_trash,
+			);
+		}
+
+		return $this->get_views_links( $links );
 	}
 
 	/**
@@ -189,7 +287,14 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 	public function get_bulk_actions() {
 		$actions = array();
 
-		$actions['delete'] = esc_html__( 'Delete Permanently','one-user-avatar' );
+		if ( $this->is_trash ) {
+			$actions['untrash'] = esc_html__( 'Restore', 'one-user-avatar' );
+			$actions['delete'] = esc_html__( 'Delete Permanently', 'one-user-avatar' );
+		} elseif ( ! EMPTY_TRASH_DAYS || ! MEDIA_TRASH ) {
+			$actions['delete'] = esc_html__( 'Delete Permanently', 'one-user-avatar' );
+		} else {
+			$actions['trash'] = esc_html__( 'Move to Trash', 'one-user-avatar' );
+		}
 
 		return $actions;
 	}
@@ -219,7 +324,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 	 * @since 1.8
 	 */
 	public function no_items() {
-		_e( 'No media attachments found.', 'one-user-avatar' );
+		_e( 'No avatars found.', 'one-user-avatar' );
 	}
 
 	/**
@@ -233,7 +338,7 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 		$columns['cb']     = '<input type="checkbox" />';
 		$columns['title']  = esc_html_x( 'File', 'column name', 'one-user-avatar' );
 		$columns['author'] = esc_html__( 'Author','one-user-avatar', 'one-user-avatar' );
-		$columns['parent'] = esc_html_x( 'Uploaded to', 'column name', 'one-user-avatar' );
+		$columns['parent'] = esc_html_x( 'Attached to', 'column name', 'one-user-avatar' );
 		$columns['date']   = esc_html_x( 'Date', 'column name', 'one-user-avatar' );
 
 		return $columns;
@@ -283,14 +388,9 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 			the_post();
 
 			$user_can_edit = current_user_can( 'edit_post', $post->ID );
-
-			if ( $this->is_trash && 'trash' != $post->post_status || ! $this->is_trash && 'trash' == $post->post_status ) {
-				continue;
-			}
-
-			$post_owner = (get_current_user_id() == $post->post_author) ? 'self' : 'other';
-			$tr_class   = trim( ' author-' . $post_owner . ' status-' . $post->post_status );
-			$att_title  = _draft_or_post_title();
+			$post_owner    = (get_current_user_id() == $post->post_author) ? 'self' : 'other';
+			$tr_class      = trim( ' author-' . $post_owner . ' status-' . $post->post_status );
+			$att_title     = _draft_or_post_title();
 			?>
 
 			<tr id="post-<?php echo esc_attr( $post->ID ); ?>" class="<?php echo esc_attr( $tr_class ); ?>">
@@ -358,6 +458,14 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 								<strong<?php if ( $thumb ) : ?> class="has-media-icon"<?php endif; ?>>
 									<?php
 									if ( $this->is_trash || ! $user_can_edit ) {
+										if ( $thumb ) :
+											?>
+											<span class="media-icon image-icon">
+												<?php echo wp_kses_post( $thumb ); ?>
+											</span>
+											<?php
+										endif;
+
 										echo esc_html( $att_title );
 									} else {
 										?>
@@ -454,42 +562,38 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 								$post->ID
 							) );
 
-							// Find users without WPUA
-							$nowpuas = $wpdb->get_results( $wpdb->prepare(
-								"SELECT wpu.ID FROM $wpdb->users AS wpu, $wpdb->usermeta AS wpum WHERE wpum.meta_key = %s AND wpum.meta_value = %d AND wpum.user_id = wpu.ID ORDER BY wpu.user_login",
-								$wpua_metakey,
-								''
-							) );
-
 							$user_array = array();
+
+							if ( ! empty( $wpuas ) ) {
+								foreach ( array_slice( $wpuas, 0, 3 ) as $usermeta ) {
+									$user         = get_userdata( $usermeta->user_id );
+									$user_array[] = sprintf(
+										'<strong><a href="%s">%s</a></strong>',
+										esc_url( get_edit_user_link( $user->ID ) ),
+										$user->user_login
+									);
+								}
+
+								$count = count( $wpuas );
+
+								if ( 3 < $count ) {
+									$user_array[] = sprintf(
+										_x(
+											/* translators: %d: number of users. */
+											'+%d more',
+											'avatar user count',
+											'one-user-avatar'
+										),
+										number_format_i18n( $count - 3 )
+									);
+								}
+							}
 							?>
 
 							<td class="<?php echo esc_attr( $class ); ?>">
-								<strong>
-									<?php
-									if ( ! empty( $wpuas ) ) {
-										foreach ( $wpuas as $usermeta ) {
-											$user         = get_userdata( $usermeta->user_id );
-											$user_array[] = sprintf(
-												'<a href="%s">%s</a>',
-												esc_url( get_edit_user_link( $user->ID ) ),
-												$user->user_login
-											);
-										}
-									} else {
-										foreach ( $nowpuas as $usermeta ) {
-											$user         = get_userdata($usermeta->ID);
-											$user_array[] = sprintf(
-												'<a href="%s">%s</a>',
-												esc_url( get_edit_user_link($user->ID) ),
-												$user->user_login
-											);
-										}
-									}
-
-									echo wp_kses_post( implode( ', ', array_filter( $user_array ) ) );
-									?>
-								</strong>
+								<?php echo wp_kses_post(
+									! empty( $user_array ) ? join( ', ', $user_array ) : __( '(Unattached)', 'one-user-avatar' )
+								); ?>
 							</td>
 
 							<?php
@@ -521,8 +625,10 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 
 		if ( current_user_can( 'edit_post', $post->ID ) && ! $this->is_trash ) {
 			$actions['edit'] = sprintf(
-				'<a href="%s">%s</a>',
+				'<a href="%s" aria-label="%s">%s</a>',
 				esc_url( get_edit_post_link( $post->ID, true ) ),
+				/* translators: %s: Avatar title. */
+				esc_attr( sprintf( __( 'Edit &#8220;%s&#8221;', 'one-user-avatar' ), $att_title ) ),
 				__( 'Edit', 'one-user-avatar' )
 			);
 		}
@@ -530,38 +636,51 @@ class WP_User_Avatar_List_Table extends WP_List_Table {
 		if ( current_user_can( 'delete_post', $post->ID ) ) {
 			if ( $this->is_trash ) {
 				$actions['untrash'] = sprintf(
-					'<a class="submitdelete" href="%s">%s</a>',
+					'<a href="%s" class="submitdelete aria-button-if-js" aria-label="%s">%s</a>',
 					wp_nonce_url( sprintf( 'post.php?action=untrash&amp;post=%s', $post->ID ), 'untrash-post_' . $post->ID ),
+					/* translators: %s: Avatar title. */
+					esc_attr( sprintf( __( 'Restore &#8220;%s&#8221; from the Trash', 'one-user-avatar' ), $att_title ) ),
 					__( 'Restore', 'one-user-avatar' )
 				);
 			} elseif ( EMPTY_TRASH_DAYS && MEDIA_TRASH ) {
 				$actions['trash'] = sprintf(
-					'<a class="submitdelete" href="%s">%s</a>',
+					'<a href="%s" class="submitdelete aria-button-if-js" aria-label="%s">%s</a>',
 					wp_nonce_url( sprintf( 'post.php?action=trash&amp;post=%s', $post->ID ), 'trash-post_' . $post->ID),
+					/* translators: %s: Avatar title. */
+					esc_attr( sprintf( __( 'Move &#8220;%s&#8221; to the Trash', 'one-user-avatar' ), $att_title ) ),
 					__( 'Trash', 'one-user-avatar' )
 				);
 			}
 
 			if ( $this->is_trash || ! EMPTY_TRASH_DAYS || ! MEDIA_TRASH ) {
+				$show_confirmation = ( ! $this->is_trash && ! MEDIA_TRASH ) ? ' show-confirmation' : '';
+
 				$actions['delete'] = sprintf(
-					'<a class="submitdelete" href="%s">%s</a>',
+					'<a href="%s" class="submitdelete aria-button-if-js%s" aria-label="%s">%s</a>',
 					wp_nonce_url( sprintf( 'post.php?action=delete&amp;post=%s', $post->ID ), 'delete-post_'.$post->ID ),
+					$show_confirmation,
+					/* translators: %s: Avatar title. */
+					esc_attr( sprintf( __( 'Delete &#8220;%s&#8221; permanently', 'one-user-avatar' ), $att_title ) ),
 					__( 'Delete Permanently', 'one-user-avatar' )
 				);
 			}
 		}
 
 		if ( ! $this->is_trash ) {
-			$title = _draft_or_post_title( $post->post_parent );
+			$permalink = get_permalink( $post->ID );
 
-			$actions['view'] = sprintf(
-				'<a href="%s" title="%s" rel="permalink">%s</a>',
-				get_permalink( $post->ID ),
-				esc_attr( sprintf( __( 'View %s' ), sprintf( '&#8220;%s&#8221;', $title ) ) ),
-				__( 'View', 'one-user-avatar' )
-			);
+			if ( $permalink ) {
+				$actions['view'] = sprintf(
+					'<a href="%s" aria-label="%s" rel="bookmark">%s</a>',
+					esc_url( $permalink ),
+					/* translators: %s: Avatar title. */
+					esc_attr( sprintf( __( 'View &#8220;%s&#8221;', 'one-user-avatar' ), $att_title ) ),
+					__( 'View', 'one-user-avatar' )
+				);
+			}
 		}
 
 		return $actions;
 	}
+
 }

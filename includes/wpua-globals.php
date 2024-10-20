@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.9
+ * @version    2.5.0
  */
 
 /**
@@ -39,7 +39,9 @@ global  $avatar_default,
 		$mustache_medium,
 		$mustache_thumbnail,
 		$mustache_avatar,
+		$mustache_avatar_2x,
 		$mustache_admin,
+		$mustache_admin_2x,
 		$wpua_default_avatar_updated,
 		$wpua_users_updated,
 		$wpua_media_updated,
@@ -91,8 +93,12 @@ $mustache_thumbnail = WPUA_IMG_URL . 'wpua-150x150.png';
 // Default avatar 96x96
 $mustache_avatar    = WPUA_IMG_URL . 'wpua-96x96.png';
 
-// Default avatar 32x32
+// Default avatar 192x192
+$mustache_avatar_2x = WPUA_IMG_URL . 'wpua-192x192.png';
+
+// Default avatar 64x64
 $mustache_admin     = WPUA_IMG_URL . 'wpua-32x32.png';
+$mustache_admin_2x  = WPUA_IMG_URL . 'wpua-64x64.png';
 
 // Check for updates
 $wpua_default_avatar_updated = get_option( 'wp_user_avatar_default_avatar_updated' );

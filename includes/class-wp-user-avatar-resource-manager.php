@@ -12,7 +12,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.9
+ * @version    2.5.0
  */
 
 class WP_User_Avatar_Resource_Manager {

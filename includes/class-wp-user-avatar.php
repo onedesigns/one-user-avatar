@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.9
+ * @version    2.5.0
  */
 
 class WP_User_Avatar {
@@ -122,6 +122,7 @@ class WP_User_Avatar {
 	public static function wpua_media_upload_scripts( $user = '' ) {
 		global  $current_user,
 				$mustache_admin,
+				$mustache_admin_2x,
 				$pagenow,
 				$plugin_page,
 				$post,
@@ -159,7 +160,8 @@ class WP_User_Avatar {
 		// Admin scripts
 		if ( 'options-discussion.php' == $pagenow || $wpua_admin->wpua_is_menu_page() ) {
 			wp_localize_script( 'wp-user-avatar', 'wpua_custom', array(
-				'avatar_thumb' => $mustache_admin,
+				'avatar_thumb'    => $mustache_admin,
+				'avatar_thumb_2x' => $mustache_admin_2x,
 			) );
 		}
 
@@ -187,7 +189,8 @@ class WP_User_Avatar {
 			$avatar_medium_src = 1 == (bool) $show_avatars ? $wpua_functions->wpua_get_avatar_original( $user->user_email, 'medium' ) : includes_url() . 'images/blank.gif';
 
 			wp_localize_script( 'wp-user-avatar', 'wpua_custom', array(
-				'avatar_thumb' => $avatar_medium_src,
+				'avatar_thumb'    => $avatar_medium_src,
+				'avatar_thumb_2x' => $avatar_medium_src,
 			) );
 		}
 	}
@@ -203,10 +206,10 @@ class WP_User_Avatar {
 				$wpua_functions,
 				$wpua_upload_size_limit_with_units;
 
-		$has_wp_user_avatar = has_wp_user_avatar( @$user->ID );
+		$has_wp_user_avatar = $user instanceof WP_User ? has_wp_user_avatar( $user->ID ) : false;
 
 		// Get WPUA attachment ID
-		$wpua = get_user_meta( @$user->ID, $wpdb->get_blog_prefix( $blog_id ) . 'user_avatar', true );
+		$wpua = $user instanceof WP_User ? get_user_meta( $user->ID, $wpdb->get_blog_prefix( $blog_id ) . 'user_avatar', true ) : '';
 
 		// Show remove button if WPUA is set
 		$hide_remove = ! $has_wp_user_avatar ? 'wpua-hide' : '';
@@ -214,8 +217,11 @@ class WP_User_Avatar {
 		// Hide image tags if show avatars is off
 		$hide_images = ! $has_wp_user_avatar && 0 == (bool) $show_avatars ? 'wpua-no-avatars' : '';
 
+		// Pass an empty string for new users
+		$user_email = $user instanceof WP_User ? $user->user_email : '';
+
 		// If avatars are enabled, get original avatar image or show blank
-		$avatar_medium_src = 1 == (bool) $show_avatars ? $wpua_functions->wpua_get_avatar_original( @$user->user_email, 'medium' ) : includes_url() . 'images/blank.gif';
+		$avatar_medium_src = 1 == (bool) $show_avatars ? $wpua_functions->wpua_get_avatar_original( $user_email, 'medium' ) : includes_url() . 'images/blank.gif';
 
 		// Check if user has wp_user_avatar, if not show image from above
 		$avatar_medium = $has_wp_user_avatar ? get_wp_user_avatar_src( $user->ID, 'medium' ) : $avatar_medium_src;
@@ -259,7 +265,7 @@ class WP_User_Avatar {
 			<p id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-upload-button' : 'wpua-upload-button-existing' ); ?>">
 				<input name="wpua-file" id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-file' : 'wpua-file-existing' ); ?>" type="file" />
 
-				<button type="submit" class="button" id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-upload' : 'wpua-upload-existing' ); ?>" name="submit" value="<?php esc_html_e( 'Upload', 'one-user-avatar' ); ?>">
+				<button type="button" class="button button-large" id="<?php echo esc_attr( ( 'add-new-user' == $user ) ? 'wpua-upload' : 'wpua-upload-existing' ); ?>" name="submit" value="<?php esc_html_e( 'Upload', 'one-user-avatar' ); ?>">
 					<?php esc_html_e( 'Upload', 'one-user-avatar' ); ?>
 				</button>
 			</p>
@@ -359,8 +365,6 @@ class WP_User_Avatar {
 		$this->wpua_action_show_user_profile( $user );
 	}
 
-	// setting defaults for the filter callback fixes an error like https://wordpress.org/support/topic/error-missing-argument-2-for-wp_user_avatarclosure
-	// see https://stackoverflow.com/questions/37779680/missing-argument-2-for-a-custom-function
 	public function wpua_description_show_user_profile( $description = '', $profileuser = null ) {
 		ob_start();
 

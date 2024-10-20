@@ -7,7 +7,11 @@
  */
 
 (function () {
-	var args = one_user_avatar_tinymce_editor_args || {};
+	var args = typeof one_user_avatar_tinymce_editor_args != 'undefined' ?
+		one_user_avatar_tinymce_editor_args :
+		{
+			insert_avatar: 'Insert Avatar',
+		};
 
 	tinymce.create('tinymce.plugins.wpUserAvatar', {
 		init: function (ed, url) {
@@ -23,7 +27,7 @@
 			});
 
 			ed.addButton('wpUserAvatar', {
-				title: ( typeof args.insert_avatar != 'undefined' ? args.insert_avatar : 'Insert Avatar' ),
+				title: args.insert_avatar,
 				cmd:   'mceWpUserAvatar',
 				image: url + '/../images/wpua-20x20.png',
 				onPostRender: function() {

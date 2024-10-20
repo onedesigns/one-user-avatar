@@ -5,7 +5,7 @@ Plugin URI:   https://onedesigns.com/plugins/one-user-avatar/
 Description:  Use any image from your WordPress Media Library as a custom user avatar. Add your own Default Avatar. Fork of WP User Avatar v2.2.16.
 Author:       One Designs
 Author URI:   https://onedesigns.com/
-Version:      2.4.0
+Version:      2.5.0
 Text Domain:  one-user-avatar
 Domain Path:  /languages/
 
@@ -37,6 +37,84 @@ GNU General Public License for more details.
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'You are not allowed to call this page directly.' );
 }
+
+/**
+ * Plugin activation hook
+ * @since 2.5.0
+ * @uses add_option()
+ */
+function one_user_avatar_activate() {
+	if ( class_exists( 'WP_User_Avatar_Setup' ) ) {
+		return;
+	}
+
+	// Settings saved to wp_options
+	add_option( 'avatar_default_wp_user_avatar',       '' );
+	add_option( 'wp_user_avatar_allow_upload',        '0' );
+	add_option( 'wp_user_avatar_disable_um_avatars',  '0' );
+	add_option( 'wp_user_avatar_force_file_uploader', '0' );
+	add_option( 'wp_user_avatar_disable_gravatar',    '0' );
+	add_option( 'wp_user_avatar_edit_avatar',         '1' );
+	add_option( 'wp_user_avatar_resize_crop',         '0' );
+	add_option( 'wp_user_avatar_resize_h',           '96' );
+	add_option( 'wp_user_avatar_resize_upload',       '0' );
+	add_option( 'wp_user_avatar_resize_w',           '96' );
+	add_option( 'wp_user_avatar_tinymce',             '1' );
+	add_option( 'wp_user_avatar_upload_size_limit',   '0' );
+
+	// If Gravatar was disabled before, reset default avatar to 'wp_user_avatar'
+	if (
+		get_option( 'wp_user_avatar_disable_gravatar' )
+		&&
+		'wp_user_avatar' != get_option( 'avatar_default' )
+	) {
+		update_option( 'avatar_default', 'wp_user_avatar' );
+	}
+
+	if ( wp_next_scheduled( 'wpua_has_gravatar_cron_hook' ) ) {
+		$cron = get_option( 'cron' );
+
+		foreach ( $cron as $key => $value ) {
+			if ( is_array( $value ) ) {
+				if ( array_key_exists( 'wpua_has_gravatar_cron_hook', $value ) ) {
+					unset( $cron[ $key ] );
+				}
+			}
+		}
+
+		update_option( 'cron', $cron );
+	}
+}
+register_activation_hook( __FILE__, 'one_user_avatar_activate' );
+
+/**
+ * Plugin deactivation hook
+ * @since 2.5.0
+ * @uses int $blog_id
+ * @uses object $wpdb
+ * @uses get_blog_prefix()
+ * @uses get_option()
+ * @uses update_option()
+ */
+function one_user_avatar_deactivate() {
+	global $blog_id, $wpdb;
+
+	$wp_user_roles = $wpdb->get_blog_prefix( $blog_id ) . 'user_roles';
+
+	// Get user roles and capabilities
+	$user_roles = get_option( $wp_user_roles );
+
+	// Remove subscribers edit_posts capability
+	unset( $user_roles['subscriber']['capabilities']['edit_posts'] );
+
+	update_option( $wp_user_roles, $user_roles );
+
+	if ( 'wp_user_avatar' == get_option( 'avatar_default' ) ) {
+		// Reset default avatar to Mystery Man
+		update_option( 'avatar_default', 'mystery' );
+	}
+}
+register_deactivation_hook( __FILE__, 'one_user_avatar_deactivate' );
 
 class One_User_Avatar {
 	/**

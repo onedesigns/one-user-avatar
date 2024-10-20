@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.9
+ * @version    2.5.0
  */
 
 class WP_User_Avatar_Shortcode {
@@ -79,15 +79,15 @@ class WP_User_Avatar_Shortcode {
 			if ( 'current' == $user ) {
 				$user = wp_get_current_user();
 			} else {
-				$user = is_numeric( $user ) ? get_user_by( 'id',    $user ) : get_user_by('login', $user);
-				$user = empty( $user )      ? get_user_by( 'slug',  $user ) : $user;
-				$user = empty( $user )      ? get_user_by( 'email', $user ) : $user;
+				$user = is_numeric( $user ) ? get_user_by( 'id',    $atts['user'] ) : get_user_by( 'login', $atts['user'] );
+				$user = empty( $user )      ? get_user_by( 'slug',  $atts['user'] ) : $user;
+				$user = empty( $user )      ? get_user_by( 'email', $atts['user'] ) : $user;
 			}
 		} else {
 			// Find author's name if id_or_email is empty
 			$author_name = get_query_var( 'author_name' );
 
-			if( is_author() ) {
+			if ( is_author() ) {
 				// On author page, get user by page slug
 				$user = get_user_by( 'slug', $author_name );
 			} else {
@@ -104,9 +104,9 @@ class WP_User_Avatar_Shortcode {
 		if ( ! empty( $content ) ) {
 			if ( in_array( $size, $all_sizes ) ) {
 				if ( in_array( $size, array( 'original', 'large', 'medium', 'thumbnail' ) ) ) {
-					$get_size = ( $size == 'original' ) ? get_option( 'large_size_w' ) : get_option( $size.'_size_w' );
+					$get_size = ( $size == 'original' ) ? get_option( 'large_size_w' ) : get_option( $size . '_size_w' );
 				} else {
-					$get_size = $_wp_additional_image_sizes[$size]['width'];
+					$get_size = $_wp_additional_image_sizes[ $size ]['width'];
 				}
 			}
 		}
@@ -163,6 +163,9 @@ class WP_User_Avatar_Shortcode {
 		} else {
 			$avatar  = $html;
 		}
+
+		// The srcset attribute will be restored in 'the_content' filter
+		$avatar = str_replace( ' srcset=', ' data-srcset=', $avatar );
 
 		return wp_kses_post( $avatar );
 	}

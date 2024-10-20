@@ -3,8 +3,8 @@
 Contributors: onedesigns, properfraction, collizo4sky
 Tags: user profile, avatar, gravatar, author image, author photo, author avatar, bbPress, profile avatar, profile image, user avatar, user image, user photo, widget
 Requires at least: 4.0
-Tested up to: 6.3
-Stable tag: 2.4.0
+Tested up to: 6.6.2
+Stable tag: 2.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -390,6 +390,22 @@ This would output:
 2. One User Avatar lets you upload your own Default Avatar.
 
 == Changelog ==
+
+= 2.5.0 =
+* Add compatibility for WordPress 6.6
+* Add support for retina avatars
+* Add trashed avatars view to library
+* Don't show confirmation dialog when moving avatar to the trash
+* Fix deprecated notices in avatars library
+* Fix avatar library counters
+* Fix undefined reference error in TinyMCE
+* Fix alert when uploading avatar using browser file uploader
+* Fix default avatars in admin when Gravatar is disabled
+* Fix PHP warnings in add user form
+* Fix activation and deactivation hooks
+* Fix unable to get user by slug or email in avatar shortcode
+* Fix unattached avatars showing for users with empty avatar meta
+* Fix avatar dimensions in BuddyPress
 
 = 2.4.0 =
 * Add compatibility for WordPress 6.3

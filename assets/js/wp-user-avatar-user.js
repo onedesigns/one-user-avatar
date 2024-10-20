@@ -1,4 +1,4 @@
-/*! One User Avatar - 2.3.9
+/*! One User Avatar - 2.5.0
  * Copyright One Designs
  * Copyright ProfilePress
  * Copyright Flippercode
@@ -75,5 +75,11 @@ jQuery(function($) {
 		$('#wpua-preview-existing').find('img:first').attr('src', wpuaSrc).show();
 		$('#wp-user-avatar-existing').val(wpuaID);
 		$('#wp_user_avatar_radio-existing').trigger('click');
+	});
+
+	$('body').on('click', '#wpua-upload, #wpua-upload-existing', function(e) {
+		e.preventDefault();
+
+		$('#submit').click();
 	});
 });

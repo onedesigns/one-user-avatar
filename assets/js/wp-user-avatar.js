@@ -1,4 +1,4 @@
-/*! One User Avatar - 2.3.9
+/*! One User Avatar - 2.5.0
  * Copyright One Designs
  * Copyright ProfilePress
  * Copyright Flippercode
@@ -18,11 +18,20 @@
 
 			b.post.wpUserAvatarId  = a;
 			b.post.wpUserAvatarSrc = $('div.attachment-info').find('img').attr('src');
+			b.post.wpUserAvatarSrcset = $('div.attachment-info').find('img').attr('srcset');
+
+			if ( ! b.post.wpUserAvatarSrcset ) {
+				b.post.wpUserAvatarSrcset = b.post.wpUserAvatarSrc
+			}
 
 			if ( b.post.wpUserAvatarId && b.post.wpUserAvatarSrc ) {
 				$('#wp-user-avatar' + id).val( b.post.wpUserAvatarId );
 				$('#wpua-images' + id + ', #wpua-undo-button' + id).show();
-				$('#wpua-preview' + id).find('img').attr('src', b.post.wpUserAvatarSrc).removeAttr('height', '');
+				$('#wpua-preview' + id)
+					.find('img')
+					.attr('src', b.post.wpUserAvatarSrc)
+					.attr('srcset', b.post.wpUserAvatarSrcset + ' 2x')
+					.removeAttr('height', '');
 				$('#wpua-remove-button' + id + ', #wpua-thumbnail' + id).hide();
 				$('#wp_user_avatar_radio').trigger('click')
 			}
@@ -97,6 +106,7 @@ jQuery(function($) {
 
 	var a = $('#wp-user-avatar').val();
 	var b = $('#wpua-preview').find('img').attr('src');
+	var c = $('#wpua-preview').find('img').attr('srcset');
 
 	$('body').on('click', '#wpua-remove', function(e) {
 		e.preventDefault();
@@ -106,6 +116,7 @@ jQuery(function($) {
 		$('#wpua-preview').find('img:first').hide();
 		$('#wpua-preview').prepend('<img id="wpua-original" />');
 		$('#wpua-original').attr('src', wpua_custom.avatar_thumb);
+		$('#wpua-original').attr('srcset', wpua_custom.avatar_thumb_2x + ' 2x');
 		$('#wp-user-avatar').val("");
 		$('#wpua-original, #wpua-undo-button').show();
 		$('#wp_user_avatar_radio').trigger('click');
@@ -118,7 +129,7 @@ jQuery(function($) {
 		$('#wpua-images').removeAttr('style');
 		$('#wpua-undo-button').hide();
 		$('#wpua-remove-button, #wpua-thumbnail').show();
-		$('#wpua-preview').find('img:first').attr('src', b).show();
+		$('#wpua-preview').find('img:first').attr('src', b).attr('srcset', c).show();
 		$('#wp-user-avatar').val(a);
 		$('#wp_user_avatar_radio').trigger('click');
 	});
@@ -133,6 +144,7 @@ jQuery(function($) {
 
 	var a = $('#wp-user-avatar-existing').val();
 	var b = $('#wpua-preview-existing').find('img').attr('src');
+	var c = $('#wpua-preview-existing').find('img').attr('srcset');
 
 	$('#wpua-undo-button-existing').hide();
 
@@ -144,6 +156,7 @@ jQuery(function($) {
 		$('#wpua-preview-existing').find('img:first').hide();
 		$('#wpua-preview-existing').prepend('<img id="wpua-original-existing" />');
 		$('#wpua-original-existing').attr('src', wpua_custom.avatar_thumb);
+		$('#wpua-original-existing').attr('srcset', wpua_custom.avatar_thumb_2x + ' 2x');
 		$('#wp-user-avatar-existing').val("");
 		$('#wpua-original-existing, #wpua-undo-button-existing').show();
 		$('#wp_user_avatar_radio').trigger('click');
@@ -156,7 +169,7 @@ jQuery(function($) {
 		$('#wpua-images-existing').removeAttr('style');
 		$('#wpua-undo-button-existing').hide();
 		$('#wpua-remove-button-existing, #wpua-thumbnail-existing').show();
-		$('#wpua-preview-existing').find('img:first').attr('src', b).show();
+		$('#wpua-preview-existing').find('img:first').attr('src', b).attr('srcset', c).show();
 		$('#wp-user-avatar-existing').val(a);
 		$('#wp_user_avatar_radio').trigger('click');
 	});

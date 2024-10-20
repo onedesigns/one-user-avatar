@@ -1,4 +1,4 @@
-/*! One User Avatar - 2.3.9
+/*! One User Avatar - 2.5.0
  * Copyright One Designs
  * Copyright ProfilePress
  * Copyright Flippercode
@@ -39,8 +39,7 @@ jQuery(function($) {
 	});
 
 	// Confirm deleting avatar
-	$('.wpua-media-form .submitdelete').on('click', function() {
-		console.log(typeof showNotice);
+	$('.wpua-media-form .show-confirmation').on('click', function() {
 		if ( typeof showNotice == 'object' && typeof showNotice.warn == 'function' ) {
 			return showNotice.warn();
 		}

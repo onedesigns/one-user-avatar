@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.9
+ * @version    2.5.0
  */
 
 /**
@@ -52,6 +52,86 @@ $wp_list_table = $wpua_admin->_wpua_get_list_table( 'WP_User_Avatar_List_Table' 
 
 $wp_list_table->prepare_items();
 
+$message = '';
+
+if ( ! empty( $_GET['deleted'] ) && absint( $_GET['deleted'] ) ) {
+	$deleted = absint( $_GET['deleted'] );
+
+	$message = sprintf(
+		_n(
+			/* translators: %s: Number of media files. */
+			'%s avatar permanently deleted.',
+			/* translators: %s: Number of media files. */
+			'%s avatars permanently deleted.',
+			$deleted,
+			'one-user-avatar'
+		),
+		number_format_i18n( $_GET['deleted'] )
+	);
+
+	$_SERVER['REQUEST_URI'] = remove_query_arg( array( 'deleted' ), $_SERVER['REQUEST_URI'] );
+
+	unset( $_GET['deleted'] );
+}
+
+if ( ! empty( $_GET['trashed'] ) && absint( $_GET['trashed'] ) ) {
+	$trashed  = absint( $_GET['trashed'] );
+	$post_ids = isset( $_GET['ids'] ) ? explode( ',', $_GET['ids'] ) : array();
+
+	$message = sprintf(
+		_n(
+			/* translators: %s: Number of media files. */
+			'%s avatar moved to the Trash.',
+			/* translators: %s: Number of media files. */
+			'%s avatars moved to the Trash.',
+			$trashed,
+			'one-user-avatar'
+		),
+		number_format_i18n( $trashed )
+	);
+
+	if ( ! empty( $post_ids ) ) {
+		$message .= sprintf(
+			' <a href="%1$s">%2$s</a>',
+			esc_url( wp_nonce_url(
+				add_query_arg(
+					array(
+						'page'     => 'wp-user-avatar-library',
+						'doaction' => 'undo',
+						'action'   => 'untrash',
+						'media'    => $post_ids,
+					),
+					'admin.php'
+				),
+				'bulk-media'
+			) ),
+			__( 'Undo', 'one-user-avatar' )
+		);
+	}
+
+	$_SERVER['REQUEST_URI'] = remove_query_arg( array( 'trashed' ), $_SERVER['REQUEST_URI'] );
+
+	unset( $_GET['trashed'] );
+}
+
+if ( ! empty( $_GET['untrashed'] ) && absint( $_GET['untrashed'] ) ) {
+	$untrashed = absint( $_GET['untrashed'] );
+
+	$message = sprintf(
+		_n(
+			'Avatar restored from the Trash.',
+			/* translators: %s: Number of media files. */
+			'%s avatars restored from the Trash.',
+			$untrashed
+		),
+		number_format_i18n( $untrashed )
+	);
+
+	$_SERVER['REQUEST_URI'] = remove_query_arg( array( 'untrashed' ), $_SERVER['REQUEST_URI'] );
+
+	unset( $_GET['untrashed'] );
+}
+
 ?>
 
 <div class="wrap">
@@ -72,25 +152,17 @@ $wp_list_table->prepare_items();
 	</h2>
 
 	<?php
-		$message = '';
-
-		if ( ! empty( $_GET['deleted'] ) && $deleted = absint( $_GET['deleted'] ) ) {
-			$message = sprintf(
-				_n(
-					'Media attachment permanently deleted.',
-					'%d media attachments permanently deleted.',
-					$deleted
-				),
-				number_format_i18n( $_GET['deleted'] )
+		if ( ! empty( $message ) ) {
+			wp_admin_notice(
+				$message,
+				array(
+					'id'                 => 'message',
+					'additional_classes' => array( 'updated' ),
+					'dismissible'        => true,
+				)
 			);
-
-			$_SERVER['REQUEST_URI'] = remove_query_arg( array( 'deleted' ), $_SERVER['REQUEST_URI'] );
 		}
 	?>
-
-	<?php if ( ! empty( $message ) ) : ?>
-		<div id="message" class="updated"><p><?php echo esc_html( $message ); ?></p></div>
-	<?php endif; ?>
 
 	<?php $wp_list_table->views(); ?>
 

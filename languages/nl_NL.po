@@ -2,33 +2,35 @@
 # This file is distributed under the same license as the One User Avatar plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: One User Avatar 2.3.9\n"
+"Project-Id-Version: One User Avatar 2.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/one-user-avatar\n"
-"POT-Creation-Date: 2021-12-06T21:30:52+00:00\n"
-"PO-Revision-Date: 2021-12-06 22:31+0100\n"
+"POT-Creation-Date: 2024-10-20T16:00:21+00:00\n"
+"PO-Revision-Date: 2024-10-20 19:47+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
-"X-Domain: one-user-avatar\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+"X-Domain: one-user-avatar\n"
 
 #. Plugin Name of the plugin
-#: includes/class-wp-user-avatar-admin.php:233
-#: includes/class-wp-user-avatar-admin.php:434
+#: one-user-avatar.php includes/class-wp-user-avatar-admin.php:209
+#: includes/class-wp-user-avatar-admin.php:436
 #: includes/class-wp-user-avatar-widget.php:32
 #: includes/wpua-options-page.php:67 includes/wpua-tinymce-window.php:31
 msgid "One User Avatar"
 msgstr "One User Avatar"
 
 #. Plugin URI of the plugin
+#: one-user-avatar.php
 msgid "https://onedesigns.com/plugins/one-user-avatar/"
 msgstr "https://onedesigns.com/plugins/one-user-avatar/"
 
 #. Description of the plugin
+#: one-user-avatar.php
 msgid ""
 "Use any image from your WordPress Media Library as a custom user avatar. Add "
 "your own Default Avatar. Fork of WP User Avatar v2.2.16."
@@ -38,178 +40,245 @@ msgstr ""
 "Avatar v2.2.16."
 
 #. Author of the plugin
+#: one-user-avatar.php
 msgid "One Designs"
 msgstr "One Designs"
 
 #. Author URI of the plugin
+#: one-user-avatar.php
 msgid "https://onedesigns.com/"
 msgstr "https://onedesigns.com/"
 
-#: includes/class-wp-user-avatar-admin.php:173
-msgid "You are not allowed to delete this post."
-msgstr "Je hebt geen toestemming om dit bericht te verwijderen."
+#: includes/class-wp-user-avatar-admin.php:131
+msgid "Sorry, you are not allowed to move this avatar to the Trash."
+msgstr ""
+"Je hebt geen toestemming om deze avatar naar de prullenbak te verplaatsen."
 
-#: includes/class-wp-user-avatar-admin.php:177
-msgid "Error in deleting."
-msgstr "Fout tijdens het verwijderen."
+#: includes/class-wp-user-avatar-admin.php:135
+msgid "Error in moving the avatar to Trash."
+msgstr "Fout bij het verplaatsen van de avatar naar de prullenbak."
 
-#: includes/class-wp-user-avatar-admin.php:234
-#: includes/class-wp-user-avatar-admin.php:292 includes/wpua-media-page.php:59
+#: includes/class-wp-user-avatar-admin.php:156
+msgid "Sorry, you are not allowed to restore this avatar from the Trash."
+msgstr ""
+"Je hebt geen toestemming om deze avatar te herstellen uit de prullenbak."
+
+#: includes/class-wp-user-avatar-admin.php:160
+msgid "Error in restoring the avatar from Trash."
+msgstr "Fout bij het herstellen van de avatar uit de prullenbak."
+
+#: includes/class-wp-user-avatar-admin.php:175
+msgid "Sorry, you are not allowed to delete this avatar."
+msgstr "Je hebt geen toestemming om deze avatar te verwijderen."
+
+#: includes/class-wp-user-avatar-admin.php:179
+msgid "Error in deleting the avatar."
+msgstr "Fout bij het verwijderen van de avatar."
+
+#: includes/class-wp-user-avatar-admin.php:210
+#: includes/class-wp-user-avatar-admin.php:268 includes/wpua-media-page.php:139
 msgid "Avatars"
 msgstr "Avatars"
 
-#: includes/class-wp-user-avatar-admin.php:243
-#: includes/class-wp-user-avatar-admin.php:244
-#: includes/class-wp-user-avatar-admin.php:471
-#: includes/wpua-options-page.php:105
+#: includes/class-wp-user-avatar-admin.php:219
+#: includes/class-wp-user-avatar-admin.php:220
+#: includes/class-wp-user-avatar-admin.php:473
+#: includes/wpua-options-page.php:128
 msgid "Settings"
 msgstr "Instellingen"
 
-#: includes/class-wp-user-avatar-admin.php:252
-#: includes/class-wp-user-avatar-admin.php:253
+#: includes/class-wp-user-avatar-admin.php:228
+#: includes/class-wp-user-avatar-admin.php:229
 msgid "Library"
 msgstr "Bibliotheek"
 
-#: includes/class-wp-user-avatar-admin.php:380
+#: includes/class-wp-user-avatar-admin.php:362
 msgid "Mystery Man"
 msgstr "Mysterieuze Man"
 
-#: includes/class-wp-user-avatar-admin.php:381
+#: includes/class-wp-user-avatar-admin.php:363
 msgid "Blank"
 msgstr "Leeg"
 
-#: includes/class-wp-user-avatar-admin.php:382
+#: includes/class-wp-user-avatar-admin.php:364
 msgid "Gravatar Logo"
 msgstr "Gravatar Logo"
 
-#: includes/class-wp-user-avatar-admin.php:383
+#: includes/class-wp-user-avatar-admin.php:365
 msgid "Identicon (Generated)"
 msgstr "Identicon (Gegenereerd)"
 
-#: includes/class-wp-user-avatar-admin.php:384
+#: includes/class-wp-user-avatar-admin.php:366
 msgid "Wavatar (Generated)"
 msgstr "Wavatar (Gegenereerd)"
 
-#: includes/class-wp-user-avatar-admin.php:385
+#: includes/class-wp-user-avatar-admin.php:367
 msgid "MonsterID (Generated)"
 msgstr "MonsterID (Gegenereerd)"
 
-#: includes/class-wp-user-avatar-admin.php:386
+#: includes/class-wp-user-avatar-admin.php:368
 msgid "Retro (Generated)"
 msgstr "Retro (Gegenereerd)"
 
-#: includes/class-wp-user-avatar-admin.php:435
-#: includes/class-wp-user-avatar.php:244
+#: includes/class-wp-user-avatar-admin.php:437
+#: includes/class-wp-user-avatar.php:256
 msgid "Choose Image"
 msgstr "Kies foto"
 
-#: includes/class-wp-user-avatar-admin.php:435
-#: includes/class-wp-user-avatar-admin.php:569
-#: includes/wpua-options-page.php:336 includes/wpua-options-page.php:342
+#: includes/class-wp-user-avatar-admin.php:437
+#: includes/class-wp-user-avatar-admin.php:571
+#: includes/wpua-options-page.php:359 includes/wpua-options-page.php:365
 msgid "Default Avatar"
 msgstr "Standaard Avatar"
 
-#: includes/class-wp-user-avatar-admin.php:436
+#: includes/class-wp-user-avatar-admin.php:438
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: includes/class-wp-user-avatar-admin.php:436
-#: includes/class-wp-user-avatar.php:305
+#: includes/class-wp-user-avatar-admin.php:438
+#: includes/class-wp-user-avatar.php:317 includes/wpua-media-page.php:108
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: includes/class-wp-user-avatar-admin.php:489
+#: includes/class-wp-user-avatar-admin.php:491
 msgid "https://onedesigns.com/support/forum/plugins/one-user-avatar/"
 msgstr "https://onedesigns.com/support/forum/plugins/one-user-avatar/"
 
-#: includes/class-wp-user-avatar-admin.php:490
+#: includes/class-wp-user-avatar-admin.php:492
 msgid "Support Forums"
 msgstr "Helpforums"
 
-#: includes/class-wp-user-avatar-admin.php:504
-#: includes/class-wp-user-avatar-admin.php:565 includes/wpua-functions.php:93
+#: includes/class-wp-user-avatar-admin.php:506
+#: includes/class-wp-user-avatar-admin.php:567 includes/wpua-functions.php:93
 #: includes/wpua-functions.php:106 includes/wpua-functions.php:114
 #: includes/wpua-functions.php:188 includes/wpua-tinymce-window.php:94
 msgid "Profile Picture"
 msgstr "Profielfoto"
 
-#: includes/class-wp-user-avatar-functions.php:517
-#: includes/class-wp-user-avatar-functions.php:718
+#: includes/class-wp-user-avatar-functions.php:581
+#: includes/class-wp-user-avatar-functions.php:810
 msgid "Avatar"
 msgstr "Avatar"
 
 #. translators: uploaded files
-#: includes/class-wp-user-avatar-list-table.php:176
+#: includes/class-wp-user-avatar-list-table.php:258
 msgctxt "uploaded files"
 msgid "All %s"
 msgstr "Alle %s"
 
-#: includes/class-wp-user-avatar-list-table.php:192
-#: includes/class-wp-user-avatar-list-table.php:544
+#. translators: uploaded files
+#: includes/class-wp-user-avatar-list-table.php:272
+msgctxt "trashed files"
+msgid "Trash %s"
+msgstr "Prullenbak %s"
+
+#: includes/class-wp-user-avatar-list-table.php:291
+#: includes/class-wp-user-avatar-list-table.php:643
+msgid "Restore"
+msgstr "Herstel"
+
+#: includes/class-wp-user-avatar-list-table.php:292
+#: includes/class-wp-user-avatar-list-table.php:294
+#: includes/class-wp-user-avatar-list-table.php:664
 msgid "Delete Permanently"
 msgstr "Permanent verwijderen"
 
-#: includes/class-wp-user-avatar-list-table.php:222
-msgid "No media attachments found."
-msgstr "Geen mediabijlagen gevonden."
+#: includes/class-wp-user-avatar-list-table.php:296
+msgid "Move to Trash"
+msgstr "Verplaats naar de prullenbak"
 
-#: includes/class-wp-user-avatar-list-table.php:235
+#: includes/class-wp-user-avatar-list-table.php:327
+msgid "No avatars found."
+msgstr "Geen avatars gevonden."
+
+#: includes/class-wp-user-avatar-list-table.php:339
 msgctxt "column name"
 msgid "File"
 msgstr "Bestand"
 
-#: includes/class-wp-user-avatar-list-table.php:236
+#: includes/class-wp-user-avatar-list-table.php:340
 msgid "Author"
 msgstr "Auteur"
 
-#: includes/class-wp-user-avatar-list-table.php:237
+#: includes/class-wp-user-avatar-list-table.php:341
 msgctxt "column name"
-msgid "Uploaded to"
-msgstr "Geüpload naar"
+msgid "Attached to"
+msgstr "Gekoppeld aan"
 
-#: includes/class-wp-user-avatar-list-table.php:238
+#: includes/class-wp-user-avatar-list-table.php:342
 msgctxt "column name"
 msgid "Date"
 msgstr "Datum"
 
 #. translators: post title
-#: includes/class-wp-user-avatar-list-table.php:322
+#: includes/class-wp-user-avatar-list-table.php:419
 msgid "Select %s"
 msgstr "Selecteer %s"
 
-#: includes/class-wp-user-avatar-list-table.php:412
+#: includes/class-wp-user-avatar-list-table.php:525
 msgid "Unpublished"
 msgstr "Ongepubliceerd"
 
 #. translators: time from now
-#: includes/class-wp-user-avatar-list-table.php:420
+#: includes/class-wp-user-avatar-list-table.php:533
 msgctxt "time from now"
 msgid "%s from now"
 msgstr "%s vanaf nu"
 
 #. translators: time ago
-#: includes/class-wp-user-avatar-list-table.php:426
+#: includes/class-wp-user-avatar-list-table.php:539
 msgctxt "time ago"
 msgid "%s ago"
 msgstr "%s geleden"
 
-#: includes/class-wp-user-avatar-list-table.php:431
+#: includes/class-wp-user-avatar-list-table.php:544
 msgid "Y/m/d"
 msgstr "j F Y"
 
-#: includes/class-wp-user-avatar-list-table.php:521
+#. translators: %d: number of users.
+#: includes/class-wp-user-avatar-list-table.php:581
+msgctxt "avatar user count"
+msgid "+%d more"
+msgstr "+%d meer"
+
+#: includes/class-wp-user-avatar-list-table.php:595
+msgid "(Unattached)"
+msgstr "Niet gekoppeld"
+
+#. translators: %s: Avatar title.
+#: includes/class-wp-user-avatar-list-table.php:631
+msgid "Edit &#8220;%s&#8221;"
+msgstr "Bewerk &#8220;%s&#8221;"
+
+#: includes/class-wp-user-avatar-list-table.php:632
 msgid "Edit"
 msgstr "Bewerk"
 
-#: includes/class-wp-user-avatar-list-table.php:530
-msgid "Restore"
-msgstr "Herstel"
+#. translators: %s: Avatar title.
+#: includes/class-wp-user-avatar-list-table.php:642
+msgid "Restore &#8220;%s&#8221; from the Trash"
+msgstr "Herstel &#8220;%s&#8221; uit de Prullenbak"
 
-#: includes/class-wp-user-avatar-list-table.php:536
+#. translators: %s: Avatar title.
+#: includes/class-wp-user-avatar-list-table.php:650
+msgid "Move &#8220;%s&#8221; to the Trash"
+msgstr "Verplaats &#8220;%s&#8221; naar de prullenbak"
+
+#: includes/class-wp-user-avatar-list-table.php:651
 msgid "Trash"
 msgstr "Prullenbak"
 
-#: includes/class-wp-user-avatar-list-table.php:556
+#. translators: %s: Avatar title.
+#: includes/class-wp-user-avatar-list-table.php:663
+msgid "Delete &#8220;%s&#8221; permanently"
+msgstr "Verwijder &#8220;%s&#8221; permanent"
+
+#. translators: %s: Avatar title.
+#: includes/class-wp-user-avatar-list-table.php:677
+msgid "View &#8220;%s&#8221;"
+msgstr "&#8220;%s&#8221; bekijken"
+
+#: includes/class-wp-user-avatar-list-table.php:678
 msgid "View"
 msgstr "Bekijken"
 
@@ -223,11 +292,11 @@ msgstr ""
 "naar %s, wat vereist is door One User Avatar. Voeg deze oproep toe aan je "
 "pagina template."
 
-#: includes/class-wp-user-avatar-shortcode.php:255
+#: includes/class-wp-user-avatar-shortcode.php:258
 msgid "Profile updated."
 msgstr "Profiel bijgewerkt."
 
-#: includes/class-wp-user-avatar-shortcode.php:305
+#: includes/class-wp-user-avatar-shortcode.php:308
 msgid "Update Profile"
 msgstr "Profiel bijwerken"
 
@@ -249,49 +318,49 @@ msgid "Automatically add paragraphs"
 msgstr "Automatisch paragrafen toevoegen"
 
 #. translators: user display name
-#: includes/class-wp-user-avatar.php:240
+#: includes/class-wp-user-avatar.php:252
 msgid "Choose Image: %s"
 msgstr "Kies foto: %s"
 
-#: includes/class-wp-user-avatar.php:256 includes/class-wp-user-avatar.php:257
+#: includes/class-wp-user-avatar.php:268 includes/class-wp-user-avatar.php:269
 #: includes/wpua-tinymce-window.php:95 includes/wpua-tinymce-window.php:186
 msgid "Upload"
 msgstr "Uploaden"
 
 #. translators: file size in KB
-#: includes/class-wp-user-avatar.php:266 includes/wpua-options-page.php:224
+#: includes/class-wp-user-avatar.php:278 includes/wpua-options-page.php:247
 msgid "Maximum upload file size: %s."
 msgstr "Maximale bestandsgrootte van upload: %s."
 
 #. translators: allowed file extensions
-#: includes/class-wp-user-avatar.php:276
+#: includes/class-wp-user-avatar.php:288
 msgid "Allowed Files: %s"
 msgstr "Toegestane bestanden: %s"
 
-#: includes/class-wp-user-avatar.php:289 includes/class-wp-user-avatar.php:291
+#: includes/class-wp-user-avatar.php:301 includes/class-wp-user-avatar.php:303
 #: includes/wpua-tinymce-window.php:125
 msgid "Original Size"
 msgstr "Originele grootte"
 
-#: includes/class-wp-user-avatar.php:295 includes/class-wp-user-avatar.php:297
+#: includes/class-wp-user-avatar.php:307 includes/class-wp-user-avatar.php:309
 #: includes/wpua-tinymce-window.php:128
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
-#: includes/class-wp-user-avatar.php:301
+#: includes/class-wp-user-avatar.php:313
 msgid "Remove Image"
 msgstr "Afbeelding verwijderen"
 
-#: includes/class-wp-user-avatar.php:395
+#: includes/class-wp-user-avatar.php:407
 msgid "This file is not an image. Please try another."
 msgstr "Dit bestand is geen afbeelding. Probeer een ander bestand."
 
-#: includes/class-wp-user-avatar.php:400 includes/class-wp-user-avatar.php:432
+#: includes/class-wp-user-avatar.php:412 includes/class-wp-user-avatar.php:444
 msgid "Memory exceeded. Please try another smaller file."
 msgstr "Het geheugen is overschreden. Probeer opnieuw met een kleiner bestand."
 
 #. translators: directory path
-#: includes/class-wp-user-avatar.php:407
+#: includes/class-wp-user-avatar.php:419
 msgid ""
 "Unable to create directory %s. Is its parent directory writable by the "
 "server?"
@@ -307,37 +376,51 @@ msgstr "Afbeelding"
 msgid "You do not have permission to upload files."
 msgstr "Je hebt geen toestemming om bestanden te uploaden."
 
+#. translators: %s: Number of media files.
+#: includes/wpua-media-page.php:61
+msgid "%s avatar permanently deleted."
+msgid_plural "%s avatars permanently deleted."
+msgstr[0] "Avatar permanent verwijderd."
+msgstr[1] "%s avatars permanent verwijderd."
+
+#. translators: %s: Number of media files.
+#: includes/wpua-media-page.php:82
+msgid "%s avatar moved to the Trash."
+msgid_plural "%s avatars moved to the Trash."
+msgstr[0] "Avatar verplaatst naar de prullenbak."
+msgstr[1] "%s avatars verplaatst naar de prullenbak."
+
 #. translators: search query
-#: includes/wpua-media-page.php:66
+#: includes/wpua-media-page.php:146
 msgid "Search results for %s"
 msgstr "Zoekresultaten voor %s"
 
-#: includes/wpua-media-page.php:98
+#: includes/wpua-media-page.php:170
 msgid "Search"
 msgstr "Zoeken"
 
-#: includes/wpua-options-page.php:120
+#: includes/wpua-options-page.php:143
 msgid "Add avatar button to Visual Editor"
 msgstr "Voeg avatar-knop toe aan de visuele editor"
 
-#: includes/wpua-options-page.php:131
+#: includes/wpua-options-page.php:154
 msgid "Allow Contributors & Subscribers to upload avatars"
 msgstr "Sta schrijvers & abonnees toe om avatars te uploaden"
 
-#: includes/wpua-options-page.php:142
+#: includes/wpua-options-page.php:165
 msgid "Disable Gravatar and use only local avatars"
 msgstr "Schakel Gravatar uit en gebruik alleen lokale avatars"
 
-#: includes/wpua-options-page.php:154
+#: includes/wpua-options-page.php:177
 msgid "Replace the custom avatars functionality in the Ultimate Member plugin"
 msgstr ""
 "Vervang de aangepaste avatars functionaliteit in de Ultimate Member plugin"
 
-#: includes/wpua-options-page.php:167
+#: includes/wpua-options-page.php:190
 msgid "Always use the browser file uploader to upload avatars"
 msgstr "Gebruik altijd de browser-bestandsuploader om avatars te uploaden"
 
-#: includes/wpua-options-page.php:168
+#: includes/wpua-options-page.php:191
 msgid ""
 "Check this if another plugin is conflicting with the WordPress Media "
 "Uploader."
@@ -345,69 +428,69 @@ msgstr ""
 "Vink dit aan als een andere plug-in in conflict is met de WordPress Media "
 "Uploader."
 
-#: includes/wpua-options-page.php:196 includes/wpua-options-page.php:205
+#: includes/wpua-options-page.php:219 includes/wpua-options-page.php:228
 msgid "Upload Size Limit"
 msgstr "Bestandsgrootte uploadlimiet"
 
-#: includes/wpua-options-page.php:197 includes/wpua-options-page.php:206
+#: includes/wpua-options-page.php:220 includes/wpua-options-page.php:229
 msgid "(only for Contributors & Subscribers)"
 msgstr "(alleen voor schrijvers & abonnees)"
 
 #. translators: file name
-#: includes/wpua-options-page.php:216
+#: includes/wpua-options-page.php:239
 msgid "%s exceeds the maximum upload size for this site."
 msgstr "%s overschrijdt de maximale uploadgrootte voor deze site."
 
-#: includes/wpua-options-page.php:235
+#: includes/wpua-options-page.php:258
 msgid "Allow users to edit avatars"
 msgstr "Sta gebruikers toe om avatars te bewerken"
 
-#: includes/wpua-options-page.php:243
+#: includes/wpua-options-page.php:266
 msgid "Resize avatars on upload"
 msgstr "Pas de grootte van avatars aan bij het uploaden"
 
-#: includes/wpua-options-page.php:248
+#: includes/wpua-options-page.php:271
 msgid "Width"
 msgstr "Breedte"
 
-#: includes/wpua-options-page.php:252
+#: includes/wpua-options-page.php:275
 msgid "Height"
 msgstr "Hoogte"
 
-#: includes/wpua-options-page.php:260
+#: includes/wpua-options-page.php:283
 msgid "Crop avatars to exact dimensions"
 msgstr "Snijd avatars bij tot exacte afmetingen"
 
-#: includes/wpua-options-page.php:282 includes/wpua-options-page.php:288
+#: includes/wpua-options-page.php:305 includes/wpua-options-page.php:311
 msgid "Avatar Display"
 msgstr "Avatar weergave"
 
-#: includes/wpua-options-page.php:295
+#: includes/wpua-options-page.php:318
 msgid "Show Avatars"
 msgstr "Toon avatars"
 
-#: includes/wpua-options-page.php:302 includes/wpua-options-page.php:308
+#: includes/wpua-options-page.php:325 includes/wpua-options-page.php:331
 msgid "Maximum Rating"
 msgstr "Leeftijdsgrens"
 
-#: includes/wpua-options-page.php:314
+#: includes/wpua-options-page.php:337
 msgid "G &#8212; Suitable for all audiences"
 msgstr "G &#8212; Geschikt voor alle leeftijden"
 
-#: includes/wpua-options-page.php:315
+#: includes/wpua-options-page.php:338
 msgid "PG &#8212; Possibly offensive, usually for audiences 13 and above"
 msgstr ""
 "PG &#8212; Mogelijk kwetsend, gebruikelijk voor leeftijden van 13 en hoger"
 
-#: includes/wpua-options-page.php:316
+#: includes/wpua-options-page.php:339
 msgid "R &#8212; Intended for adult audiences above 17"
 msgstr "R &#8212; Alleen voor boven de 17"
 
-#: includes/wpua-options-page.php:317
+#: includes/wpua-options-page.php:340
 msgid "X &#8212; Even more mature than above"
 msgstr "X &#8212; Nog ouder dan hierboven"
 
-#: includes/wpua-options-page.php:346
+#: includes/wpua-options-page.php:369
 msgid ""
 "For users without a custom avatar of their own, you can either display a "
 "generic logo or a generated one based on their e-mail address."
@@ -488,10 +571,14 @@ msgid "Insert Avatar"
 msgstr "Avatar invoegen"
 
 #. translators: placeholder for <a> and </a> tags.
-#: one-user-avatar.php:120
+#: one-user-avatar.php:198
 msgid ""
 "The plugin One User Avatar is a replacement for the old WP User Avatar "
 "plugin. Please %1$sdeactivate WP User Avatar%2$s to start using it."
 msgstr ""
 "De plug-in One User Avatar is een vervanging voor de oude WP User Avatar-"
 "plug-in. %1$sDeactiveer eerst WP User Avatar%2$s om het te gebruiken."
+
+#~ msgctxt "column name"
+#~ msgid "Uploaded to"
+#~ msgstr "Geüpload naar"

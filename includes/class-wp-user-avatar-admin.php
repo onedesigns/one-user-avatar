@@ -11,7 +11,7 @@
  * @copyright  2014-2020 Flippercode
  * @copyright  2020-2021 ProfilePress
  * @copyright  2021 One Designs
- * @version    2.3.9
+ * @version    2.5.0
  */
 
 class WP_User_Avatar_Admin {
@@ -27,12 +27,6 @@ class WP_User_Avatar_Admin {
 	 */
 	public function __construct() {
 		global $show_avatars;
-
-		// Initialize default settings
-		register_activation_hook( WPUA_DIR . 'wp-user-avatar.php', array( $this, 'wpua_options' ) );
-
-		// Settings saved to wp_options
-		add_action( 'admin_init', array( $this, 'wpua_options' ) );
 
 		// Enqueue scripts
 		add_action( 'admin_enqueue_scripts', array( $this, 'wpua_enqueue_scripts' ) );
@@ -69,42 +63,6 @@ class WP_User_Avatar_Admin {
 		// Media states
 		add_filter( 'display_media_states', array($this, 'wpua_add_media_state') );
 
-	}
-
-	/**
-	 * Settings saved to wp_options
-	 * @since 1.4
-	 * @uses add_option()
-	 */
-	public function wpua_options() {
-		add_option( 'avatar_default_wp_user_avatar',       '' );
-		add_option( 'wp_user_avatar_allow_upload',        '0' );
-		add_option( 'wp_user_avatar_disable_um_avatars',  '0' );
-		add_option( 'wp_user_avatar_force_file_uploader', '0' );
-		add_option( 'wp_user_avatar_disable_gravatar',    '0' );
-		add_option( 'wp_user_avatar_edit_avatar',         '1' );
-		add_option( 'wp_user_avatar_resize_crop',         '0' );
-		add_option( 'wp_user_avatar_resize_h',           '96' );
-		add_option( 'wp_user_avatar_resize_upload',       '0' );
-		add_option( 'wp_user_avatar_resize_w',           '96' );
-		add_option( 'wp_user_avatar_tinymce',             '1' );
-		add_option( 'wp_user_avatar_upload_size_limit',   '0' );
-
-		if ( wp_next_scheduled( 'wpua_has_gravatar_cron_hook' ) ) {
-			$cron = get_option( 'cron' );
-
-			$new_cron = '';
-
-			foreach ( $cron as $key => $value ) {
-				if ( is_array( $value ) ) {
-					if ( array_key_exists( 'wpua_has_gravatar_cron_hook', $value ) ) {
-						unset($cron[$key]);
-					}
-				}
-			}
-
-			update_option( 'cron', $cron );
-		}
 	}
 
 	/**
@@ -163,6 +121,50 @@ class WP_User_Avatar_Admin {
 			}
 
 			switch( $doaction ) {
+				case 'trash':
+					if ( empty( $post_ids ) ) {
+						break;
+					}
+
+					foreach ( $post_ids as $post_id ) {
+						if ( ! current_user_can( 'delete_post', $post_id ) ) {
+							wp_die( __( 'Sorry, you are not allowed to move this avatar to the Trash.', 'one-user-avatar' ) );
+						}
+
+						if ( ! wp_trash_post( $post_id ) ) {
+							wp_die( __( 'Error in moving the avatar to Trash.', 'one-user-avatar' ) );
+						}
+					}
+
+					$location = add_query_arg(
+						array(
+							'trashed' => count( $post_ids ),
+							'ids'     => implode( ',', $post_ids ),
+						),
+						$location
+					);
+
+					break;
+
+				case 'untrash':
+					if ( empty( $post_ids ) ) {
+						break;
+					}
+
+					foreach ( $post_ids as $post_id ) {
+						if ( ! current_user_can( 'delete_post', $post_id ) ) {
+							wp_die( __( 'Sorry, you are not allowed to restore this avatar from the Trash.', 'one-user-avatar' ) );
+						}
+
+						if ( ! wp_untrash_post( $post_id ) ) {
+							wp_die( __( 'Error in restoring the avatar from Trash.', 'one-user-avatar' ) );
+						}
+					}
+
+					$location = add_query_arg( 'untrashed', count( $post_ids ), $location );
+
+					break;
+
 				case 'delete':
 					if ( empty( $post_ids ) ) {
 						break;
@@ -170,11 +172,11 @@ class WP_User_Avatar_Admin {
 
 					foreach ( $post_ids as $post_id_del ) {
 						if ( ! current_user_can( 'delete_post', $post_id_del ) ) {
-							wp_die( esc_html__( 'You are not allowed to delete this post.', 'one-user-avatar' ) );
+							wp_die( esc_html__( 'Sorry, you are not allowed to delete this avatar.', 'one-user-avatar' ) );
 						}
 
 						if ( ! wp_delete_attachment( $post_id_del ) ) {
-							wp_die( esc_html__( 'Error in deleting.','one-user-avatar' ) );
+							wp_die( esc_html__( 'Error in deleting the avatar.','one-user-avatar' ) );
 						}
 					}
 
@@ -191,32 +193,6 @@ class WP_User_Avatar_Admin {
 
 			exit;
 		}
-	}
-
-	/**
-	 * On deactivation
-	 * @since 1.4
-	 * @uses int $blog_id
-	 * @uses object $wpdb
-	 * @uses get_blog_prefix()
-	 * @uses get_option()
-	 * @uses update_option()
-	 */
-	public function wpua_deactivate() {
-		global $blog_id, $wpdb;
-
-		$wp_user_roles = $wpdb->get_blog_prefix( $blog_id ) . 'user_roles';
-
-		// Get user roles and capabilities
-		$user_roles = get_option( $wp_user_roles );
-
-		// Remove subscribers edit_posts capability
-		unset( $user_roles['subscriber']['capabilities']['edit_posts'] );
-
-		update_option( $wp_user_roles, $user_roles );
-
-		// Reset all default avatars to Mystery Man
-		update_option( 'avatar_default', 'mystery' );
 	}
 
 	/**
@@ -367,7 +343,13 @@ class WP_User_Avatar_Admin {
 	 * @return string
 	 */
 	public function wpua_add_default_avatar() {
-		global $avatar_default, $mustache_admin, $mustache_medium, $wpua_avatar_default, $wpua_disable_gravatar, $wpua_functions;
+		global  $avatar_default,
+				$mustache_admin,
+				$mustache_admin_2x,
+				$mustache_medium,
+				$wpua_avatar_default,
+				$wpua_disable_gravatar,
+				$wpua_functions;
 
 		// Remove get_avatar filter
 		remove_filter( 'get_avatar', array( $wpua_functions, 'wpua_get_avatar_filter' ) );
@@ -395,34 +377,54 @@ class WP_User_Avatar_Admin {
 
 		// Take avatar_defaults and get examples for unknown@gravatar.com
 		foreach ( $avatar_defaults as $default_key => $default_name ) {
-			$avatar   = get_avatar( 'unknown@gravatar.com', 32, $default_key );
 			$selected = ( $avatar_default == $default_key ) ? ' checked="checked" ' : '';
+
+			// Remove get_avatar filter
+			remove_filter( 'get_avatar',     array( $wpua_functions, 'wpua_get_avatar_filter' ) );
+			remove_filter( 'get_avatar_url', array( $wpua_functions, 'wpua_get_avatar_url' ) );
+
+			// $avatar = get_avatar( 'unknown@gravatar.com', 32, $default_key );
+			$avatar = get_avatar( 'unknown@gravatar.com', 32, $default_key, '', array( 'force_default' => true ) );
+
+			// Enable get_avatar filter
+			add_filter( 'get_avatar',     array( $wpua_functions, 'wpua_get_avatar_filter' ), 10, 6 );
+			add_filter( 'get_avatar_url', array( $wpua_functions, 'wpua_get_avatar_url' ),    10, 3 );
 
 			$avatar_list .= sprintf(
                 '<label><input type="radio" name="avatar_default" id="avatar_%1$s" value="%1$s" %2$s/> ',
                 esc_attr( $default_key ),
                 $selected
             );
-			$avatar_list .= preg_replace( "/src='(.+?)'/", "src='\$1&amp;forcedefault=1'", $avatar );
+			$avatar_list .= $avatar;
 			$avatar_list .= ' ' . $default_name . '</label>';
 			$avatar_list .= '<br />';
 		}
 
 		// Show remove link if custom Default Avatar is set
 		if ( ! empty( $wpua_avatar_default ) && $wpua_functions->wpua_attachment_is_image( $wpua_avatar_default ) ) {
-			$avatar_thumb_src = $wpua_functions->wpua_get_attachment_image_src( $wpua_avatar_default, array( 32, 32 ) );
-			$avatar_thumb     = $avatar_thumb_src[0];
-			$hide_remove      = '';
+			$avatar_thumb_src    = $wpua_functions->wpua_get_attachment_image_src( $wpua_avatar_default, array( 32, 32 ) );
+			$avatar_thumb_src_2x = $wpua_functions->wpua_get_attachment_image_src( $wpua_avatar_default, array( 64, 64 ) );
+
+			$avatar_thumb    = $avatar_thumb_src[0];
+			$avatar_thumb_2x = $avatar_thumb_src_2x[0];
+
+			$hide_remove = '';
 		} else {
-			$avatar_thumb = $mustache_admin;
-			$hide_remove  = ' class="wpua-hide"';
+			$avatar_thumb    = $mustache_admin;
+			$avatar_thumb_2x = $mustache_admin_2x;
+
+			$hide_remove = ' class="wpua-hide"';
 		}
 
 		// Default Avatar is wp_user_avatar, check the radio button next to it
 		$selected_avatar = ( 1 == (bool) $wpua_disable_gravatar || 'wp_user_avatar' == $avatar_default ) ? ' checked="checked" ' : '';
 
 		// Wrap WPUA in div
-		$avatar_thumb_img = sprintf( '<div id="wpua-preview"><img src="%s" width="32" /></div>', esc_url( $avatar_thumb ) );
+		$avatar_thumb_img = sprintf(
+			'<div id="wpua-preview"><img src="%s" srcset="%s 2x" width="32" /></div>',
+			esc_url( $avatar_thumb ),
+			esc_url( $avatar_thumb_2x )
+		);
 
 		// Add WPUA to list
 		$wpua_list  = sprintf(
@@ -440,7 +442,7 @@ class WP_User_Avatar_Admin {
 		if ( 1 != (bool) $wpua_disable_gravatar ) {
 			return $wpua_list . '<div id="wp-avatars">' . $avatar_list . '</div>';
 		} else {
-			return $wpua_list . '<div id="wp-avatars" style="display:none;">' . $avatar_list . '</div>';
+			return $wpua_list . '<div id="wp-avatars" hidden>' . $avatar_list . '</div>';
 		}
 	}
 
