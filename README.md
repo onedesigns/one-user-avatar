@@ -378,6 +378,9 @@ This would output:
 
 ## Changelog
 
+### 2.5.1
+* Fix: Tested up to 6.8.2
+
 ### 2.5.0
 * Add compatibility for WordPress 6.6
 * Add support for retina avatars
