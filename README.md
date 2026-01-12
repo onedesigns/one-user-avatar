@@ -378,6 +378,9 @@ This would output:
 
 ## Changelog
 
+### 2.5.3
+* Add compatibility for WordPress 6.9
+
 ### 2.5.2
 * Add compatibility for WordPress 6.9
 * Limit plugin tags to 5

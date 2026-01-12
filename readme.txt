@@ -4,7 +4,7 @@ Contributors: onedesigns, properfraction, collizo4sky
 Tags: avatar, gravatar, bbpress, profile, users
 Requires at least: 4.0
 Tested up to: 6.6.2
-Stable tag: 2.5.2
+Stable tag: 2.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -391,8 +391,10 @@ This would output:
 
 == Changelog ==
 
-= 2.5.2 =
+= 2.5.3 =
 * Add compatibility for WordPress 6.9
+
+= 2.5.2 =
 * Limit plugin tags to 5
 * Fix avatar class name
 
