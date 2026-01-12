@@ -1,10 +1,10 @@
 === One User Avatar | User Profile Picture ===
 
 Contributors: onedesigns, properfraction, collizo4sky
-Tags: user profile, avatar, gravatar, author image, author photo, author avatar, bbPress, profile avatar, profile image, user avatar, user image, user photo, widget
+Tags: avatar, gravatar, bbpress, profile, users
 Requires at least: 4.0
-Tested up to: 6.8.2
-Stable tag: 2.5.1
+Tested up to: 6.6.2
+Stable tag: 2.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -390,6 +390,14 @@ This would output:
 2. One User Avatar lets you upload your own Default Avatar.
 
 == Changelog ==
+
+= 2.5.2 =
+* Add compatibility for WordPress 6.9
+* Limit plugin tags to 5
+* Fix avatar class name
+
+= 2.5.1 =
+* Add compatibility for WordPress 6.8.2
 
 = 2.5.0 =
 * Add compatibility for WordPress 6.6

@@ -943,7 +943,7 @@ class WP_User_Avatar_Functions {
 				'',
 				'',
 				'avatar-' . $size,
-				'wp-user-avatar wp-user-avatar-' . esc_attr( $size ) . esc_attr( $alignclass ) . ' photo' . esc_attr( $class_string )
+				' wp-user-avatar wp-user-avatar-' . esc_attr( $size ) . esc_attr( $alignclass ) . ' photo' . esc_attr( $class_string )
 			);
 
 			$avatar = str_replace( $replace, $replacements, $avatar );
