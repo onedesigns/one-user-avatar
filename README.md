@@ -378,10 +378,7 @@ This would output:
 
 ## Changelog
 
-### 2.5.3
-* Add compatibility for WordPress 6.9
-
-### 2.5.2
+### 2.5.4
 * Add compatibility for WordPress 6.9
 * Limit plugin tags to 5
 * Fix avatar class name
