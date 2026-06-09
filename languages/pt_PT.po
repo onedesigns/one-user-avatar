@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: One User Avatar 2.3.9\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/one-user-avatar\n"
 "POT-Creation-Date: 2024-10-20T16:00:21+00:00\n"
-"PO-Revision-Date: 2024-10-20 19:30+0200\n"
+"PO-Revision-Date: 2026-06-10 01:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 "X-Domain: one-user-avatar\n"
 
 #. Plugin Name of the plugin
@@ -35,9 +35,9 @@ msgid ""
 "Use any image from your WordPress Media Library as a custom user avatar. Add "
 "your own Default Avatar. Fork of WP User Avatar v2.2.16."
 msgstr ""
-"Use qualquer imagem da sua biblioteca de mídia do WordPress como um avatar "
-"de usuário personalizado. Adicione seu próprio Avatar padrão. Fork do WP "
-"User Avatar v2.2.16."
+"Utilize qualquer imagem da sua biblioteca de mídia do WordPress como um "
+"avatar de utilizador personalizado. Adicione o seu próprio avatar por "
+"omissão! Fork do WP User Avatar v2.2.16."
 
 #. Author of the plugin
 #: one-user-avatar.php
@@ -51,7 +51,7 @@ msgstr "https://onedesigns.com/"
 
 #: includes/class-wp-user-avatar-admin.php:131
 msgid "Sorry, you are not allowed to move this avatar to the Trash."
-msgstr "Não tem permissão para mover este avatar para o lixo."
+msgstr "Desculpe, não tem permissão para mover este avatar para o lixo."
 
 #: includes/class-wp-user-avatar-admin.php:135
 msgid "Error in moving the avatar to Trash."
@@ -59,7 +59,7 @@ msgstr "Erro ao mover o avatar para o lixo."
 
 #: includes/class-wp-user-avatar-admin.php:156
 msgid "Sorry, you are not allowed to restore this avatar from the Trash."
-msgstr "Não tem permissão para recuperar este avatar do lixo."
+msgstr "Desculpe, não tem permissão para recuperar este avatar do lixo."
 
 #: includes/class-wp-user-avatar-admin.php:160
 msgid "Error in restoring the avatar from Trash."
@@ -67,11 +67,11 @@ msgstr "Erro ao recuperar o avatar do lixo."
 
 #: includes/class-wp-user-avatar-admin.php:175
 msgid "Sorry, you are not allowed to delete this avatar."
-msgstr "Não tem permissão para eliminar este avatar."
+msgstr "Desculpe, não tem permissão para eliminar este avatar."
 
 #: includes/class-wp-user-avatar-admin.php:179
 msgid "Error in deleting the avatar."
-msgstr "Erro ao eliminar este avatar."
+msgstr "Erro ao eliminar o avatar."
 
 #: includes/class-wp-user-avatar-admin.php:210
 #: includes/class-wp-user-avatar-admin.php:268 includes/wpua-media-page.php:139
@@ -83,7 +83,7 @@ msgstr "Avatares"
 #: includes/class-wp-user-avatar-admin.php:473
 #: includes/wpua-options-page.php:128
 msgid "Settings"
-msgstr "Opções"
+msgstr "Definições"
 
 #: includes/class-wp-user-avatar-admin.php:228
 #: includes/class-wp-user-avatar-admin.php:229
@@ -127,7 +127,7 @@ msgstr "Escolher imagem"
 #: includes/class-wp-user-avatar-admin.php:571
 #: includes/wpua-options-page.php:359 includes/wpua-options-page.php:365
 msgid "Default Avatar"
-msgstr "Avatar padrão"
+msgstr "Avatar por omissão"
 
 #: includes/class-wp-user-avatar-admin.php:438
 msgid "Remove"
@@ -231,7 +231,7 @@ msgstr "%s atrás"
 
 #: includes/class-wp-user-avatar-list-table.php:544
 msgid "Y/m/d"
-msgstr "d/m/Y"
+msgstr "d-m-Y"
 
 #. translators: %d: number of users.
 #: includes/class-wp-user-avatar-list-table.php:581
@@ -246,7 +246,7 @@ msgstr "(Desanexado)"
 #. translators: %s: Avatar title.
 #: includes/class-wp-user-avatar-list-table.php:631
 msgid "Edit &#8220;%s&#8221;"
-msgstr "Editar &#8220;%s&#8221;"
+msgstr "Editar &#171;%s&#187;"
 
 #: includes/class-wp-user-avatar-list-table.php:632
 msgid "Edit"
@@ -255,12 +255,12 @@ msgstr "Editar"
 #. translators: %s: Avatar title.
 #: includes/class-wp-user-avatar-list-table.php:642
 msgid "Restore &#8220;%s&#8221; from the Trash"
-msgstr "Recuperar &#8220;%s&#8221; do lixo"
+msgstr "Recuperar &#171;%s&#187; do lixo"
 
 #. translators: %s: Avatar title.
 #: includes/class-wp-user-avatar-list-table.php:650
 msgid "Move &#8220;%s&#8221; to the Trash"
-msgstr "Mover &#8220;%s&#8221; para o lixo"
+msgstr "Mover &#171;%s&#187; para o lixo"
 
 #: includes/class-wp-user-avatar-list-table.php:651
 msgid "Trash"
@@ -268,15 +268,13 @@ msgstr "Lixo"
 
 #. translators: %s: Avatar title.
 #: includes/class-wp-user-avatar-list-table.php:663
-#, fuzzy
-#| msgid "Delete Permanently"
 msgid "Delete &#8220;%s&#8221; permanently"
-msgstr "Eliminar permanentemente"
+msgstr "Eliminar &#171;%s&#187; permanentemente"
 
 #. translators: %s: Avatar title.
 #: includes/class-wp-user-avatar-list-table.php:677
 msgid "View &#8220;%s&#8221;"
-msgstr "Visualizar &#8220;%s&#8221;"
+msgstr "Visualizar &#171;%s&#187;"
 
 #: includes/class-wp-user-avatar-list-table.php:678
 msgid "View"
@@ -288,9 +286,9 @@ msgid ""
 "We're sorry, but your theme's page template didn't make a call to %s, which "
 "is required by One User Avatar. Please add this call to your page templates."
 msgstr ""
-"Lamentamos, mas o modelo de página do seu tema não fez uma chamada para %s, "
-"que é exigido pelo One User Avatar. Por favor, adicione esta chamada aos "
-"seus modelos de página."
+"Pedimos desculpa,mas o modelo de página do seu tema não fez uma chamada para "
+"%s, que é necessária para o funcionamento do One User Avatar. Por favor, "
+"adicione esta chamada aos seus modelos de página."
 
 #: includes/class-wp-user-avatar-shortcode.php:258
 msgid "Profile updated."
@@ -374,26 +372,26 @@ msgstr "Imagem"
 
 #: includes/wpua-media-page.php:46
 msgid "You do not have permission to upload files."
-msgstr "Você não tem permissão para fazer upload de arquivos."
+msgstr "Você não tem permissão para carregar ficheiros."
 
 #. translators: %s: Number of media files.
 #: includes/wpua-media-page.php:61
 msgid "%s avatar permanently deleted."
 msgid_plural "%s avatars permanently deleted."
-msgstr[0] "Avatar eliminado permanentemente."
-msgstr[1] "%s avatares eliminados permanentemente."
+msgstr[0] "%s avatar eliminado permanentemente."
+msgstr[1] "%s avatares foram eliminados permanentemente."
 
 #. translators: %s: Number of media files.
 #: includes/wpua-media-page.php:82
 msgid "%s avatar moved to the Trash."
 msgid_plural "%s avatars moved to the Trash."
-msgstr[0] "Avatar movido para o Lixo."
-msgstr[1] "%s avatares movidos para o Lixo."
+msgstr[0] "%s avatar movido para o lixo."
+msgstr[1] "%s avatares movidos para o lixo."
 
 #. translators: search query
 #: includes/wpua-media-page.php:146
 msgid "Search results for %s"
-msgstr "Resultados da pesquisa por %s"
+msgstr "Resultados de pesquisa por %s"
 
 #: includes/wpua-media-page.php:170
 msgid "Search"
@@ -401,7 +399,7 @@ msgstr "Pesquisar"
 
 #: includes/wpua-options-page.php:143
 msgid "Add avatar button to Visual Editor"
-msgstr "Adicionar botão de avatar ao Editor Visual"
+msgstr "Adicionar botão de avatar ao editor visual"
 
 #: includes/wpua-options-page.php:154
 msgid "Allow Contributors & Subscribers to upload avatars"
@@ -409,7 +407,7 @@ msgstr "Permitir que contribuidores e subscritores carreguem avatares"
 
 #: includes/wpua-options-page.php:165
 msgid "Disable Gravatar and use only local avatars"
-msgstr "Desative o Gravatar e use apenas avatares locais"
+msgstr "Desative o Gravatar e utilize apenas avatares locais"
 
 #: includes/wpua-options-page.php:177
 msgid "Replace the custom avatars functionality in the Ultimate Member plugin"
@@ -420,20 +418,19 @@ msgstr ""
 #: includes/wpua-options-page.php:190
 msgid "Always use the browser file uploader to upload avatars"
 msgstr ""
-"Sempre use o carregador de arquivos do navegador para fazer upload de "
-"avatares"
+"Utilize sempre o carregador de ficheiros do navegador para carregar avatares"
 
 #: includes/wpua-options-page.php:191
 msgid ""
 "Check this if another plugin is conflicting with the WordPress Media "
 "Uploader."
 msgstr ""
-"Verifique isso se outro plug-in estiver em conflito com o WordPress Media "
-"Uploader."
+"Verifique isso se outro plugin estiver em conflito com o carregador de "
+"multimédia do WordPress."
 
 #: includes/wpua-options-page.php:219 includes/wpua-options-page.php:228
 msgid "Upload Size Limit"
-msgstr "Limite de tamanho de upload"
+msgstr "Limite de tamanho de carregamento"
 
 #: includes/wpua-options-page.php:220 includes/wpua-options-page.php:229
 msgid "(only for Contributors & Subscribers)"
@@ -446,11 +443,11 @@ msgstr "%s excede o tamanho máximo de carregamentos para este site."
 
 #: includes/wpua-options-page.php:258
 msgid "Allow users to edit avatars"
-msgstr "Permitir que os usuários editem avatares"
+msgstr "Permitir que os utilizadores editem avatares"
 
 #: includes/wpua-options-page.php:266
 msgid "Resize avatars on upload"
-msgstr "Redimensionar avatares no upload"
+msgstr "Redimensionar avatares no carregamento"
 
 #: includes/wpua-options-page.php:271
 msgid "Width"
@@ -462,11 +459,11 @@ msgstr "Altura"
 
 #: includes/wpua-options-page.php:283
 msgid "Crop avatars to exact dimensions"
-msgstr "Recorte avatares nas dimensões exatas"
+msgstr "Recortar os avatares às dimensões exactas"
 
 #: includes/wpua-options-page.php:305 includes/wpua-options-page.php:311
 msgid "Avatar Display"
-msgstr "Exibição de Avatar"
+msgstr "Mostração de Avatar"
 
 #: includes/wpua-options-page.php:318
 msgid "Show Avatars"
@@ -474,7 +471,7 @@ msgstr "Mostrar Avatares"
 
 #: includes/wpua-options-page.php:325 includes/wpua-options-page.php:331
 msgid "Maximum Rating"
-msgstr "Classificação Máxima"
+msgstr "Classificação máxima"
 
 #: includes/wpua-options-page.php:337
 msgid "G &#8212; Suitable for all audiences"
@@ -488,7 +485,7 @@ msgstr ""
 
 #: includes/wpua-options-page.php:339
 msgid "R &#8212; Intended for adult audiences above 17"
-msgstr "R &#8212; Destinado ao público adulto acima de 17"
+msgstr "R &#8212; Indicado para um público adulto acima de 17 anos"
 
 #: includes/wpua-options-page.php:340
 msgid "X &#8212; Even more mature than above"
@@ -499,12 +496,12 @@ msgid ""
 "For users without a custom avatar of their own, you can either display a "
 "generic logo or a generated one based on their e-mail address."
 msgstr ""
-"Para usuários sem avatar personalizado, você pode exibir um logotipo "
-"genérico ou gerado com base em seus endereça de e-mail."
+"Para os utilizadores sem avatar personalizado, pode mostrar um logotipo "
+"genérico ou gerado com base no seu endereço de e-mail."
 
 #: includes/wpua-tinymce-window.php:101
 msgid "User Name"
-msgstr "Nome do usuário"
+msgstr "Nome de utilizador"
 
 #: includes/wpua-tinymce-window.php:121 includes/wpua-tinymce-window.php:134
 msgid "Size:"
@@ -560,7 +557,7 @@ msgstr "URL:"
 
 #: includes/wpua-tinymce-window.php:170
 msgid "Open link in a new window"
-msgstr "Abrir link em uma nova janela"
+msgstr "Abrir link numa nova janela"
 
 #: includes/wpua-tinymce-window.php:174
 msgid "Caption"
@@ -581,7 +578,7 @@ msgid ""
 "plugin. Please %1$sdeactivate WP User Avatar%2$s to start using it."
 msgstr ""
 "O plugin One User Avatar é uma substituição do antigo plugin WP User Avatar. "
-"%1$sDesative o WP User Avatar%2$s para começar a usá-lo."
+"Por favor, %1$sdesative o WP User Avatar%2$s para começar a utilizá-lo."
 
 #~ msgctxt "column name"
 #~ msgid "Uploaded to"
