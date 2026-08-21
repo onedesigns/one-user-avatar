@@ -588,25 +588,26 @@ class WP_User_Avatar {
 					}
 				}
 
-				// Break out file info
-				$name_parts = pathinfo( $name );
-				$name       = trim( substr( $name, 0, -( 1 + strlen( $name_parts['extension'] ) ) ) );
-				$url        = $file['url'];
-				$file       = $file['file'];
-				$title      = $name;
-
 				// Use image exif/iptc data for title if possible
-				if ( $image_meta = @wp_read_image_metadata( $file ) ) {
-					if ( trim( $image_meta['title'] ) && ! is_numeric( sanitize_title( $image_meta['title'] ) ) ) {
-						$title = $image_meta['title'];
-					}
+				if (
+					$image_meta = @wp_read_image_metadata( $file['file'] )
+					&&
+					trim( $image_meta['title'] )
+					&&
+					! is_numeric( sanitize_title( $image_meta['title'] ) )
+				) {
+					$file_title = $image_meta['title'];
+				} else {
+					// Break out file info
+					$name_parts = pathinfo( $name );
+					$file_title = trim( substr( $name, 0, -( 1 + strlen( $name_parts['extension'] ) ) ) );
 				}
 
 				// Construct the attachment array
 				$attachment = array(
-					'guid'			 => $url,
+					'guid'			 => $file['url'],
 					'post_mime_type' => $file['type'],
-					'post_title'	 => $title,
+					'post_title'	 => $file_title,
 					'post_content'	 => '',
 				);
 
@@ -616,7 +617,7 @@ class WP_User_Avatar {
 				}
 
 				// Save the attachment metadata
-				$attachment_id = wp_insert_attachment( $attachment, $file );
+				$attachment_id = wp_insert_attachment( $attachment, $file['file'] );
 
 				if ( ! is_wp_error( $attachment_id ) ) {
 					// Delete other uploads by user
@@ -644,7 +645,7 @@ class WP_User_Avatar {
 
 					wp_reset_query();
 
-					wp_update_attachment_metadata( $attachment_id, wp_generate_attachment_metadata( $attachment_id, $file ) );
+					wp_update_attachment_metadata( $attachment_id, wp_generate_attachment_metadata( $attachment_id, $file['file'] ) );
 
 					// Remove old attachment postmeta
 					delete_metadata( 'post', null, '_wp_attachment_wp_user_avatar', $user_id, true );

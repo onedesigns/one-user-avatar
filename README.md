@@ -378,6 +378,9 @@ This would output:
 
 ## Changelog
 
+### 2.5.6
+* Fix avatar post-processing fatal error
+
 ### 2.5.5
 * Fix upload validation XSS vulnerability
 * Improve Portuguese translation

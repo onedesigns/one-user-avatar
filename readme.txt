@@ -3,8 +3,8 @@
 Contributors: onedesigns, properfraction, collizo4sky
 Tags: avatar, gravatar, bbpress, profile, users
 Requires at least: 4.0
-Tested up to: 6.9
-Stable tag: 2.5.5
+Tested up to: 7.1
+Stable tag: 2.5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -390,6 +390,9 @@ This would output:
 2. One User Avatar lets you upload your own Default Avatar.
 
 == Changelog ==
+
+= 2.5.6 =
+* Fix avatar post-processing fatal error
 
 = 2.5.5 =
 * Fix upload validation XSS vulnerability
