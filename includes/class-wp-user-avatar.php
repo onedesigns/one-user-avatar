@@ -401,7 +401,7 @@ class WP_User_Avatar {
 			$upload_dir = wp_upload_dir();
 
 			// Allow only JPG, GIF, PNG
-			if ( ! empty( $type ) && ! preg_match( '/(jpe?g|gif|png)$/i', $type ) ) {
+			if ( ! empty( $type ) && ! preg_match( '/(jpe?g|gif|png|webp|avif)$/i', $type ) ) {
 				$errors->add( 'wpua_file_type', __( 'This file is not an image. Please try another.', 'one-user-avatar' ) );
 			}
 
@@ -506,7 +506,7 @@ class WP_User_Avatar {
 
 			// Update usermeta
 			update_user_meta( $user_id, $wpdb->get_blog_prefix( $blog_id ) . 'user_avatar', $wpua_id );
-		} else {
+		} elseif( current_user_can( 'upload_files' ) ) {
 			// Remove attachment info if avatar is blank
 			if ( isset( $_POST['wp-user-avatar'] ) && empty( $_POST['wp-user-avatar'] ) ) {
 				// Delete other uploads by user
@@ -545,96 +545,115 @@ class WP_User_Avatar {
 			if ( isset( $_POST['submit'] ) && $_POST['submit'] && ! empty( $_FILES['wpua-file'] ) ) {
 				$file = $_FILES['wpua-file'];
 				$name = isset( $file['name'] ) ? sanitize_file_name( $file['name'] ) : '';
-				$type = isset( $file['type'] ) ? sanitize_mime_type( $file['type'] ) : '';
 				$file = wp_handle_upload( $file, array(
 					'test_form' => false,
+					'mimes'     => array(
+						'jpg|jpeg|jpe' => 'image/jpeg',
+						'gif'          => 'image/gif',
+						'png'          => 'image/png',
+						'webp'         => 'image/webp',
+						'avif'         => 'image/avif',
+						'heic'         => 'image/heic',
+					),
 				) );
 
-				if ( isset( $file['url'] ) ) {
-					if ( ! empty( $type ) && preg_match( '/(jpe?g|gif|png)$/i' , $type ) ) {
-						// Resize uploaded image
-						if ( 1 == (bool) $wpua_resize_upload ) {
-							// Original image
-							$uploaded_image = wp_get_image_editor( $file['file'] );
-
-							// Check for errors
-							if ( ! is_wp_error( $uploaded_image ) ) {
-								// Resize image
-								$uploaded_image->resize( $wpua_resize_w, $wpua_resize_h, $wpua_resize_crop );
-
-								// Save image
-								$uploaded_image->save( $file['file'] );
-							}
-						}
-
-						// Break out file info
-						$name_parts = pathinfo( $name );
-						$name       = trim( substr( $name, 0, -( 1 + strlen( $name_parts['extension'] ) ) ) );
-						$url        = $file['url'];
-						$file       = $file['file'];
-						$title      = $name;
-
-						// Use image exif/iptc data for title if possible
-						if ( $image_meta = @wp_read_image_metadata( $file ) ) {
-							if ( trim( $image_meta['title'] ) && ! is_numeric( sanitize_title( $image_meta['title'] ) ) ) {
-								$title = $image_meta['title'];
-							}
-						}
-
-						// Construct the attachment array
-						$attachment = array(
-							'guid'			 => $url,
-							'post_mime_type' => $type,
-							'post_title'	 => $title,
-							'post_content'	 => '',
-						);
-
-						// This should never be set as it would then overwrite an existing attachment
-						if ( isset( $attachment['ID'] ) ) {
-							unset( $attachment['ID'] );
-						}
-
-						// Save the attachment metadata
-						$attachment_id = wp_insert_attachment( $attachment, $file );
-
-						if ( ! is_wp_error( $attachment_id ) ) {
-							// Delete other uploads by user
-							$q = array(
-								'author'         => $user_id,
-								'post_type'      => 'attachment',
-								'post_status'    => 'inherit',
-								'posts_per_page' => '-1',
-								'meta_query'     => array(
-									array(
-										'key'     => '_wp_attachment_wp_user_avatar',
-										'value'   => '',
-										'compare' => '!=',
-									),
-								),
-							);
-
-							$avatars_wp_query = new WP_Query( $q );
-
-							while ( $avatars_wp_query->have_posts() ){
-								$avatars_wp_query->the_post();
-
-								wp_delete_attachment($post->ID);
-							}
-
-							wp_reset_query();
-
-							wp_update_attachment_metadata( $attachment_id, wp_generate_attachment_metadata( $attachment_id, $file ) );
-
-							// Remove old attachment postmeta
-							delete_metadata( 'post', null, '_wp_attachment_wp_user_avatar', $user_id, true );
-
-							// Create new attachment postmeta
-							update_post_meta( $attachment_id, '_wp_attachment_wp_user_avatar', $user_id );
-
-							// Update usermeta
-							update_user_meta( $user_id, $wpdb->get_blog_prefix( $blog_id ) . 'user_avatar', $attachment_id );
-						}
+				if (
+					empty( $file['type'] )
+					||
+					! preg_match( '/(jpe?g|gif|png|webp|avif)$/i' , $file['type'] )
+				) {
+					if ( file_exists( $file['file'] ) ) {
+						@unlink( $file['file'] );
 					}
+
+					return;
+				}
+
+				if ( ! isset( $file['url'] ) ) {
+					return;
+				}
+
+				// Resize uploaded image
+				if ( 1 == (bool) $wpua_resize_upload ) {
+					// Original image
+					$uploaded_image = wp_get_image_editor( $file['file'] );
+
+					// Check for errors
+					if ( ! is_wp_error( $uploaded_image ) ) {
+						// Resize image
+						$uploaded_image->resize( $wpua_resize_w, $wpua_resize_h, $wpua_resize_crop );
+
+						// Save image
+						$uploaded_image->save( $file['file'] );
+					}
+				}
+
+				// Break out file info
+				$name_parts = pathinfo( $name );
+				$name       = trim( substr( $name, 0, -( 1 + strlen( $name_parts['extension'] ) ) ) );
+				$url        = $file['url'];
+				$file       = $file['file'];
+				$title      = $name;
+
+				// Use image exif/iptc data for title if possible
+				if ( $image_meta = @wp_read_image_metadata( $file ) ) {
+					if ( trim( $image_meta['title'] ) && ! is_numeric( sanitize_title( $image_meta['title'] ) ) ) {
+						$title = $image_meta['title'];
+					}
+				}
+
+				// Construct the attachment array
+				$attachment = array(
+					'guid'			 => $url,
+					'post_mime_type' => $file['type'],
+					'post_title'	 => $title,
+					'post_content'	 => '',
+				);
+
+				// This should never be set as it would then overwrite an existing attachment
+				if ( isset( $attachment['ID'] ) ) {
+					unset( $attachment['ID'] );
+				}
+
+				// Save the attachment metadata
+				$attachment_id = wp_insert_attachment( $attachment, $file );
+
+				if ( ! is_wp_error( $attachment_id ) ) {
+					// Delete other uploads by user
+					$q = array(
+						'author'         => $user_id,
+						'post_type'      => 'attachment',
+						'post_status'    => 'inherit',
+						'posts_per_page' => '-1',
+						'meta_query'     => array(
+							array(
+								'key'     => '_wp_attachment_wp_user_avatar',
+								'value'   => '',
+								'compare' => '!=',
+							),
+						),
+					);
+
+					$avatars_wp_query = new WP_Query( $q );
+
+					while ( $avatars_wp_query->have_posts() ){
+						$avatars_wp_query->the_post();
+
+						wp_delete_attachment($post->ID);
+					}
+
+					wp_reset_query();
+
+					wp_update_attachment_metadata( $attachment_id, wp_generate_attachment_metadata( $attachment_id, $file ) );
+
+					// Remove old attachment postmeta
+					delete_metadata( 'post', null, '_wp_attachment_wp_user_avatar', $user_id, true );
+
+					// Create new attachment postmeta
+					update_post_meta( $attachment_id, '_wp_attachment_wp_user_avatar', $user_id );
+
+					// Update usermeta
+					update_user_meta( $user_id, $wpdb->get_blog_prefix( $blog_id ) . 'user_avatar', $attachment_id );
 				}
 			}
 		}

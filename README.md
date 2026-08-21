@@ -378,6 +378,10 @@ This would output:
 
 ## Changelog
 
+### 2.5.5
+* Fix upload validation XSS vulnerability
+* Improve Portuguese translation
+
 ### 2.5.4
 * Add compatibility for WordPress 6.9
 * Limit plugin tags to 5

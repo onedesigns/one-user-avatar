@@ -215,7 +215,7 @@ $allowed_html['input'] = array_merge( $allowed_html['input'], array(
 						<table class="form-table">
 							<tr valign="top">
 								<th scope="row">
-									<label for="wp_user_avatar_upload_size_limit">'
+									<label for="wp_user_avatar_upload_size_limit">
 										<?php esc_html_e( 'Upload Size Limit', 'one-user-avatar' ); ?>
 										<?php esc_html_e( '(only for Contributors & Subscribers)', 'one-user-avatar' ); ?>
 									</label>
